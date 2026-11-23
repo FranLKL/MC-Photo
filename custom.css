@@ -1,92 +1,90 @@
-/* ===== B站风美化 - 适配当前模板 ===== */
-:root {
-  --pink: #FB7299;
-  --blue: #00A1D6;
-  --light: #F7F8FA;
-  --shadow: 0 4px 20px rgba(251, 114, 153, 0.12);
+/* ===== 终极B站风美化 - 强制生效版 ===== */
+
+/* 1. 页面背景 */
+html, body {
+  background: linear-gradient(135deg, #FDF2F7 0%, #F0F7FF 100%) !important;
+  background-attachment: fixed !important;
+  min-height: 100vh !important;
 }
 
-/* 页面背景 */
-body {
-  background: linear-gradient(180deg, #F7F8FA 0%, #F0F4F8 100%);
-  background-attachment: fixed;
-  font-family: -apple-system, "Microsoft YaHei", "PingFang SC", sans-serif;
+/* 2. 标题 */
+h1 {
+  font-size: 32px !important;
+  font-weight: 800 !important;
+  background: linear-gradient(90deg, #FB7299, #00A1D6) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  margin: 30px 0 !important;
 }
 
-/* 标题样式 */
-h1, .site-title {
-  font-size: 28px !important;
-  font-weight: 700 !important;
-  background: linear-gradient(90deg, var(--pink), var(--blue));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin-bottom: 30px !important;
-}
-
-/* 卡片容器 - 选中所有相册链接 */
-a[href*="/gallery/"] {
-  display: inline-block !important;
+/* 3. 相册卡片容器 */
+main > div,
+body > div,
+[class*="album"],
+a[href*="gallery"] {
   border-radius: 16px !important;
   overflow: hidden !important;
-  box-shadow: var(--shadow) !important;
-  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1) !important;
-  border: 3px solid transparent !important;
+  box-shadow: 0 4px 20px rgba(251, 114, 153, 0.15) !important;
+  transition: all 0.3s ease !important;
+  border: 2px solid transparent !important;
+  display: inline-block !important;
+  margin: 12px !important;
   background: #fff !important;
-  margin: 8px !important;
 }
 
-a[href*="/gallery/"]:hover {
-  transform: translateY(-8px) scale(1.02) !important;
-  border-color: var(--pink) !important;
-  box-shadow: 0 12px 30px rgba(251, 114, 153, 0.2) !important;
+/* 4. 悬停效果 */
+main > div:hover,
+body > div:hover,
+[class*="album"]:hover,
+a[href*="gallery"]:hover {
+  transform: translateY(-6px) !important;
+  border-color: #FB7299 !important;
+  box-shadow: 0 10px 30px rgba(251, 114, 153, 0.25) !important;
 }
 
-/* 封面图 */
-a[href*="/gallery/"] img {
+/* 5. 封面图 */
+main > div img,
+a[href*="gallery"] img {
   width: 100% !important;
-  height: 180px !important;
+  height: 160px !important;
   object-fit: cover !important;
   transition: transform 0.4s ease !important;
 }
 
-a[href*="/gallery/"]:hover img {
-  transform: scale(1.08) !important;
+main > div:hover img,
+a[href*="gallery"]:hover img {
+  transform: scale(1.05) !important;
 }
 
-/* 卡片文字层 */
-a[href*="/gallery/"] strong,
-a[href*="/gallery/"] span {
-  background: linear-gradient(to top, rgba(0,0,0,0.75), transparent) !important;
-  padding: 20px 15px 12px !important;
+/* 6. 文字信息层 */
+main > div span,
+a[href*="gallery"] span,
+main > div strong,
+a[href*="gallery"] strong {
+  background: linear-gradient(to top, rgba(0,0,0,0.8), transparent) !important;
+  padding: 15px !important;
   color: #fff !important;
   font-weight: 600 !important;
 }
 
-/* 页脚 */
-footer, .footer {
-  margin-top: 60px !important;
-  padding: 25px !important;
+/* 7. 页脚 */
+footer,
+body > :last-child {
+  margin-top: 80px !important;
+  padding: 20px !important;
   text-align: center !important;
-  color: #888 !important;
-  font-size: 14px !important;
-  border-top: 1px solid #eee !important;
+  color: #999 !important;
 }
 
-/* 滚动条 */
+/* 8. 滚动条 */
 ::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
+  width: 10px !important;
 }
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(var(--pink), var(--blue));
-  border-radius: 5px;
+  background: linear-gradient(180deg, #FB7299, #00A1D6) !important;
+  border-radius: 5px !important;
 }
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
-}
-
-/* 照片页面 */
-figure img {
-  border-radius: 12px !important;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.08) !important;
+  background: #f5f5f5 !important;
 }
