@@ -1,6 +1,6 @@
-/* ===== 温柔二次元风 + 优化布局 ===== */
+/* ===== 温柔二次元风 + 两侧装饰 ===== */
 
-/* 🌸 全屏柔和渐变背景 */
+/* 🌸 全屏柔和渐变背景 + 左右装饰 */
 html, body {
   background: linear-gradient(180deg, #FDF2F7 0%, #F0F7FF 100%) !important;
   background-attachment: fixed !important;
@@ -8,14 +8,47 @@ html, body {
   margin: 0 !important;
   padding: 40px 20px !important;
   box-sizing: border-box !important;
+  position: relative !important;
 }
 
-/* 📦 主内容容器 - 居中、自适应宽度 */
+/* 🌸 左侧装饰 */
+body::before {
+  content: "✿ ❀ ✿ ❀ ✿" !important;
+  position: fixed !important;
+  left: 30px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  font-size: 24px !important;
+  color: rgba(251, 114, 153, 0.25) !important;
+  writing-mode: vertical-rl !important;
+  letter-spacing: 8px !important;
+  z-index: 0 !important;
+  pointer-events: none !important;
+}
+
+/* 🌸 右侧装饰 */
+body::after {
+  content: "❀ ✿ ❀ ✿ ❀" !important;
+  position: fixed !important;
+  right: 30px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  font-size: 24px !important;
+  color: rgba(0, 161, 214, 0.25) !important;
+  writing-mode: vertical-rl !important;
+  letter-spacing: 8px !important;
+  z-index: 0 !important;
+  pointer-events: none !important;
+}
+
+/* 📦 主内容容器 - 居中 */
 body > div:first-of-type,
 main {
   max-width: 900px !important;
   margin: 0 auto !important;
   padding: 0 20px !important;
+  position: relative !important;
+  z-index: 1 !important;
 }
 
 /* ✨ 渐变标题 */
@@ -39,7 +72,7 @@ a[href$="/"]:first-of-type {
   margin-bottom: 20px !important;
 }
 
-/* 🖼️ 相册卡片容器 - 自适应排列 */
+/* 🖼️ 相册卡片容器 */
 body > div:first-of-type > div,
 main > div {
   display: flex !important;
@@ -62,14 +95,14 @@ main > div {
   background: #F7F8FA !important;
 }
 
-/* 🎀 可爱的页脚寄语 */
-body::after {
+/* 🎀 底部寄语 */
+main::after, .footer-note {
   content: "⭐ 每一张照片都是珍贵的回忆 ⭐";
   display: block !important;
   text-align: center !important;
-  padding: 50px 20px 80px !important;
+  padding: 60px 20px 40px !important;
   color: #FB7299 !important;
-  font-size: 14px !important;
+  font-size: 15px !important;
   letter-spacing: 3px !important;
-  opacity: 0.75 !important;
+  opacity: 0.8 !important;
 }
