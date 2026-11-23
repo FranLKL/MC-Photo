@@ -1,15 +1,15 @@
 {
   "input": "./gallery",
   "output": "./build_output",
-  "title": "相册",
+  "title": "我们的MC冒险相册",
   "sort-albums-by": "title",
   "sort-media-by": "filename",
   "download-photos": "copy",
   "cleanup": true,
-  "theme": "flow",
+  "theme": "cards",
   "large-size": "1500",
   "css": "./custom.css",
-  "footer": "Copyright Text",
+  "footer": "一段冒险，一段故事o(*￣▽￣*)ブ",
   "usage-stats": false,
-  "script":"<script src='https://raw.githubusercontent.com/fjvi/note/main/static/assets/lightbox.js'><script src='https://raw.githubusercontent.com/fjvi/note/main/static/assets/imgca.js'></script>"
+  "script": "<script src='https://raw.githubusercontent.com/fjvi/note/main/static/assets/lightbox.js'></script><script src='https://raw.githubusercontent.com/fjvi/note/main/static/assets/imgca.js'></script>"
 }
