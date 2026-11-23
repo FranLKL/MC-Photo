@@ -1,13 +1,24 @@
-/* ===== 终极B站风美化 - 强制生效版 ===== */
+/* ===== 温柔二次元风 + 优化布局 ===== */
 
-/* 1. 页面背景 */
+/* 🌸 全屏柔和渐变背景 */
 html, body {
-  background: linear-gradient(135deg, #FDF2F7 0%, #F0F7FF 100%) !important;
+  background: linear-gradient(180deg, #FDF2F7 0%, #F0F7FF 100%) !important;
   background-attachment: fixed !important;
   min-height: 100vh !important;
+  margin: 0 !important;
+  padding: 40px 20px !important;
+  box-sizing: border-box !important;
 }
 
-/* 2. 标题 */
+/* 📦 主内容容器 - 居中、自适应宽度 */
+body > div:first-of-type,
+main {
+  max-width: 900px !important;
+  margin: 0 auto !important;
+  padding: 0 20px !important;
+}
+
+/* ✨ 渐变标题 */
 h1 {
   font-size: 32px !important;
   font-weight: 800 !important;
@@ -15,76 +26,50 @@ h1 {
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
   background-clip: text !important;
-  margin: 30px 0 !important;
+  margin: 0 0 30px 0 !important;
+  text-align: left !important;
 }
 
-/* 3. 相册卡片容器 */
-main > div,
-body > div,
-[class*="album"],
-a[href*="gallery"] {
-  border-radius: 16px !important;
-  overflow: hidden !important;
-  box-shadow: 0 4px 20px rgba(251, 114, 153, 0.15) !important;
-  transition: all 0.3s ease !important;
-  border: 2px solid transparent !important;
+/* 🏠 Home链接 */
+a[href$="/"]:first-of-type {
+  color: #00A1D6 !important;
+  text-decoration: none !important;
+  font-weight: 500 !important;
   display: inline-block !important;
-  margin: 12px !important;
-  background: #fff !important;
+  margin-bottom: 20px !important;
 }
 
-/* 4. 悬停效果 */
-main > div:hover,
-body > div:hover,
-[class*="album"]:hover,
-a[href*="gallery"]:hover {
-  transform: translateY(-6px) !important;
-  border-color: #FB7299 !important;
-  box-shadow: 0 10px 30px rgba(251, 114, 153, 0.25) !important;
+/* 🖼️ 相册卡片容器 - 自适应排列 */
+body > div:first-of-type > div,
+main > div {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 24px !important;
+  justify-content: flex-start !important;
+  margin-top: 20px !important;
 }
 
-/* 5. 封面图 */
-main > div img,
-a[href*="gallery"] img {
-  width: 100% !important;
-  height: 160px !important;
-  object-fit: cover !important;
-  transition: transform 0.4s ease !important;
-}
-
-main > div:hover img,
-a[href*="gallery"]:hover img {
-  transform: scale(1.05) !important;
-}
-
-/* 6. 文字信息层 */
-main > div span,
-a[href*="gallery"] span,
-main > div strong,
-a[href*="gallery"] strong {
-  background: linear-gradient(to top, rgba(0,0,0,0.8), transparent) !important;
-  padding: 15px !important;
-  color: #fff !important;
-  font-weight: 600 !important;
-}
-
-/* 7. 页脚 */
-footer,
-body > :last-child {
-  margin-top: 80px !important;
-  padding: 20px !important;
-  text-align: center !important;
-  color: #999 !important;
-}
-
-/* 8. 滚动条 */
+/* 🖱️ 粉蓝渐变滚动条 */
 ::-webkit-scrollbar {
   width: 10px !important;
+  height: 10px !important;
 }
 ::-webkit-scrollbar-thumb {
   background: linear-gradient(180deg, #FB7299, #00A1D6) !important;
   border-radius: 5px !important;
 }
 ::-webkit-scrollbar-track {
-  background: #f5f5f5 !important;
+  background: #F7F8FA !important;
+}
+
+/* 🎀 可爱的页脚寄语 */
+body::after {
+  content: "⭐ 每一张照片都是珍贵的回忆 ⭐";
+  display: block !important;
+  text-align: center !important;
+  padding: 50px 20px 80px !important;
+  color: #FB7299 !important;
+  font-size: 14px !important;
+  letter-spacing: 3px !important;
+  opacity: 0.75 !important;
 }
