@@ -1,66 +1,92 @@
-/* ============== B站二次元风格主题 ============== */
+/* ===== B站风美化 - 适配当前模板 ===== */
 :root {
-  --primary: #FB7299;
-  --secondary: #00A1D6;
-  --bg: #F1F2F5;
-  --card-bg: #FFFFFF;
-  --text: #18191C;
-  --text-light: #9499A0;
-  --radius: 12px;
-  --shadow: 0 2px 12px rgba(251, 114, 153, 0.15);
+  --pink: #FB7299;
+  --blue: #00A1D6;
+  --light: #F7F8FA;
+  --shadow: 0 4px 20px rgba(251, 114, 153, 0.12);
 }
 
+/* 页面背景 */
 body {
-  background: linear-gradient(135deg, #F8F9FA 0%, #E9F4FB 100%);
+  background: linear-gradient(180deg, #F7F8FA 0%, #F0F4F8 100%);
   background-attachment: fixed;
+  font-family: -apple-system, "Microsoft YaHei", "PingFang SC", sans-serif;
 }
 
-.album-card, .photo-card {
-  border-radius: var(--radius) !important;
-  box-shadow: var(--shadow) !important;
-  border: 2px solid transparent;
-  transition: all 0.3s ease;
-}
-.album-card:hover, .photo-card:hover {
-  border-color: var(--primary);
-  transform: translateY(-5px);
-  box-shadow: 0 8px 25px rgba(251, 114, 153, 0.25) !important;
-}
-
+/* 标题样式 */
 h1, .site-title {
-  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  font-size: 28px !important;
+  font-weight: 700 !important;
+  background: linear-gradient(90deg, var(--pink), var(--blue));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  font-weight: 700;
+  margin-bottom: 30px !important;
 }
 
-.btn, .tag {
-  background: linear-gradient(90deg, var(--primary), var(--secondary));
-  border-radius: 20px;
-  border: none;
+/* 卡片容器 - 选中所有相册链接 */
+a[href*="/gallery/"] {
+  display: inline-block !important;
+  border-radius: 16px !important;
+  overflow: hidden !important;
+  box-shadow: var(--shadow) !important;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  border: 3px solid transparent !important;
+  background: #fff !important;
+  margin: 8px !important;
 }
 
-.header, .footer {
-  background: rgba(255,255,255,0.8) !important;
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(251, 114, 153, 0.1);
+a[href*="/gallery/"]:hover {
+  transform: translateY(-8px) scale(1.02) !important;
+  border-color: var(--pink) !important;
+  box-shadow: 0 12px 30px rgba(251, 114, 153, 0.2) !important;
 }
 
-::-webkit-scrollbar { width: 8px; height: 8px; }
+/* 封面图 */
+a[href*="/gallery/"] img {
+  width: 100% !important;
+  height: 180px !important;
+  object-fit: cover !important;
+  transition: transform 0.4s ease !important;
+}
+
+a[href*="/gallery/"]:hover img {
+  transform: scale(1.08) !important;
+}
+
+/* 卡片文字层 */
+a[href*="/gallery/"] strong,
+a[href*="/gallery/"] span {
+  background: linear-gradient(to top, rgba(0,0,0,0.75), transparent) !important;
+  padding: 20px 15px 12px !important;
+  color: #fff !important;
+  font-weight: 600 !important;
+}
+
+/* 页脚 */
+footer, .footer {
+  margin-top: 60px !important;
+  padding: 25px !important;
+  text-align: center !important;
+  color: #888 !important;
+  font-size: 14px !important;
+  border-top: 1px solid #eee !important;
+}
+
+/* 滚动条 */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(var(--primary), var(--secondary));
-  border-radius: 4px;
+  background: linear-gradient(var(--pink), var(--blue));
+  border-radius: 5px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
 }
 
-.photo-card::after {
-  content: '';
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  width: 12px;
-  height: 12px;
-  background: var(--primary);
-  border-radius: 50%;
-  opacity: 0.6;
+/* 照片页面 */
+figure img {
+  border-radius: 12px !important;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08) !important;
 }
-
