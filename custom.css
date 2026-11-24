@@ -1,4 +1,4 @@
-/* ============== 提瓦特星空 · 经典完美版 ============== */
+/* ============== 提瓦特星空 · 究极完美版 ============== */
 :root {
   --primary: #FB7299;
   --secondary: #00A1D6;
@@ -9,12 +9,14 @@
   --shadow-hover: 0 15px 40px rgba(251, 114, 153, 0.3);
 }
 
+/* 全局背景与字体 */
 html, body {
   background: linear-gradient(135deg, #FDF2F7 0%, #F0F7FF 50%, #FDF2F7 100%) !important;
   background-attachment: fixed !important;
   min-height: 100vh !important;
   font-family: "Microsoft YaHei", "PingFang SC", sans-serif !important;
   margin: 0;
+  color: var(--text) !important;
 }
 
 /* 居中框架 */
@@ -25,44 +27,93 @@ body {
   overflow-x: hidden !important;
 }
 main, .container, #content, body > div {
-  position: relative; z-index: 1; width: 100% !important;
-  max-width: 1200px !important; margin: 0 auto !important;
-  padding: 40px 20px !important; box-sizing: border-box !important;
+  position: relative; z-index: 1;
+  width: 100% !important;
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+  padding: 40px 20px !important;
+  box-sizing: border-box !important;
 }
 
-/* 标题 */
+/* 标题渐变 */
 h1 {
-  font-size: 42px !important; font-weight: 800 !important;
+  font-size: 42px !important;
+  font-weight: 800 !important;
   background: linear-gradient(90deg, #FB7299, #00A1D6, #FB7299) !important;
   background-size: 200% auto !important;
-  -webkit-background-clip: text !important; background-clip: text !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
-  margin: 30px 0 10px !important; text-align: center !important;
+  margin: 30px 0 10px !important;
+  text-align: center !important;
   animation: shine 3s linear infinite !important;
   filter: drop-shadow(0 0 15px rgba(251, 114, 153, 0.15)) !important;
 }
-@keyframes shine { 0% { background-position: 0 center; } 100% { background-position: 200% center; } }
+@keyframes shine {
+  0% { background-position: 0 center; }
+  100% { background-position: 200% center; }
+}
 
 /* 欢迎语 */
 main::before {
   content: "✨ 提瓦特的星空永远有你的位置 ✨";
-  display: block !important; text-align: center !important; font-size: 18px !important;
-  color: var(--text-light) !important; margin: 0 0 30px !important; letter-spacing: 2px !important;
+  display: block !important;
+  text-align: center !important;
+  font-size: 18px !important;
+  color: var(--text-light) !important;
+  margin: 0 0 30px !important;
+  letter-spacing: 2px !important;
 }
 
-/* 分隔线 */
+/* 渐变分隔线 */
 hr {
-  border: none !important; height: 2px !important;
+  border: none !important;
+  height: 2px !important;
   background: linear-gradient(90deg, transparent, #FB7299, #00A1D6, #FB7299, transparent) !important;
-  background-size: 200% auto !important; animation: gradient-flow 4s linear infinite !important;
-  max-width: 400px !important; margin: 0 auto 40px !important;
+  background-size: 200% auto !important;
+  animation: gradient-flow 4s linear infinite !important;
+  max-width: 400px !important;
+  margin: 0 auto 40px !important;
 }
-@keyframes gradient-flow { 0% { background-position: -200px center; } 100% { background-position: 200px center; } }
+@keyframes gradient-flow {
+  0% { background-position: -200px center; }
+  100% { background-position: 200px center; }
+}
 
-/* ===== 相册网格（完美适配 classic） ===== */
+/* ===== 导航栏面包屑美化 ===== */
+/* 针对你截图里那个蓝色方块 Home 和 原神 */
+nav, .breadcrumb, ul.breadcrumb, main > ul {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 10px !important;
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 0 30px 0 !important;
+}
+nav a, .breadcrumb a, main > ul a {
+  background: #fff !important;
+  color: var(--primary) !important;
+  padding: 8px 16px !important;
+  border-radius: 8px !important;
+  text-decoration: none !important;
+  font-weight: bold !important;
+  box-shadow: 0 2px 10px rgba(251, 114, 153, 0.15) !important;
+  transition: all 0.3s ease !important;
+  border: 2px solid transparent !important;
+}
+nav a:hover, .breadcrumb a:hover, main > ul a:hover {
+  background: var(--primary) !important;
+  color: #fff !important;
+  box-shadow: 0 4px 15px rgba(251, 114, 153, 0.3) !important;
+}
+
+/* ===== 首页相册容器 ===== */
 .albums, .album-grid, #albums, .album-list, .album {
-  display: grid !important;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important;
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: center !important;
+  align-items: flex-start !important;
   gap: 30px !important;
   padding: 20px 0 !important;
   width: 100% !important;
@@ -70,8 +121,9 @@ hr {
   margin: 0 auto !important;
 }
 
-/* ===== 卡片样式 ===== */
-.album, .album-card, .card, a[href*="/gallery/"] {
+/* ===== 首页卡片基础样式 ===== */
+.album, .album-card, .card, a[href*="/gallery/"], a[href$=".html"] {
+  width: 300px !important;
   border-radius: var(--radius) !important;
   overflow: hidden !important;
   background: #fff !important;
@@ -80,17 +132,11 @@ hr {
   transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease !important;
   display: block !important;
   margin: 0 !important;
+  text-decoration: none !important;
 }
 
-/* 🚨 悬浮效果 */
-.album:hover, .album-card:hover, .card:hover, a[href*="/gallery/"]:hover {
-  transform: translateY(-8px) scale(1.02) !important;
-  box-shadow: var(--shadow-hover) !important;
-  border-color: var(--primary) !important;
-}
-
-/* 封面图 */
-.album img, .album-card img, .card img, a[href*="/gallery/"] img {
+/* 首页大图样式 */
+.album img, .album-card img, .card img, a[href*="/gallery/"] img, a[href$=".html"] img {
   width: 100% !important;
   height: 220px !important;
   object-fit: cover !important;
@@ -99,25 +145,12 @@ hr {
   transition: transform 0.6s ease !important;
 }
 
-.album:hover img, .album-card:hover img, .card:hover img, a[href*="/gallery/"]:hover img {
-  transform: scale(1.08) !important;
-}
-
-/* 文字信息 */
-.album-info, .card-info, .album-card .info, .album .info {
-  padding: 16px 18px !important;
-}
-.album-info h3, .card-info h3, .album-card .title, .album h3 {
-  font-size: 18px !important; font-weight: 700 !important; color: var(--text) !important; margin: 0 0 6px !important;
-}
-.album-info p, .card-info p, .album-card .count, .album-card .date, .album p {
-  font-size: 13px !important; color: var(--text-light) !important; margin: 2px 0 !important;
-}
-
 /* ===== 子相册图片网格 ===== */
 .media-grid, .gallery, .photos, .media-list, #media {
-  display: grid !important;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)) !important;
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: center !important;
+  align-items: flex-start !important;
   gap: 20px !important;
   width: 100% !important;
   max-width: 1100px !important;
@@ -127,6 +160,7 @@ hr {
 
 .media-grid > a, .gallery > a, .photos > a, .media-list > a, .media-item {
   display: block !important;
+  width: 200px !important;
   border-radius: 12px !important;
   overflow: hidden !important;
   border: 3px solid transparent !important;
@@ -144,15 +178,40 @@ hr {
   transition: transform 0.6s ease !important;
 }
 
-/* 🚨 子相册悬浮效果 */
+/* 🔥🔥🔥 核心魔法：无敌悬浮特效 🔥🔥🔥 */
+/* 首页悬浮 */
+.album:hover, .album-card:hover, .card:hover, a[href*="/gallery/"]:hover, a[href$=".html"]:hover {
+  transform: translateY(-8px) scale(1.02) !important;
+  box-shadow: var(--shadow-hover) !important;
+  border-color: var(--primary) !important;
+}
+.album:hover img, .album-card:hover img, .card:hover img, a[href*="/gallery/"]:hover img, a[href$=".html"]:hover img {
+  transform: scale(1.08) !important;
+}
+/* 文字上浮 */
+.album:hover h3, .album-card:hover h3, a[href$=".html"]:hover h3, a[href$=".html"]:hover div {
+  transform: translateY(-2px) !important;
+}
+
+/* 子相册悬浮 */
 .media-grid > a:hover, .gallery > a:hover, .photos > a:hover, .media-list > a:hover, .media-item:hover {
   transform: translateY(-6px) scale(1.03) !important;
   box-shadow: 0 10px 30px rgba(0, 161, 214, 0.3) !important;
   border-color: var(--secondary) !important;
 }
-
 .media-grid > a:hover img, .gallery > a:hover img, .photos > a:hover img, .media-list > a:hover img, .media-item:hover img {
   transform: scale(1.08) !important;
+}
+
+/* 文字样式 */
+.album-info, .card-info, .album-card .info, .album .info, a[href$=".html"] div {
+  padding: 16px 18px !important;
+}
+.album-info h3, .card-info h3, .album-card .title, .album h3, a[href$=".html"] h3, a[href$=".html"] .title {
+  font-size: 18px !important; font-weight: 700 !important; color: var(--text) !important; margin: 0 0 6px !important;
+}
+.album-info p, .card-info p, .album-card .count, .album-card .date, .album p, a[href$=".html"] p {
+  font-size: 13px !important; color: var(--text-light) !important; margin: 2px 0 !important;
 }
 
 /* 页脚 & 滚动条 */
@@ -164,7 +223,8 @@ footer, .footer { text-align: center !important; padding: 40px 20px 30px !import
 @media (max-width: 768px) {
   h1 { font-size: 32px !important; }
   .albums, .album-grid, #albums, .album-list, .album { gap: 20px !important; }
-  .album img, .album-card img, .card img, a[href*="/gallery/"] img { height: 180px !important; }
-  .media-grid, .gallery, .photos, .media-list { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)) !important; gap: 12px !important; }
-  .media-grid img, .gallery img, .photos img, .media-list img { height: 140px !important; }
+  .album, .album-card, .card, a[href*="/gallery/"], a[href$=".html"] { width: 100% !important; max-width: 320px !important; }
+  .album img, .album-card img, .card img, a[href*="/gallery/"] img, a[href$=".html"] img { height: 180px !important; }
+  .media-grid > a, .gallery > a, .photos > a, .media-list > a, .media-item { width: 45% !important; }
+  .media-grid img, .gallery img, .photos img, .media-list img, .media-item img { height: 140px !important; }
 }
