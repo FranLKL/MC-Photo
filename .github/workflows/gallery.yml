@@ -12,7 +12,7 @@ permissions:
   id-token: write
 jobs:
   deploy:
-    name: Publish Gallery to Github Pages
+    name: Publish Gallery to GitHub Pages
     if: ${{ github.repository != 'gautamkrishnar/github-pages-gallery' && github.event.head_commit.message != '' && github.event.head_commit.message != 'Initial commit' }}
     runs-on: ubuntu-latest
     environment:
@@ -29,7 +29,7 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: 'build_output'
-          name: gh-pages
+          name: github-pages
       - name: Deploy to GitHub Pages 🚀
         id: deployment
         uses: actions/deploy-pages@v4
