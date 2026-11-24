@@ -1,4 +1,4 @@
-/* ============== 提瓦特星空 · 最终奥义版 ============== */
+/* ============== 提瓦特星空 · 最终安魂曲版 ============== */
 @import url('https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&display=swap');
 
 :root {
@@ -11,7 +11,7 @@
   --shadow-hover: 0 15px 40px rgba(251, 114, 153, 0.3);
 }
 
-/* 全局背景与字体（引入站酷快乐体） */
+/* ===== 全局背景与字体（引入站酷快乐体） ===== */
 html, body {
   background: linear-gradient(135deg, #FDF2F7 0%, #F0F7FF 50%, #FDF2F7 100%) !important;
   background-attachment: fixed !important;
@@ -21,7 +21,7 @@ html, body {
   color: var(--text) !important;
 }
 
-/* 居中框架 */
+/* ===== 居中框架 ===== */
 body {
   display: flex !important;
   flex-direction: column !important;
@@ -37,7 +37,7 @@ main, .container, #content, body > div {
   box-sizing: border-box !important;
 }
 
-/* 标题渐变 */
+/* ===== 标题渐变 ===== */
 h1 {
   font-size: 42px !important;
   font-weight: 800 !important;
@@ -53,14 +53,14 @@ h1 {
 }
 @keyframes shine { 0% { background-position: 0 center; } 100% { background-position: 200% center; } }
 
-/* 欢迎语 */
+/* ===== 欢迎语 ===== */
 main::before {
   content: "✨ 提瓦特的星空永远有你的位置 ✨";
   display: block !important; text-align: center !important; font-size: 18px !important;
   color: var(--text-light) !important; margin: 0 0 30px !important; letter-spacing: 2px !important;
 }
 
-/* 渐变分隔线 */
+/* ===== 渐变分隔线 ===== */
 hr {
   border: none !important; height: 2px !important;
   background: linear-gradient(90deg, transparent, #FB7299, #00A1D6, #FB7299, transparent) !important;
@@ -69,7 +69,7 @@ hr {
 }
 @keyframes gradient-flow { 0% { background-position: -200px center; } 100% { background-position: 200px center; } }
 
-/* ===== 导航栏恢复清爽 ===== */
+/* ===== 导航栏 ===== */
 nav, .breadcrumb, ul.breadcrumb, main > ul {
   display: flex !important; justify-content: center !important; align-items: center !important;
   gap: 10px !important; list-style: none !important; padding: 0 !important; margin: 0 0 30px 0 !important;
@@ -79,125 +79,87 @@ nav a, .breadcrumb a, main > ul a {
   text-decoration: none !important; border: none !important; box-shadow: none !important; transform: none !important;
 }
 
-/* ===== 首页相册容器 ===== */
-.albums, .album-grid, #albums, .album-list, main > ul + div {
+/* ===== 🔥 首页/子相册网格（全部放权给原生结构，只做居中） ===== */
+.albums, .album-grid, #albums, .album-list, main > ul + div,
+.media-grid, .gallery, .photos, .media-list, #media {
   display: flex !important; flex-wrap: wrap !important; justify-content: center !important;
   align-items: flex-start !important; gap: 30px !important; padding: 20px 0 !important;
-  width: 100% !important; max-width: 1000px !important; margin: 0 auto !important;
+  width: 100% !important; margin: 0 auto !important;
 }
 
-/* ===== 🔥 首页卡片（利用相对定位和伪元素悬浮） ===== */
+/* ===== 首页大卡片 ===== */
 .albums > a, .album-grid > a, #albums > a, main > ul + div > a {
   display: block !important;
-  width: 300px !important;
-  padding: 20px !important;
+  padding: 15px !important;
   background: #fff !important;
   border-radius: var(--radius) !important;
   box-shadow: var(--shadow) !important;
   text-decoration: none !important;
-  position: relative !important; /* 开启伪元素定位 */
+  position: relative !important;
   transition: transform 0.4s ease, box-shadow 0.4s ease !important;
   z-index: 1 !important;
+  max-width: 320px !important; /* 限制最大宽度，防止撑破 */
 }
 
-/* 强行把里面的标题文字改成粉蓝色 */
-.albums > a h2, main > ul + div > a h2,
-.albums > a h3, main > ul + div > a h3,
-.albums > a strong, main > ul + div > a strong {
+/* 首页悬浮：整个卡片上浮 + 强力粉蓝渐变边框 */
+.albums > a:hover, .album-grid > a:hover, #albums > a:hover, main > ul + div > a:hover {
+  transform: translateY(-8px) !important;
+  box-shadow: var(--shadow-hover) !important;
+  border-color: var(--primary) !important; /* 粉色边框 */
+}
+
+/* 强行把首页标题改成粉色 */
+.albums > a h1, .albums > a h2, .albums > a h3, .albums > a strong,
+main > ul + div > a h1, main > ul + div > a h2, main > ul + div > a h3, main > ul + div > a strong {
   color: var(--primary) !important;
   font-size: 22px !important;
   margin-bottom: 10px !important;
 }
 
-/* 首页悬浮：整个卡片上浮 */
-.albums > a:hover, .album-grid > a:hover, #albums > a:hover, main > ul + div > a:hover {
-  transform: translateY(-8px) !important;
-  box-shadow: var(--shadow-hover) !important;
+/* ===== 🔥 子相册小图片（最底层的魔法：直接抓 img 和它最外层的 a） ===== */
+/* 我们在整个页面找所有不是首页大卡片的图片链接 */
+a img {
+  transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+  border-radius: 12px !important; /* 强制圆角 */
+  display: block !important;
 }
 
-/* 🔥 伪元素魔法：凭空画一个渐变边框贴在卡片外围 */
-.albums > a::after, .album-grid > a::after, #albums > a::after, main > ul + div > a::after {
-  content: '';
-  position: absolute;
-  top: -4px; left: -4px; right: -4px; bottom: -4px;
-  border-radius: calc(var(--radius) + 4px);
-  background: linear-gradient(135deg, #FB7299, #00A1D6);
-  z-index: -1;
-  opacity: 0;
-  transition: opacity 0.4s ease, transform 0.4s ease;
-}
-
-/* 鼠标悬停时，渐变边框显现并微微放大 */
-.albums > a:hover::after, .album-grid > a:hover::after, #albums > a:hover::after, main > ul + div > a:hover::after {
-  opacity: 1;
-  transform: scale(1.02);
-}
-
-/* ===== 🔥 子相册（终极劫持，强行套上悬浮） ===== */
-.media-grid, .gallery, .photos, .media-list, #media {
-  display: flex !important; flex-wrap: wrap !important; justify-content: center !important;
-  align-items: flex-start !important; gap: 20px !important; width: 100% !important;
-  max-width: 1100px !important; margin: 0 auto !important; padding: 20px 0 !important;
-}
-
-/* 锁定所有可能包裹图片的父级 */
-.media-grid > a, .gallery > a, .photos > a, .media-list > a, 
-.media-grid .media-item, .gallery .media-item, 
-.media-grid .thumbnail, .gallery .thumbnail,
-.media-grid > div, .gallery > div {
+/* 子相册悬浮：直接给包裹图片的父级链接（非大卡片）加效果 */
+a:not(.albums > a):not(main > ul + div > a):has(img) {
   display: block !important;
   border-radius: 12px !important;
-  overflow: visible !important; /* 允许伪元素溢出 */
+  transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease !important;
   border: 3px solid transparent !important;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.08) !important;
-  transition: transform 0.4s ease, box-shadow 0.4s ease !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  width: 200px !important;
   position: relative !important;
-  z-index: 1 !important;
 }
 
-.media-grid img, .gallery img, .photos img, .media-list img, 
-.media-grid .media-item img, .gallery .media-item img,
-.media-grid .thumbnail img, .gallery .thumbnail img,
-.media-grid > div img, .gallery > div img {
-  width: 100% !important;
-  height: 200px !important;
-  object-fit: cover !important;
-  display: block !important;
-  margin: 0 !important;
-  border-radius: 9px !important;
-  transition: transform 0.6s ease !important;
-}
-
-/* 子相册悬浮时，外框放大、发光，内部图片放大 */
-.media-grid > a:hover, .gallery > a:hover, .photos > a:hover, .media-list > a:hover, 
-.media-grid .media-item:hover, .gallery .media-item:hover,
-.media-grid .thumbnail:hover, .gallery .thumbnail:hover,
-.media-grid > div:hover, .gallery > div:hover {
+/* 鼠标悬停时，只要里面有图片，外层就浮起、亮蓝光、图片放大 */
+a:not(.albums > a):not(main > ul + div > a):has(img):hover {
   transform: translateY(-6px) scale(1.03) !important;
-  box-shadow: 0 10px 30px rgba(0, 161, 214, 0.4) !important;
-  border-color: var(--secondary) !important; /* 亮起蓝边 */
+  box-shadow: 0 10px 30px rgba(0, 161, 214, 0.3) !important;
+  border-color: var(--secondary) !important;
+  z-index: 10 !important;
 }
 
-.media-grid > a:hover img, .gallery > a:hover img, .photos > a:hover img, .media-list > a:hover img,
-.media-grid .media-item:hover img, .gallery .media-item:hover img,
-.media-grid .thumbnail:hover img, .gallery .thumbnail:hover img,
-.media-grid > div:hover img, .gallery > div:hover img {
+a:not(.albums > a):not(main > ul + div > a):has(img):hover img {
   transform: scale(1.08) !important;
 }
 
-/* 页脚 & 滚动条 */
-footer, .footer { text-align: center !important; padding: 40px 20px 30px !important; color: var(--text-light) !important; font-size: 16px !important; letter-spacing: 1px !important; width: 100% !important; }
+/* 文字和页脚 */
+footer, .footer {
+  text-align: center !important; padding: 40px 20px 30px !important;
+  color: var(--text-light) !important; font-size: 16px !important; letter-spacing: 1px !important;
+  width: 100% !important;
+}
+
+/* 滚动条 */
 ::-webkit-scrollbar { width: 8px; height: 8px; }
 ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #FB7299, #00A1D6) !important; border-radius: 4px; }
 ::-webkit-scrollbar-track { background: #F7F8FA; }
 
 @media (max-width: 768px) {
   h1 { font-size: 32px !important; }
-  .albums, .album-grid, #albums, .album-list, main > ul + div { gap: 20px !important; }
-  .albums > a, .album-grid > a, #albums > a, main > ul + div > a { width: 100% !important; max-width: 320px !important; }
-  .media-grid > a, .gallery > a, .photos > a, .media-list > a, .media-item, .thumbnail { width: 45% !important; }
-  .media-grid img, .gallery img, .photos img, .media-list img, .media-item img, .thumbnail img { height: 140px !important; }
+  .albums, .album-grid, #albums, .album-list, main > ul + div,
+  .media-grid, .gallery, .photos, .media-list, #media { gap: 15px !important; }
+  .albums > a, .album-grid > a, #albums > a, main > ul + div > a { width: 100% !important; max-width: 100% !important; }
 }
