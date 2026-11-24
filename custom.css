@@ -1,4 +1,4 @@
-/* ============== 提瓦特星空 · 究极强控版 ============== */
+/* ============== 提瓦特星空 · 完美收尾版 ============== */
 :root {
   --primary: #FB7299;
   --secondary: #00A1D6;
@@ -9,7 +9,6 @@
   --shadow-hover: 0 15px 40px rgba(251, 114, 153, 0.3);
 }
 
-/* ===== 页面背景 ===== */
 html, body {
   background: linear-gradient(135deg, #FDF2F7 0%, #F0F7FF 50%, #FDF2F7 100%) !important;
   background-attachment: fixed !important;
@@ -18,39 +17,15 @@ html, body {
   margin: 0;
 }
 
-/* ===== 页面两侧柔和装饰光晕 ===== */
-body::before,
-body::after {
-  content: '';
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  width: 15%;
-  max-width: 180px;
-  pointer-events: none;
-  z-index: 0;
-}
-body::before {
-  left: 0;
-  background: radial-gradient(circle at 25% 25%, rgba(251, 114, 153, 0.06) 0%, transparent 60%),
-              radial-gradient(circle at 40% 75%, rgba(0, 161, 214, 0.04) 0%, transparent 60%);
-}
-body::after {
-  right: 0;
-  background: radial-gradient(circle at 75% 25%, rgba(0, 161, 214, 0.04) 0%, transparent 60%),
-              radial-gradient(circle at 60% 75%, rgba(251, 114, 153, 0.06) 0%, transparent 60%);
-}
-
-/* ===== 强制主内容居中 ===== */
 body {
   display: flex !important;
   flex-direction: column !important;
   align-items: center !important;
   overflow-x: hidden !important;
 }
+
 main, .container, #content, body > div {
-  position: relative;
-  z-index: 1;
+  position: relative; z-index: 1;
   width: 100% !important;
   max-width: 1200px !important;
   margin: 0 auto !important;
@@ -58,177 +33,72 @@ main, .container, #content, body > div {
   box-sizing: border-box !important;
 }
 
-/* ===== 标题样式 ===== */
 h1 {
-  font-size: 42px !important;
-  font-weight: 800 !important;
+  font-size: 42px !important; font-weight: 800 !important;
   background: linear-gradient(90deg, #FB7299, #00A1D6, #FB7299) !important;
   background-size: 200% auto !important;
-  -webkit-background-clip: text !important;
-  background-clip: text !important;
+  -webkit-background-clip: text !important; background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
-  margin: 30px 0 10px !important;
-  text-align: center !important;
+  margin: 30px 0 10px !important; text-align: center !important;
   animation: shine 3s linear infinite !important;
   filter: drop-shadow(0 0 15px rgba(251, 114, 153, 0.15)) !important;
 }
-@keyframes shine {
-  0% { background-position: 0 center; }
-  100% { background-position: 200% center; }
-}
+@keyframes shine { 0% { background-position: 0 center; } 100% { background-position: 200% center; } }
 
-/* ===== 欢迎语 ===== */
 main::before {
   content: "✨ 提瓦特的星空永远有你的位置 ✨";
-  display: block !important;
-  text-align: center !important;
-  font-size: 18px !important;
-  color: var(--text-light) !important;
-  margin: 0 0 30px !important;
-  letter-spacing: 2px !important;
+  display: block !important; text-align: center !important; font-size: 18px !important;
+  color: var(--text-light) !important; margin: 0 0 30px !important; letter-spacing: 2px !important;
 }
 
-/* ===== 分隔线 ===== */
 hr {
-  border: none !important;
-  height: 2px !important;
+  border: none !important; height: 2px !important;
   background: linear-gradient(90deg, transparent, #FB7299, #00A1D6, #FB7299, transparent) !important;
-  background-size: 200% auto !important;
-  animation: gradient-flow 4s linear infinite !important;
-  max-width: 400px !important;
-  margin: 0 auto 40px !important;
+  background-size: 200% auto !important; animation: gradient-flow 4s linear infinite !important;
+  max-width: 400px !important; margin: 0 auto 40px !important;
 }
-@keyframes gradient-flow {
-  0% { background-position: -200px center; }
-  100% { background-position: 200px center; }
-}
+@keyframes gradient-flow { 0% { background-position: -200px center; } 100% { background-position: 200px center; } }
 
-/* ===== 首页相册卡片容器 ===== */
 .albums, .album-grid, #albums, .album-list, main > div > div {
-  display: flex !important;
-  flex-wrap: wrap !important;
-  justify-content: center !important;
-  align-items: flex-start !important;
-  gap: 30px !important;
-  padding: 20px 0 !important;
-  width: 100% !important;
-  max-width: 1000px !important;
-  margin: 0 auto !important;
+  display: flex !important; flex-wrap: wrap !important; justify-content: center !important;
+  align-items: flex-start !important; gap: 30px !important;
+  padding: 20px 0 !important; width: 100% !important; max-width: 1000px !important; margin: 0 auto !important;
 }
 
-/* ===== 🚨 首页相册卡片基础 ===== */
+/* 首页卡片及图片 */
 .albums > a, .album-grid > a, #albums > a, a[href*="/gallery/"] {
-  width: 300px !important;
-  border-radius: var(--radius) !important;
-  overflow: hidden !important;
-  box-shadow: var(--shadow) !important;
-  background: #fff !important;
-  display: block !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  border: 3px solid transparent !important;
+  width: 300px !important; border-radius: var(--radius) !important; overflow: hidden !important;
+  background: #fff !important; display: block !important; margin: 0 !important; padding: 0 !important;
   transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease !important;
 }
-
-/* 首页图片 */
 .albums > a img, .album-grid > a img, #albums > a img, a[href*="/gallery/"] img {
-  width: 100% !important;
-  height: 220px !important;
-  object-fit: cover !important;
-  display: block !important;
-  margin: 0 !important;
-  transition: transform 0.6s ease !important;
+  width: 100% !important; height: 220px !important; object-fit: cover !important; display: block !important;
+  margin: 0 !important; transition: transform 0.6s ease !important;
 }
 
-/* ===== 🔥 首页悬浮强控（直接改最外层和里面的所有元素） ===== */
-.albums > a:hover, .album-grid > a:hover, #albums > a:hover, a[href*="/gallery/"]:hover {
-  transform: translateY(-8px) scale(1.02) !important;
-  box-shadow: var(--shadow-hover) !important;
-  border-color: var(--primary) !important;
-}
-.albums > a:hover img, .album-grid > a:hover img, #albums > a:hover img, a[href*="/gallery/"]:hover img {
-  transform: scale(1.08) !important;
-}
-.albums > a:hover div, .album-grid > a:hover div, #albums > a:hover div, a[href*="/gallery/"]:hover div {
-  transform: translateY(-2px) !important;
-}
-
-/* ===== 🚨 子相册容器与图片基础 ===== */
+/* 子相册图片网格 */
 .media-grid, .gallery, .photos, .media-list, #media {
-  display: flex !important;
-  flex-wrap: wrap !important;
-  justify-content: center !important;
-  align-items: flex-start !important;
-  gap: 20px !important;
-  width: 100% !important;
-  max-width: 1100px !important;
-  margin: 0 auto !important;
-  padding: 20px 0 !important;
+  display: flex !important; flex-wrap: wrap !important; justify-content: center !important;
+  align-items: flex-start !important; gap: 20px !important; width: 100% !important;
+  max-width: 1100px !important; margin: 0 auto !important; padding: 20px 0 !important;
 }
-
 .media-grid > a, .gallery > a, .photos > a, .media-list > a, .media-item {
-  display: block !important;
-  width: 200px !important;
-  border-radius: 12px !important;
-  overflow: hidden !important;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.08) !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  border: 3px solid transparent !important;
+  display: block !important; width: 200px !important; border-radius: 12px !important;
+  overflow: hidden !important; margin: 0 !important; padding: 0 !important;
   transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease !important;
 }
-
 .media-grid img, .gallery img, .photos img, .media-list img, .media-item img {
-  width: 100% !important;
-  height: 200px !important;
-  object-fit: cover !important;
-  display: block !important;
-  margin: 0 !important;
-  transition: transform 0.6s ease !important;
+  width: 100% !important; height: 200px !important; object-fit: cover !important;
+  display: block !important; margin: 0 !important; transition: transform 0.6s ease !important;
 }
 
-/* ===== 🔥 子相册悬浮强控（命中所有可能的包裹层和内部 img） ===== */
-.media-grid > a:hover, .gallery > a:hover, .photos > a:hover, .media-list > a:hover, .media-item:hover,
-.media-grid div:hover, .gallery div:hover {
-  transform: translateY(-6px) scale(1.03) !important;
-  box-shadow: 0 10px 30px rgba(0, 161, 214, 0.3) !important;
-  border-color: var(--secondary) !important;
-}
-
-.media-grid > a:hover img, .gallery > a:hover img, .photos > a:hover img, .media-list > a:hover img, .media-item:hover img,
-.media-grid div:hover img, .gallery div:hover img {
-  transform: scale(1.08) !important;
-}
-
-/* ===== 页脚 ===== */
-footer, .footer {
-  text-align: center !important;
-  padding: 40px 20px 30px !important;
-  color: var(--text-light) !important;
-  font-size: 14px !important;
-  letter-spacing: 1px !important;
-  position: relative !important;
-  z-index: 1 !important;
-  width: 100% !important;
-}
-
-/* ===== 滚动条 ===== */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #FB7299, #00A1D6) !important;
-  border-radius: 4px;
-}
-::-webkit-scrollbar-track {
-  background: #F7F8FA;
-}
-
-/* ===== 响应式 ===== */
+/* 页脚等其他细节保持不变 */
+footer, .footer { text-align: center !important; padding: 40px 20px 30px !important; color: var(--text-light) !important; font-size: 14px !important; letter-spacing: 1px !important; position: relative !important; z-index: 1 !important; width: 100% !important; }
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #FB7299, #00A1D6) !important; border-radius: 4px; }
+::-webkit-scrollbar-track { background: #F7F8FA; }
 @media (max-width: 768px) {
   h1 { font-size: 32px !important; }
-  body::before, body::after { width: 8%; }
   .albums, .album-grid, #albums, .album-list, main > div > div { gap: 20px !important; }
   .albums > a, .album-grid > a, #albums > a, a[href*="/gallery/"] { width: 100% !important; max-width: 320px !important; }
   .albums > a img, .album-grid > a img, #albums > a img, a[href*="/gallery/"] img { height: 180px !important; }
