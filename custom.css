@@ -1,4 +1,4 @@
-/* ============== 提瓦特星空 · 完整美化版 ============== */
+/* ============== 提瓦特星空 · 最终完美版 ============== */
 :root {
   --primary: #FB7299;
   --secondary: #00A1D6;
@@ -17,30 +17,32 @@ html, body {
   background-attachment: fixed !important;
   min-height: 100vh !important;
   font-family: "Microsoft YaHei", "PingFang SC", sans-serif !important;
+  margin: 0;
 }
 
-/* ===== 页面两侧装饰 ===== */
+/* ===== 页面两侧柔和装饰光晕（只在两侧，不覆盖内容区）===== */
 body::before,
 body::after {
   content: '';
   position: fixed;
   top: 0;
   bottom: 0;
-  width: 120px;
+  width: 15%;
+  max-width: 180px;
   pointer-events: none;
   z-index: 0;
 }
 
 body::before {
   left: 0;
-  background: radial-gradient(circle at 20% 20%, rgba(251, 114, 153, 0.08) 0%, transparent 50%),
-              radial-gradient(circle at 30% 70%, rgba(0, 161, 214, 0.06) 0%, transparent 50%);
+  background: radial-gradient(circle at 25% 25%, rgba(251, 114, 153, 0.06) 0%, transparent 60%),
+              radial-gradient(circle at 40% 75%, rgba(0, 161, 214, 0.04) 0%, transparent 60%);
 }
 
 body::after {
   right: 0;
-  background: radial-gradient(circle at 80% 30%, rgba(0, 161, 214, 0.06) 0%, transparent 50%),
-              radial-gradient(circle at 70% 80%, rgba(251, 114, 153, 0.08) 0%, transparent 50%);
+  background: radial-gradient(circle at 75% 25%, rgba(0, 161, 214, 0.04) 0%, transparent 60%),
+              radial-gradient(circle at 60% 75%, rgba(251, 114, 153, 0.06) 0%, transparent 60%);
 }
 
 /* ===== 主内容 ===== */
@@ -77,17 +79,21 @@ h1:hover {
   transition: transform 0.3s ease !important;
 }
 
-/* ===== ✨ 欢迎语 - 自动插入 ===== */
-body > div:first-of-type::before,
-main::before {
-  content: "✨ 提瓦特的星空永远有你的位置 ✨";
-  display: block !important;
+/* ===== ✨ 欢迎语 ===== */
+body > div:first-of-type > p:first-of-type,
+main > p:first-of-type,
+.home-link + p {
   text-align: center !important;
   font-size: 18px !important;
   color: var(--text-light) !important;
-  margin: 0 0 50px !important;
+  margin: 0 0 40px !important;
   letter-spacing: 2px !important;
   animation: fadeIn 1.5s ease-in !important;
+}
+
+body > div:first-of-type > p:first-of-type::before,
+main > p:first-of-type::before {
+  content: "✨ 提瓦特的星空永远有你的位置 ✨";
 }
 
 @keyframes fadeIn {
@@ -95,77 +101,108 @@ main::before {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* ===== Home 导航线 ===== */
-body > p:first-of-type,
+/* ===== Home 导航分隔线 ===== */
+hr,
 .home-link + hr,
-hr {
+.header-separator {
   border: none !important;
   height: 2px !important;
   background: linear-gradient(90deg, transparent, #FB7299, #00A1D6, #FB7299, transparent) !important;
   max-width: 400px !important;
-  margin: 0 auto 50px !important;
+  margin: 0 auto 40px !important;
 }
 
 /* ===== 相册卡片 ===== */
-a[href*="/gallery/"] {
+.albums, .album-grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important;
+  gap: 30px !important;
+  padding: 20px 0 !important;
+}
+
+.album-card, .card, a[href*="/gallery/"] {
   border-radius: var(--radius) !important;
   overflow: hidden !important;
   box-shadow: var(--shadow) !important;
   transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1) !important;
   border: 2px solid transparent !important;
-  display: inline-block !important;
   background: #fff !important;
-  margin: 12px !important;
 }
 
-a[href*="/gallery/"]:hover {
-  transform: translateY(-8px) scale(1.02) !important;
+.album-card:hover, .card:hover, a[href*="/gallery/"]:hover {
+  transform: translateY(-6px) scale(1.01) !important;
   box-shadow: var(--shadow-hover) !important;
   border-color: var(--primary) !important;
 }
 
-a[href*="/gallery/"] img {
+.album-card img, .card img, a[href*="/gallery/"] img {
   width: 100% !important;
-  height: 240px !important;
+  height: 220px !important;
   object-fit: cover !important;
-  transition: transform 0.5s ease !important;
+  transition: transform 0.4s ease !important;
 }
 
-a[href*="/gallery/"]:hover img {
-  transform: scale(1.05) !important;
+.album-card:hover img, .card:hover img, a[href*="/gallery/"]:hover img {
+  transform: scale(1.03) !important;
 }
 
-/* ===== 底部页脚 ===== */
-body::after {
-  content: "一段冒险，一段故事，一段友情 o(*￣▽￣*)ブ";
-  display: block !important;
-  text-align: center !important;
-  padding: 50px 20px 30px !important;
+/* ===== 卡片文字信息 ===== */
+.album-info, .card-info, .album-card .info {
+  padding: 16px 18px !important;
+}
+
+.album-info h3, .card-info h3, .album-card .title {
+  font-size: 18px !important;
+  font-weight: 700 !important;
+  color: var(--text) !important;
+  margin: 0 0 6px !important;
+}
+
+.album-info p, .card-info p, .album-card .count, .album-card .date {
+  font-size: 13px !important;
   color: var(--text-light) !important;
-  font-size: 15px !important;
+  margin: 2px 0 !important;
+}
+
+/* ===== 页脚 - 保留模板自带文字，只改样式 ===== */
+footer, .footer, body > p:last-of-type {
+  text-align: center !important;
+  padding: 40px 20px 30px !important;
+  color: var(--text-light) !important;
+  font-size: 14px !important;
   letter-spacing: 1px !important;
   position: relative !important;
   z-index: 1 !important;
 }
 
-/* ===== 滚动条 ===== */
+footer::before, .footer::before, body > p:last-of-type::before {
+  content: '';
+  display: block;
+  width: 100px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(251, 114, 153, 0.25), transparent) !important;
+  margin: 0 auto 15px !important;
+}
+
+/* ===== 滚动条美化 ===== */
 ::-webkit-scrollbar {
-  width: 10px !important;
-  height: 10px !important;
+  width: 8px;
+  height: 8px;
 }
 ::-webkit-scrollbar-thumb {
   background: linear-gradient(180deg, #FB7299, #00A1D6) !important;
-  border-radius: 5px !important;
+  border-radius: 4px;
 }
 ::-webkit-scrollbar-track {
-  background: #F7F8FA !important;
+  background: #F7F8FA;
 }
 
 /* ===== 响应式适配 ===== */
 @media (max-width: 768px) {
   h1 { font-size: 32px !important; }
-  body > div:first-of-type::before,
-  main::before { font-size: 16px !important; }
-  body::before, body::after { width: 40px; }
-  a[href*="/gallery/"] img { height: 180px !important; }
+  body > div:first-of-type > p:first-of-type,
+  main > p:first-of-type { font-size: 16px !important; }
+  body::before, body::after { width: 8%; }
+  .albums, .album-grid { gap: 20px !important; }
+  .album-card img, .card img, a[href*="/gallery/"] img { height: 180px !important; }
 }
