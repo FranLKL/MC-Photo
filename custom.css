@@ -1,4 +1,4 @@
-/* ============== 提瓦特星空 · 完美居中网格版 ============== */
+/* ============== 提瓦特星空 · 绝对居中网格版 ============== */
 :root {
   --primary: #FB7299;
   --secondary: #00A1D6;
@@ -45,16 +45,28 @@ body::after {
               radial-gradient(circle at 60% 75%, rgba(251, 114, 153, 0.06) 0%, transparent 60%);
 }
 
-/* ===== 主内容居中 ===== */
-/* 精确命中 thumbsup 的主容器，确保两边留白均匀 */
-main, .container, #content {
+/* ===== 强制主内容居中 ===== */
+/* 使用 Flex 布局强行让内容居中，解决模板原生左对齐的问题 */
+body {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  overflow-x: hidden !important;
+}
+
+main, .container, #content, body > div {
   position: relative;
   z-index: 1;
-  max-width: 1100px !important;
+  width: 100% !important;
+  max-width: 1200px !important;
   margin: 0 auto !important;
   padding: 40px 20px !important;
-  width: 100% !important;
   box-sizing: border-box !important;
+}
+
+/* 修复导航栏和顶部的宽度 */
+header, nav, .header, .nav {
+  width: 100% !important;
 }
 
 /* ===== 标题样式 ===== */
@@ -104,18 +116,22 @@ hr {
   100% { background-position: 200px center; }
 }
 
-/* ===== 首页相册卡片容器 ===== */
+/* ===== 首页相册卡片容器（彻底居中） ===== */
 .albums, .album-grid, #albums, .album-list {
-  display: grid !important;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important;
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: center !important; /* 强行居中 */
+  align-items: flex-start !important;
   gap: 30px !important;
   padding: 20px 0 !important;
   width: 100% !important;
-  justify-content: center !important; /* 确保卡片不足时居中 */
+  max-width: 1000px !important;
+  margin: 0 auto !important;
 }
 
 /* ===== 首页相册卡片 ===== */
 .album-card, .card, .album, a[href*="/gallery/"] {
+  width: 300px !important; /* 固定宽度，保证排版整齐 */
   border-radius: var(--radius) !important;
   overflow: hidden !important;
   box-shadow: var(--shadow) !important;
@@ -123,6 +139,7 @@ hr {
   border: 2px solid transparent !important;
   background: #fff !important;
   display: block !important;
+  margin: 0 !important;
 }
 
 .album-card:hover, .card:hover, .album:hover, a[href*="/gallery/"]:hover {
@@ -161,23 +178,27 @@ hr {
   margin: 2px 0 !important;
 }
 
-/* ===== 修复子相册内图片横向排列问题（改成漂亮的多行网格） ===== */
-/* 精确匹配 thumbsup 内部的媒体网格类名 */
+/* ===== 子相册网格（修复居中，网格自适应） ===== */
 .media-grid, .gallery, .photos, .media-list, #media {
-  display: grid !important;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)) !important;
+  display: flex !important;
+  flex-wrap: wrap !important;
+  justify-content: center !important; /* 强制居中 */
+  align-items: flex-start !important;
   gap: 20px !important;
   width: 100% !important;
-  justify-content: center !important;
+  max-width: 1100px !important;
+  margin: 0 auto !important;
+  padding: 20px 0 !important;
 }
 
 .media-grid > a, .gallery > a, .photos > a, .media-list > a {
   display: block !important;
+  width: 200px !important; /* 固定宽，保证整齐 */
   border-radius: 12px !important;
   overflow: hidden !important;
   box-shadow: 0 2px 10px rgba(0,0,0,0.08) !important;
   transition: transform 0.3s ease, box-shadow 0.3s ease !important;
-  margin: 0 !important; /* 清除原生可能自带的边距 */
+  margin: 0 !important;
 }
 
 .media-grid img, .gallery img, .photos img, .media-list img {
@@ -201,6 +222,7 @@ footer, .footer {
   letter-spacing: 1px !important;
   position: relative !important;
   z-index: 1 !important;
+  width: 100% !important;
 }
 
 footer::before, .footer::before {
@@ -230,12 +252,12 @@ footer::before, .footer::before {
   h1 { font-size: 32px !important; }
   body::before, body::after { width: 8%; }
   .albums, .album-grid, #albums, .album-list { gap: 20px !important; }
+  .album-card, .card, .album, a[href*="/gallery/"] { width: 100% !important; max-width: 320px !important; }
   .album-card img, .card img, .album img, a[href*="/gallery/"] img {
     height: 180px !important;
   }
-  .media-grid, .gallery, .photos, .media-list {
-    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)) !important;
-    gap: 12px !important;
+  .media-grid > a, .gallery > a, .photos > a, .media-list > a {
+    width: 45% !important; /* 手机端一行两个 */
   }
   .media-grid img, .gallery img, .photos img, .media-list img {
     height: 140px !important;
