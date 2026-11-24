@@ -1,4 +1,4 @@
-/* ============== 提瓦特星空 · 最终完整版 ============== */
+/* ============== 提瓦特星空 · 清爽完美版 ============== */
 :root {
   --primary: #FB7299;
   --secondary: #00A1D6;
@@ -8,7 +8,7 @@
   --text-light: #9499A0;
   --radius: 16px;
   --shadow: 0 4px 20px rgba(251, 114, 153, 0.12);
-  --shadow-hover: 0 8px 30px rgba(251, 114, 153, 0.25);
+  --shadow-hover: 0 8px 30px rgba(251, 114, 153, 0.18);
 }
 
 /* ===== 页面背景 ===== */
@@ -18,8 +18,6 @@ html, body {
   min-height: 100vh !important;
   font-family: "Microsoft YaHei", "PingFang SC", sans-serif !important;
   margin: 0;
-  overflow-x: hidden;
-  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath fill='%23FB7299' d='M12 2L13.5 9H20L14.5 13.5L16.5 21L12 16.5L7.5 21L9.5 13.5L4 9H10.5L12 2Z'/%3E%3C/svg%3E") 12 12, auto !important;
 }
 
 /* ===== 页面两侧柔和装饰光晕 ===== */
@@ -47,68 +45,6 @@ body::after {
               radial-gradient(circle at 60% 75%, rgba(251, 114, 153, 0.06) 0%, transparent 60%);
 }
 
-/* ===== 角落星星暗纹装饰 ===== */
-body::before {
-  background: 
-    radial-gradient(circle at 10% 10%, rgba(251, 114, 153, 0.08) 0%, transparent 50%),
-    radial-gradient(circle at 90% 90%, rgba(0, 161, 214, 0.06) 0%, transparent 50%);
-}
-
-/* ===== 飘落星星粒子 ===== */
-@keyframes fall-star {
-  0% { transform: translateY(-10px) rotate(0deg); opacity: 0; }
-  10% { opacity: 1; }
-  100% { transform: translateY(100vh) rotate(360deg); opacity: 0.3; }
-}
-
-body::before, body::after,
-body .star-particle {
-  content: '';
-  position: fixed;
-  pointer-events: none;
-  z-index: 0;
-}
-
-body::before {
-  --size: 3px;
-  content: "✦";
-  position: fixed;
-  top: -20px;
-  left: 10%;
-  font-size: 14px;
-  color: rgba(251, 114, 153, 0.35);
-  animation: fall-star 12s linear infinite;
-}
-
-body::after {
-  content: "✧";
-  position: fixed;
-  top: -20px;
-  left: 30%;
-  font-size: 12px;
-  color: rgba(0, 161, 214, 0.35);
-  animation: fall-star 15s linear infinite 2s;
-}
-
-/* 补充更多星星 */
-body > div:first-of-type::before,
-body > div:first-of-type::after,
-main::before, main::after {
-  content: "★";
-  position: fixed;
-  top: -20px;
-  font-size: 10px;
-  color: rgba(251, 114, 153, 0.25);
-  animation: fall-star 18s linear infinite 4s;
-  pointer-events: none;
-  z-index: 0;
-}
-
-body > div:first-of-type::before { left: 50%; animation-delay: 0s; font-size: 8px; color: rgba(0, 161, 214, 0.25); }
-body > div:first-of-type::after  { left: 70%; animation-delay: 5s; font-size: 10px; }
-main::before { left: 85%; animation-delay: 8s; font-size: 6px; color: rgba(0, 161, 214, 0.2); }
-main::after  { left: 95%; animation-delay: 11s; font-size: 12px; }
-
 /* ===== 主内容 ===== */
 main, .container, body > div:first-of-type {
   position: relative;
@@ -129,7 +65,7 @@ h1 {
   background-clip: text !important;
   margin: 30px 0 10px !important;
   text-align: center !important;
-  animation: shine 3s linear infinite, glow-pulse 3s ease-in-out infinite !important;
+  animation: shine 3s linear infinite !important;
   filter: drop-shadow(0 0 15px rgba(251, 114, 153, 0.15)) !important;
 }
 
@@ -138,20 +74,14 @@ h1 {
   100% { background-position: 200% center; }
 }
 
-@keyframes glow-pulse {
-  0%, 100% { filter: drop-shadow(0 0 15px rgba(251, 114, 153, 0.15)); }
-  50% { filter: drop-shadow(0 0 25px rgba(0, 161, 214, 0.2)); }
-}
-
 h1:hover {
-  transform: scale(1.03) !important;
+  transform: scale(1.02) !important;
   transition: transform 0.3s ease !important;
 }
 
 /* ===== ✨ 欢迎语 ===== */
 body > div:first-of-type > p:first-of-type,
-main > p:first-of-type,
-.home-link + p {
+main > p:first-of-type {
   visibility: hidden;
   position: absolute;
 }
@@ -177,8 +107,7 @@ main::before {
 
 /* ===== Home 导航分隔线 ===== */
 hr,
-.home-link + hr,
-.header-separator {
+.home-link + hr {
   border: none !important;
   height: 2px !important;
   background: linear-gradient(90deg, transparent, #FB7299, #00A1D6, #FB7299, transparent) !important;
@@ -206,75 +135,28 @@ hr,
   border-radius: var(--radius) !important;
   overflow: hidden !important;
   box-shadow: var(--shadow) !important;
-  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  transition: all 0.35s ease !important;
   border: 2px solid transparent !important;
   background: #fff !important;
-  opacity: 0;
-  animation: card-fade-in 0.8s ease-out forwards;
-}
-
-.album-card:nth-child(1) { animation-delay: 0.1s; }
-.album-card:nth-child(2) { animation-delay: 0.25s; }
-.album-card:nth-child(3) { animation-delay: 0.4s; }
-.card:nth-child(1) { animation-delay: 0.1s; }
-.card:nth-child(2) { animation-delay: 0.25s; }
-.card:nth-child(3) { animation-delay: 0.4s; }
-a[href*="/gallery/"]:nth-child(1) { animation-delay: 0.1s; }
-a[href*="/gallery/"]:nth-child(2) { animation-delay: 0.25s; }
-a[href*="/gallery/"]:nth-child(3) { animation-delay: 0.4s; }
-
-@keyframes card-fade-in {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
 }
 
 /* ===== 卡片悬浮效果 ===== */
 .album-card:hover, .card:hover, a[href*="/gallery/"]:hover {
-  transform: translateY(-6px) scale(1.01) !important;
+  transform: translateY(-5px) !important;
   box-shadow: var(--shadow-hover) !important;
   border-color: var(--primary) !important;
 }
 
-.album-card:hover::before, .card:hover::before, a[href*="/gallery/"]:hover::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  border-radius: var(--radius);
-  border: 2px solid transparent;
-  background: linear-gradient(90deg, #FB7299, #00A1D6, #FB7299) border-box;
-  -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
-  mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  pointer-events: none;
-  animation: border-flow 2s linear infinite;
-}
-
-@keyframes border-flow {
-  0% { filter: hue-rotate(0deg); }
-  100% { filter: hue-rotate(360deg); }
-}
-
-/* ===== 封面图片 + 位置调整功能 ===== */
+/* ===== 封面图片 ===== */
 .album-card img, .card img, a[href*="/gallery/"] img {
   width: 100% !important;
   height: 220px !important;
   object-fit: cover !important;
-  object-position: center center !important;
-  transition: transform 0.4s ease !important;
-}
-
-/* ⭐ 第五人格封面单独上移 — 解决图片偏下问题 */
-.album-card:nth-child(3) img,
-a[href*="/gallery/"]:nth-child(3) img,
-.card:nth-child(3) img {
-  object-position: center 30% !important;
-  /* 数值说明：center 50%=正中间 center 0%=靠上 center 100%=靠下 
-     现在设的30%就是"上移一点点"，不满意可以改这个数字！*/
+  transition: transform 0.3s ease !important;
 }
 
 .album-card:hover img, .card:hover img, a[href*="/gallery/"]:hover img {
-  transform: scale(1.03) !important;
+  transform: scale(1.02) !important;
 }
 
 /* ===== 卡片文字信息 ===== */
@@ -287,18 +169,6 @@ a[href*="/gallery/"]:nth-child(3) img,
   font-weight: 700 !important;
   color: var(--text) !important;
   margin: 0 0 6px !important;
-}
-
-.album-info p:first-of-type::before,
-.card-info p:first-of-type::before,
-.album-card .count::before {
-  content: "📸 ";
-}
-
-.album-info p:last-of-type::before,
-.card-info p:last-of-type::before,
-.album-card .date::before {
-  content: "📅 ";
 }
 
 .album-info p, .card-info p, .album-card .count, .album-card .date {
