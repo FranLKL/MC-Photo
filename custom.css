@@ -1,4 +1,4 @@
-/* ============== 提瓦特星空 · 究极完美版 ============== */
+/* ============== 提瓦特星空 · 完美精准收网版 ============== */
 :root {
   --primary: #FB7299;
   --secondary: #00A1D6;
@@ -80,8 +80,8 @@ hr {
   100% { background-position: 200px center; }
 }
 
-/* ===== 导航栏面包屑美化 ===== */
-/* 针对你截图里那个蓝色方块 Home 和 原神 */
+/* ===== 导航栏面包屑（彻底消除悬浮，恢复清爽） ===== */
+/* 精确锁定顶部的导航栏，并把之前误加的悬浮特效全部干掉 */
 nav, .breadcrumb, ul.breadcrumb, main > ul {
   display: flex !important;
   justify-content: center !important;
@@ -92,24 +92,17 @@ nav, .breadcrumb, ul.breadcrumb, main > ul {
   margin: 0 0 30px 0 !important;
 }
 nav a, .breadcrumb a, main > ul a {
-  background: #fff !important;
-  color: var(--primary) !important;
-  padding: 8px 16px !important;
-  border-radius: 8px !important;
+  background: transparent !important;
+  color: var(--text-light) !important;
+  padding: 5px 10px !important;
   text-decoration: none !important;
-  font-weight: bold !important;
-  box-shadow: 0 2px 10px rgba(251, 114, 153, 0.15) !important;
-  transition: all 0.3s ease !important;
-  border: 2px solid transparent !important;
-}
-nav a:hover, .breadcrumb a:hover, main > ul a:hover {
-  background: var(--primary) !important;
-  color: #fff !important;
-  box-shadow: 0 4px 15px rgba(251, 114, 153, 0.3) !important;
+  border: none !important;
+  box-shadow: none !important;
+  transform: none !important; /* 绝对不让它悬浮！ */
 }
 
 /* ===== 首页相册容器 ===== */
-.albums, .album-grid, #albums, .album-list, .album {
+.albums, .album-grid, #albums, .album-list, main > ul + div {
   display: flex !important;
   flex-wrap: wrap !important;
   justify-content: center !important;
@@ -121,8 +114,9 @@ nav a:hover, .breadcrumb a:hover, main > ul a:hover {
   margin: 0 auto !important;
 }
 
-/* ===== 首页卡片基础样式 ===== */
-.album, .album-card, .card, a[href*="/gallery/"], a[href$=".html"] {
+/* ===== 🔥 首页卡片（精准定位，消除拼图） ===== */
+/* 只命中相册列表里的大卡片，不碰里面的小图 */
+.albums > a, .album-grid > a, #albums > a, main > ul + div > a {
   width: 300px !important;
   border-radius: var(--radius) !important;
   overflow: hidden !important;
@@ -133,10 +127,11 @@ nav a:hover, .breadcrumb a:hover, main > ul a:hover {
   display: block !important;
   margin: 0 !important;
   text-decoration: none !important;
+  padding: 0 !important;
 }
 
-/* 首页大图样式 */
-.album img, .album-card img, .card img, a[href*="/gallery/"] img, a[href$=".html"] img {
+/* 首页大图强制撑满（解决图片显示不全问题） */
+.albums > a > img, .album-grid > a > img, #albums > a > img, main > ul + div > a > img {
   width: 100% !important;
   height: 220px !important;
   object-fit: cover !important;
@@ -145,7 +140,17 @@ nav a:hover, .breadcrumb a:hover, main > ul a:hover {
   transition: transform 0.6s ease !important;
 }
 
-/* ===== 子相册图片网格 ===== */
+/* 首页悬浮效果 */
+.albums > a:hover, .album-grid > a:hover, #albums > a:hover, main > ul + div > a:hover {
+  transform: translateY(-8px) scale(1.02) !important;
+  box-shadow: var(--shadow-hover) !important;
+  border-color: var(--primary) !important;
+}
+.albums > a:hover > img, .album-grid > a:hover > img, #albums > a:hover > img, main > ul + div > a:hover > img {
+  transform: scale(1.08) !important;
+}
+
+/* ===== 🔥 子相册图片网格（精准锁定，恢复圆角和悬浮） ===== */
 .media-grid, .gallery, .photos, .media-list, #media {
   display: flex !important;
   flex-wrap: wrap !important;
@@ -158,18 +163,20 @@ nav a:hover, .breadcrumb a:hover, main > ul a:hover {
   padding: 20px 0 !important;
 }
 
+/* 子相册图片的外层链接 */
 .media-grid > a, .gallery > a, .photos > a, .media-list > a, .media-item {
   display: block !important;
   width: 200px !important;
-  border-radius: 12px !important;
+  border-radius: 12px !important; /* 恢复圆角 */
   overflow: hidden !important;
   border: 3px solid transparent !important;
   box-shadow: 0 2px 10px rgba(0,0,0,0.08) !important;
   transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease !important;
   margin: 0 !important;
+  padding: 0 !important;
 }
 
-.media-grid img, .gallery img, .photos img, .media-list img, .media-item img {
+.media-grid > a > img, .gallery > a > img, .photos > a > img, .media-list > a > img, .media-item > img {
   width: 100% !important;
   height: 200px !important;
   object-fit: cover !important;
@@ -178,39 +185,24 @@ nav a:hover, .breadcrumb a:hover, main > ul a:hover {
   transition: transform 0.6s ease !important;
 }
 
-/* 🔥🔥🔥 核心魔法：无敌悬浮特效 🔥🔥🔥 */
-/* 首页悬浮 */
-.album:hover, .album-card:hover, .card:hover, a[href*="/gallery/"]:hover, a[href$=".html"]:hover {
-  transform: translateY(-8px) scale(1.02) !important;
-  box-shadow: var(--shadow-hover) !important;
-  border-color: var(--primary) !important;
-}
-.album:hover img, .album-card:hover img, .card:hover img, a[href*="/gallery/"]:hover img, a[href$=".html"]:hover img {
-  transform: scale(1.08) !important;
-}
-/* 文字上浮 */
-.album:hover h3, .album-card:hover h3, a[href$=".html"]:hover h3, a[href$=".html"]:hover div {
-  transform: translateY(-2px) !important;
-}
-
-/* 子相册悬浮 */
+/* 子相册悬浮效果 */
 .media-grid > a:hover, .gallery > a:hover, .photos > a:hover, .media-list > a:hover, .media-item:hover {
   transform: translateY(-6px) scale(1.03) !important;
   box-shadow: 0 10px 30px rgba(0, 161, 214, 0.3) !important;
   border-color: var(--secondary) !important;
 }
-.media-grid > a:hover img, .gallery > a:hover img, .photos > a:hover img, .media-list > a:hover img, .media-item:hover img {
+.media-grid > a:hover > img, .gallery > a:hover > img, .photos > a:hover > img, .media-list > a:hover > img, .media-item:hover > img {
   transform: scale(1.08) !important;
 }
 
 /* 文字样式 */
-.album-info, .card-info, .album-card .info, .album .info, a[href$=".html"] div {
+.albums > a div, main > ul + div > a div {
   padding: 16px 18px !important;
 }
-.album-info h3, .card-info h3, .album-card .title, .album h3, a[href$=".html"] h3, a[href$=".html"] .title {
+.albums > a h3, main > ul + div > a h3 {
   font-size: 18px !important; font-weight: 700 !important; color: var(--text) !important; margin: 0 0 6px !important;
 }
-.album-info p, .card-info p, .album-card .count, .album-card .date, .album p, a[href$=".html"] p {
+.albums > a p, main > ul + div > a p {
   font-size: 13px !important; color: var(--text-light) !important; margin: 2px 0 !important;
 }
 
@@ -222,9 +214,9 @@ footer, .footer { text-align: center !important; padding: 40px 20px 30px !import
 
 @media (max-width: 768px) {
   h1 { font-size: 32px !important; }
-  .albums, .album-grid, #albums, .album-list, .album { gap: 20px !important; }
-  .album, .album-card, .card, a[href*="/gallery/"], a[href$=".html"] { width: 100% !important; max-width: 320px !important; }
-  .album img, .album-card img, .card img, a[href*="/gallery/"] img, a[href$=".html"] img { height: 180px !important; }
+  .albums, .album-grid, #albums, .album-list, main > ul + div { gap: 20px !important; }
+  .albums > a, .album-grid > a, #albums > a, main > ul + div > a { width: 100% !important; max-width: 320px !important; }
+  .albums > a > img, .album-grid > a > img, #albums > a > img, main > ul + div > a > img { height: 180px !important; }
   .media-grid > a, .gallery > a, .photos > a, .media-list > a, .media-item { width: 45% !important; }
-  .media-grid img, .gallery img, .photos img, .media-list img, .media-item img { height: 140px !important; }
+  .media-grid > a > img, .gallery > a > img, .photos > a > img, .media-list > a > img, .media-item > img { height: 140px !important; }
 }
