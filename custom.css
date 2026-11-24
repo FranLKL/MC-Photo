@@ -1,4 +1,4 @@
-/* ============== 提瓦特星空 · 终极除魔版 ============== */
+/* ============== 提瓦特星空 · 绝杀完美版 ============== */
 @import url('https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&display=swap');
 
 :root {
@@ -11,7 +11,7 @@
   --shadow-hover: 0 15px 40px rgba(251, 114, 153, 0.3);
 }
 
-/* 全局背景与字体 */
+/* ===== 全局背景与字体 ===== */
 html, body {
   background: linear-gradient(135deg, #FDF2F7 0%, #F0F7FF 50%, #FDF2F7 100%) !important;
   background-attachment: fixed !important;
@@ -21,7 +21,7 @@ html, body {
   color: var(--text) !important;
 }
 
-/* 居中框架 */
+/* ===== 居中框架 ===== */
 body {
   display: flex !important;
   flex-direction: column !important;
@@ -37,7 +37,7 @@ main, .container, #content, body > div {
   box-sizing: border-box !important;
 }
 
-/* 标题渐变 */
+/* ===== 标题渐变 ===== */
 h1 {
   font-size: 42px !important; font-weight: 800 !important;
   background: linear-gradient(90deg, #FB7299, #00A1D6, #FB7299) !important;
@@ -50,14 +50,12 @@ h1 {
 }
 @keyframes shine { 0% { background-position: 0 center; } 100% { background-position: 200% center; } }
 
-/* 欢迎语 */
+/* ===== 欢迎语 & 分隔线 ===== */
 main::before {
   content: "✨ 提瓦特的星空永远有你的位置 ✨";
   display: block !important; text-align: center !important; font-size: 18px !important;
   color: var(--text-light) !important; margin: 0 0 30px !important; letter-spacing: 2px !important;
 }
-
-/* 渐变分隔线 */
 hr {
   border: none !important; height: 2px !important;
   background: linear-gradient(90deg, transparent, #FB7299, #00A1D6, #FB7299, transparent) !important;
@@ -66,112 +64,105 @@ hr {
 }
 @keyframes gradient-flow { 0% { background-position: -200px center; } 100% { background-position: 200px center; } }
 
-/* ===== 首页相册大卡片容器 ===== */
+/* ===== 导航栏（去除蓝色方块，恢复清爽） ===== */
+nav, .breadcrumb, ul.breadcrumb, main > ul {
+  display: flex !important; justify-content: center !important; align-items: center !important;
+  gap: 10px !important; list-style: none !important; padding: 0 !important; margin: 0 0 30px 0 !important;
+}
+nav a, .breadcrumb a, main > ul a {
+  background: transparent !important; color: var(--primary) !important; padding: 5px 10px !important;
+  text-decoration: none !important; border: none !important; box-shadow: none !important; 
+  transform: none !important; font-size: 20px !important;
+}
+
+/* =================================================================
+   🚨 首页相册大卡片（魔法：只留一张图）
+   ================================================================= */
 ul#galleries {
-  display: flex !important;
-  flex-wrap: wrap !important;
-  justify-content: center !important;
-  gap: 30px !important;
-  padding: 0 !important;
-  list-style: none !important;
-  max-width: 1100px !important;
-  margin: 0 auto !important;
+  display: flex !important; flex-wrap: wrap !important; justify-content: center !important;
+  gap: 30px !important; padding: 0 !important; list-style: none !important; max-width: 1100px !important; margin: 0 auto !important;
 }
-
 ul#galleries > li {
-  width: 340px !important; /* 稍微大一点的卡片 */
-  list-style: none !important;
-  margin: 0 !important;
+  width: 320px !important; list-style: none !important; margin: 0 !important;
 }
-
-/* ===== 首页相册大卡片本体 ===== */
 ul#galleries > li > a {
-  display: block !important;
-  background: #fff !important;
-  padding: 20px !important;
-  border-radius: var(--radius) !important;
-  box-shadow: var(--shadow) !important;
-  border: 3px solid transparent !important;
+  display: block !important; background: #fff !important; padding: 20px !important;
+  border-radius: var(--radius) !important; box-shadow: var(--shadow) !important; border: 3px solid transparent !important;
   transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease !important;
-  text-decoration: none !important;
-  height: 100% !important;
-  box-sizing: border-box !important;
+  text-decoration: none !important; height: 100% !important; box-sizing: border-box !important; position: relative !important;
 }
-
-/* 🔥 首页悬浮：大卡片上浮、粉边 */
 ul#galleries > li > a:hover {
   transform: translateY(-8px) !important;
   box-shadow: var(--shadow-hover) !important;
   border-color: var(--primary) !important;
 }
 
-/* 首页里的四宫格图片（保持原样，不瞎改） */
+/* ✨ 核心魔法：隐藏第2、3、4张图，只留第一张 */
 ul#galleries > li > a ul.grid {
-  display: grid !important;
-  grid-template-columns: 1fr 1fr !important;
-  gap: 5px !important;
-  padding: 0 !important;
-  list-style: none !important;
-  margin-top: 15px !important;
-  border-radius: 8px !important;
-  overflow: hidden !important;
+  display: block !important; border-radius: 12px !important; overflow: hidden !important; margin-top: 15px !important; height: 180px !important;
 }
 ul#galleries > li > a ul.grid li {
-  margin: 0 !important;
+  display: none !important; 
 }
-ul#galleries > li > a ul.grid img {
-  width: 100% !important;
-  height: 110px !important;
-  object-fit: cover !important;
-  display: block !important;
+ul#galleries > li > a ul.grid li:first-child {
+  display: block !important; width: 100% !important; height: 100% !important;
+}
+ul#galleries > li > a ul.grid li:first-child img {
+  width: 100% !important; height: 100% !important; object-fit: cover !important; display: block !important; transition: transform 0.6s ease !important;
+}
+ul#galleries > li > a:hover ul.grid li:first-child img {
+  transform: scale(1.08) !important;
 }
 
-/* ===== 🚨 子相册图片（直接锁定 ul.grid 下面的 li 和 img） ===== */
-main > ul.grid {
-  display: flex !important;
-  flex-wrap: wrap !important;
-  justify-content: center !important;
+/* =================================================================
+   🚨 子相册图片专区（精准制服 <ul id="media">）
+   ================================================================= */
+/* 1. 恢复网格排版 */
+ul#media, main > ul.grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)) !important;
   gap: 20px !important;
   padding: 20px 0 !important;
   list-style: none !important;
   margin: 0 auto !important;
   max-width: 1100px !important;
+  width: 100% !important;
 }
 
-main > ul.grid > li {
-  list-style: none !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  border-radius: 12px !important;
-  overflow: hidden !important;
-  border: 3px solid transparent !important;
+/* 2. 恢复圆角卡片和边框 */
+ul#media > li, main > ul.grid > li {
+  list-style: none !important; margin: 0 !important; padding: 0 !important;
+  border-radius: 12px !important; overflow: hidden !important;
+  border: 3px solid transparent !important; background: #fff !important;
   box-shadow: 0 2px 10px rgba(0,0,0,0.08) !important;
   transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease !important;
-  width: 240px !important; /* 放大子相册图片 */
-  background: #fff !important;
+  height: 200px !important;
 }
 
-main > ul.grid > li img {
-  width: 100% !important;
-  height: 240px !important; /* 放大子相册图片 */
-  object-fit: cover !important;
+/* 3. 🎯 制服 120px 的内联样式，强制撑满全图 */
+ul#media > li > a, main > ul.grid > li > a {
+  display: block !important; width: 100% !important; height: 100% !important;
+}
+ul#media > li img, main > ul.grid > li img {
+  width: 100% !important; 
+  height: 100% !important; 
+  object-fit: cover !important; 
   display: block !important;
   transition: transform 0.6s ease !important;
 }
 
-/* 🔥 子相册悬浮：li 上浮，亮蓝边，图片放大 */
-main > ul.grid > li:hover {
+/* 4. 🔥 子相册悬浮：蓝边亮起 */
+ul#media > li:hover, main > ul.grid > li:hover {
   transform: translateY(-6px) scale(1.03) !important;
   box-shadow: 0 10px 30px rgba(0, 161, 214, 0.4) !important;
   border-color: var(--secondary) !important;
   z-index: 10 !important;
 }
-
-main > ul.grid > li:hover img {
+ul#media > li:hover img, main > ul.grid > li:hover img {
   transform: scale(1.08) !important;
 }
 
-/* 页脚 & 滚动条 */
+/* ===== 页脚 & 滚动条 ===== */
 footer, .footer {
   text-align: center !important; padding: 40px 20px 30px !important;
   color: var(--text-light) !important; font-size: 16px !important; letter-spacing: 1px !important; width: 100% !important;
@@ -183,7 +174,7 @@ footer, .footer {
 @media (max-width: 768px) {
   h1 { font-size: 32px !important; }
   ul#galleries > li { width: 100% !important; }
-  main > ul.grid > li { width: 45% !important; }
-  main > ul.grid > li img { height: 140px !important; }
-  ul#galleries > li > a ul.grid img { height: 90px !important; }
+  ul#media, main > ul.grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)) !important; gap: 12px !important; }
+  ul#media > li, main > ul.grid > li { height: 140px !important; }
+  ul#galleries > li > a ul.grid { height: 150px !important; }
 }
