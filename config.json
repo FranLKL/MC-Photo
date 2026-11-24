@@ -10,6 +10,5 @@
   "large-size": "1500",
   "css": "./custom.css",
   "footer": "一段冒险，一段故事，一段友情o(*￣▽￣*)ブ",
-  "usage-stats": false,
-  "script": "<script src='https://raw.githubusercontent.com/fjvi/note/main/static/assets/lightbox.js'></script><script src='https://raw.githubusercontent.com/fjvi/note/main/static/assets/imgca.js'></script>"
+  "usage-stats": false
 }
