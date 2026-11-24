@@ -1,4 +1,4 @@
-/* ============== B站二次元风 + 全面美化版 ============== */
+/* ============== 提瓦特星空 · 完整美化版 ============== */
 :root {
   --primary: #FB7299;
   --secondary: #00A1D6;
@@ -43,8 +43,8 @@ body::after {
               radial-gradient(circle at 70% 80%, rgba(251, 114, 153, 0.08) 0%, transparent 50%);
 }
 
-/* ===== 主内容居中 ===== */
-main, .container {
+/* ===== 主内容 ===== */
+main, .container, body > div:first-of-type {
   position: relative;
   z-index: 1;
   max-width: 1200px !important;
@@ -77,8 +77,11 @@ h1:hover {
   transition: transform 0.3s ease !important;
 }
 
-/* ===== 欢迎语 ===== */
-.welcome-text {
+/* ===== ✨ 欢迎语 - 自动插入 ===== */
+body > div:first-of-type::before,
+main::before {
+  content: "✨ 提瓦特的星空永远有你的位置 ✨";
+  display: block !important;
   text-align: center !important;
   font-size: 18px !important;
   color: var(--text-light) !important;
@@ -93,7 +96,9 @@ h1:hover {
 }
 
 /* ===== Home 导航线 ===== */
-header > hr, .header-separator {
+body > p:first-of-type,
+.home-link + hr,
+hr {
   border: none !important;
   height: 2px !important;
   background: linear-gradient(90deg, transparent, #FB7299, #00A1D6, #FB7299, transparent) !important;
@@ -101,68 +106,39 @@ header > hr, .header-separator {
   margin: 0 auto 50px !important;
 }
 
-/* ===== 相册卡片整体容器 ===== */
-.albums, .album-grid {
-  display: grid !important;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)) !important;
-  gap: 40px !important;
-  padding: 20px 0 !important;
-}
-
 /* ===== 相册卡片 ===== */
-.album-card, .photo-card, .card {
-  background: var(--card-bg) !important;
+a[href*="/gallery/"] {
   border-radius: var(--radius) !important;
   overflow: hidden !important;
   box-shadow: var(--shadow) !important;
   transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1) !important;
   border: 2px solid transparent !important;
-  position: relative !important;
+  display: inline-block !important;
+  background: #fff !important;
+  margin: 12px !important;
 }
 
-.album-card:hover, .photo-card:hover, .card:hover {
+a[href*="/gallery/"]:hover {
   transform: translateY(-8px) scale(1.02) !important;
   box-shadow: var(--shadow-hover) !important;
   border-color: var(--primary) !important;
 }
 
-/* ===== 相册封面图 ===== */
-.album-card img, .photo-card img, .card img {
+a[href*="/gallery/"] img {
   width: 100% !important;
   height: 240px !important;
   object-fit: cover !important;
   transition: transform 0.5s ease !important;
 }
 
-.album-card:hover img, .photo-card:hover img, .card:hover img {
+a[href*="/gallery/"]:hover img {
   transform: scale(1.05) !important;
 }
 
-/* ===== 卡片底部信息区 ===== */
-.album-info, .card-info, .album-card .info {
-  padding: 18px 20px !important;
-  background: linear-gradient(to top, rgba(255,255,255,0.98), #FFFFFF) !important;
-}
-
-.album-info h3, .card-info h3, .album-card .title {
-  font-size: 20px !important;
-  font-weight: 700 !important;
-  color: var(--text) !important;
-  margin: 0 0 8px !important;
-}
-
-.album-info p, .card-info p, .album-card .count,
-.album-card .date, .card .meta {
-  font-size: 14px !important;
-  color: var(--text-light) !important;
-  margin: 4px 0 !important;
-  display: flex !important;
-  align-items: center !important;
-  gap: 6px !important;
-}
-
 /* ===== 底部页脚 ===== */
-footer, .footer {
+body::after {
+  content: "一段冒险，一段故事，一段友情 o(*￣▽￣*)ブ";
+  display: block !important;
   text-align: center !important;
   padding: 50px 20px 30px !important;
   color: var(--text-light) !important;
@@ -172,19 +148,24 @@ footer, .footer {
   z-index: 1 !important;
 }
 
-footer::before, .footer::before {
-  content: '';
-  display: block;
-  width: 100px;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, rgba(251, 114, 153, 0.3), transparent) !important;
-  margin: 0 auto 20px !important;
+/* ===== 滚动条 ===== */
+::-webkit-scrollbar {
+  width: 10px !important;
+  height: 10px !important;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #FB7299, #00A1D6) !important;
+  border-radius: 5px !important;
+}
+::-webkit-scrollbar-track {
+  background: #F7F8FA !important;
 }
 
 /* ===== 响应式适配 ===== */
 @media (max-width: 768px) {
   h1 { font-size: 32px !important; }
-  .welcome-text { font-size: 16px !important; }
-  .albums, .album-grid { gap: 25px !important; }
+  body > div:first-of-type::before,
+  main::before { font-size: 16px !important; }
   body::before, body::after { width: 40px; }
+  a[href*="/gallery/"] img { height: 180px !important; }
 }
