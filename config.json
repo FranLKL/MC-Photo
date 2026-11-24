@@ -10,6 +10,5 @@
   "large-size": "1500",
   "css": "./custom.css",
   "footer": "一段冒险，一段故事，一段友情o(*￣▽￣*)ブ",
-  "usage-stats": false,
-  "script": "<script>document.addEventListener('DOMContentLoaded',function(){var cards=document.querySelectorAll('a[href*=\"/gallery/\"], .media-item, .media-grid > a, .gallery > a');cards.forEach(function(card){card.addEventListener('mouseenter',function(){this.style.transform='translateY(-8px) scale(1.02)';this.style.boxShadow='0 15px 40px rgba(251,114,153,0.3)';this.style.borderColor='#FB7299';this.style.transition='all 0.4s ease';var img=this.querySelector('img');if(img)img.style.transform='scale(1.08)';});card.addEventListener('mouseleave',function(){this.style.transform='translateY(0) scale(1)';this.style.boxShadow='0 4px 20px rgba(251,114,153,0.12)';this.style.borderColor='transparent';var img=this.querySelector('img');if(img)img.style.transform='scale(1)';});});});</script>"
+  "usage-stats": false
 }
