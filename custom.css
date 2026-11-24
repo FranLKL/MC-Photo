@@ -1,4 +1,4 @@
-/* ============== 提瓦特星空 · 清爽稳定版 ============== */
+/* ============== 提瓦特星空 · 完美居中网格版 ============== */
 :root {
   --primary: #FB7299;
   --secondary: #00A1D6;
@@ -45,13 +45,16 @@ body::after {
               radial-gradient(circle at 60% 75%, rgba(251, 114, 153, 0.06) 0%, transparent 60%);
 }
 
-/* ===== 主内容容器（避免误伤） ===== */
-main, .container {
+/* ===== 主内容居中 ===== */
+/* 精确命中 thumbsup 的主容器，确保两边留白均匀 */
+main, .container, #content {
   position: relative;
   z-index: 1;
-  max-width: 1200px !important;
+  max-width: 1100px !important;
   margin: 0 auto !important;
   padding: 40px 20px !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
 }
 
 /* ===== 标题样式 ===== */
@@ -66,6 +69,7 @@ h1 {
   margin: 30px 0 10px !important;
   text-align: center !important;
   animation: shine 3s linear infinite !important;
+  filter: drop-shadow(0 0 15px rgba(251, 114, 153, 0.15)) !important;
 }
 
 @keyframes shine {
@@ -73,7 +77,7 @@ h1 {
   100% { background-position: 200% center; }
 }
 
-/* ===== 欢迎语（用容器插入，避免与模板文字冲突） ===== */
+/* ===== 欢迎语 ===== */
 main::before {
   content: "✨ 提瓦特的星空永远有你的位置 ✨";
   display: block !important;
@@ -100,15 +104,17 @@ hr {
   100% { background-position: 200px center; }
 }
 
-/* ===== 相册卡片容器（兼容 thumbsup 结构） ===== */
+/* ===== 首页相册卡片容器 ===== */
 .albums, .album-grid, #albums, .album-list {
   display: grid !important;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important;
   gap: 30px !important;
   padding: 20px 0 !important;
+  width: 100% !important;
+  justify-content: center !important; /* 确保卡片不足时居中 */
 }
 
-/* ===== 相册卡片 ===== */
+/* ===== 首页相册卡片 ===== */
 .album-card, .card, .album, a[href*="/gallery/"] {
   border-radius: var(--radius) !important;
   overflow: hidden !important;
@@ -116,6 +122,7 @@ hr {
   transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease !important;
   border: 2px solid transparent !important;
   background: #fff !important;
+  display: block !important;
 }
 
 .album-card:hover, .card:hover, .album:hover, a[href*="/gallery/"]:hover {
@@ -124,7 +131,7 @@ hr {
   border-color: var(--primary) !important;
 }
 
-/* ===== 封面图片 ===== */
+/* ===== 首页封面图片 ===== */
 .album-card img, .card img, .album img, a[href*="/gallery/"] img {
   width: 100% !important;
   height: 220px !important;
@@ -136,7 +143,7 @@ hr {
   transform: scale(1.02) !important;
 }
 
-/* ===== 卡片文字 ===== */
+/* ===== 首页卡片文字 ===== */
 .album-info, .card-info, .album-card .info {
   padding: 16px 18px !important;
 }
@@ -154,6 +161,37 @@ hr {
   margin: 2px 0 !important;
 }
 
+/* ===== 修复子相册内图片横向排列问题（改成漂亮的多行网格） ===== */
+/* 精确匹配 thumbsup 内部的媒体网格类名 */
+.media-grid, .gallery, .photos, .media-list, #media {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)) !important;
+  gap: 20px !important;
+  width: 100% !important;
+  justify-content: center !important;
+}
+
+.media-grid > a, .gallery > a, .photos > a, .media-list > a {
+  display: block !important;
+  border-radius: 12px !important;
+  overflow: hidden !important;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08) !important;
+  transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+  margin: 0 !important; /* 清除原生可能自带的边距 */
+}
+
+.media-grid img, .gallery img, .photos img, .media-list img {
+  width: 100% !important;
+  height: 200px !important;
+  object-fit: cover !important;
+  display: block !important;
+}
+
+.media-grid > a:hover, .gallery > a:hover, .photos > a:hover, .media-list > a:hover {
+  transform: scale(1.03) !important;
+  box-shadow: 0 4px 15px rgba(251, 114, 153, 0.2) !important;
+}
+
 /* ===== 页脚 ===== */
 footer, .footer {
   text-align: center !important;
@@ -163,6 +201,15 @@ footer, .footer {
   letter-spacing: 1px !important;
   position: relative !important;
   z-index: 1 !important;
+}
+
+footer::before, .footer::before {
+  content: '';
+  display: block;
+  width: 100px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(251, 114, 153, 0.25), transparent) !important;
+  margin: 0 auto 15px !important;
 }
 
 /* ===== 滚动条 ===== */
@@ -185,5 +232,12 @@ footer, .footer {
   .albums, .album-grid, #albums, .album-list { gap: 20px !important; }
   .album-card img, .card img, .album img, a[href*="/gallery/"] img {
     height: 180px !important;
+  }
+  .media-grid, .gallery, .photos, .media-list {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)) !important;
+    gap: 12px !important;
+  }
+  .media-grid img, .gallery img, .photos img, .media-list img {
+    height: 140px !important;
   }
 }
