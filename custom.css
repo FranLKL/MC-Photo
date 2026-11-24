@@ -1,4 +1,4 @@
-/* ============== 提瓦特星空 · 豪华精装版 ============== */
+/* ============== 提瓦特星空 · 稳定高质感版 ============== */
 :root {
   --primary: #FB7299;
   --secondary: #00A1D6;
@@ -8,7 +8,7 @@
   --text-light: #9499A0;
   --radius: 16px;
   --shadow: 0 4px 20px rgba(251, 114, 153, 0.12);
-  --shadow-hover: 0 12px 35px rgba(251, 114, 153, 0.22);
+  --shadow-hover: 0 12px 35px rgba(251, 114, 153, 0.25);
 }
 
 /* ===== 页面背景 ===== */
@@ -61,18 +61,6 @@ main, .container, #content, body > div {
   margin: 0 auto !important;
   padding: 40px 20px !important;
   box-sizing: border-box !important;
-}
-
-/* ===== 顶部导航面包屑毛玻璃效果 ===== */
-/* 精准命中 thumbsup 的顶部路径栏 */
-.breadcrumb, nav, header {
-  background: rgba(255, 255, 255, 0.4) !important;
-  backdrop-filter: blur(10px) !important;
-  -webkit-backdrop-filter: blur(10px) !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.6) !important;
-  padding: 10px 20px !important;
-  border-radius: 8px !important;
-  margin-bottom: 20px !important;
 }
 
 /* ===== 标题样式 ===== */
@@ -135,13 +123,12 @@ hr {
   margin: 0 auto !important;
 }
 
-/* ===== 首页相册卡片（加上了渐变边框和缓动） ===== */
+/* ===== 首页相册卡片（强化悬浮效果） ===== */
 .album-card, .card, .album, a[href*="/gallery/"] {
   width: 300px !important;
   border-radius: var(--radius) !important;
   overflow: hidden !important;
   box-shadow: var(--shadow) !important;
-  /* 平滑过渡和粉蓝渐变边框准备 */
   transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), 
               box-shadow 0.4s ease, 
               border-color 0.4s ease !important;
@@ -149,35 +136,13 @@ hr {
   background: #fff !important;
   display: block !important;
   margin: 0 !important;
-  position: relative !important;
 }
 
+/* 鼠标悬浮时：上浮 + 强阴影 + 粉色描边 */
 .album-card:hover, .card:hover, .album:hover, a[href*="/gallery/"]:hover {
-  transform: translateY(-8px) !important; /* 上浮更明显 */
+  transform: translateY(-8px) !important;
   box-shadow: var(--shadow-hover) !important;
-  /* 粉蓝渐变边框 */
-  border-image: linear-gradient(135deg, #FB7299, #00A1D6) 1 !important;
-}
-
-/* 用伪元素做真正的圆角渐变边框（因为 border-image 不兼容圆角） */
-.album-card::after, .card::after, .album::after, a[href*="/gallery/"]::after {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  border-radius: var(--radius);
-  border: 2px solid transparent;
-  background: linear-gradient(135deg, #FB7299, #00A1D6) border-box;
-  -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  opacity: 0;
-  transition: opacity 0.4s ease;
-  pointer-events: none;
-  z-index: 10;
-}
-
-.album-card:hover::after, .card:hover::after, .album:hover::after, a[href*="/gallery/"]:hover::after {
-  opacity: 1;
+  border-color: var(--primary) !important;
 }
 
 /* ===== 首页封面图片 ===== */
@@ -185,11 +150,11 @@ hr {
   width: 100% !important;
   height: 220px !important;
   object-fit: cover !important;
-  transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1) !important; /* 图片放大的丝滑缓动 */
+  transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
 }
 
 .album-card:hover img, .card:hover img, .album:hover img, a[href*="/gallery/"]:hover img {
-  transform: scale(1.06) !important; /* 放大一点点，更有呼吸感 */
+  transform: scale(1.06) !important;
 }
 
 /* ===== 首页卡片文字 ===== */
@@ -201,7 +166,7 @@ hr {
 .album-card:hover .album-info, 
 .card:hover .card-info, 
 .album:hover .album-info {
-  transform: translateY(-2px) !important; /* 文字微微上浮 */
+  transform: translateY(-2px) !important;
 }
 
 .album-info h3, .card-info h3, .album-card .title {
@@ -239,6 +204,7 @@ hr {
   transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), 
               box-shadow 0.4s ease !important;
   margin: 0 !important;
+  border: 2px solid transparent !important;
 }
 
 .media-grid img, .gallery img, .photos img, .media-list img {
@@ -249,9 +215,11 @@ hr {
   transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
 }
 
+/* 子相册悬浮 */
 .media-grid > a:hover, .gallery > a:hover, .photos > a:hover, .media-list > a:hover {
-  transform: translateY(-4px) scale(1.02) !important;
+  transform: translateY(-6px) scale(1.02) !important;
   box-shadow: 0 8px 25px rgba(251, 114, 153, 0.25) !important;
+  border-color: var(--secondary) !important; /* 蓝色边框 */
 }
 
 .media-grid > a:hover img, .gallery > a:hover img, .photos > a:hover img, .media-list > a:hover img {
