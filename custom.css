@@ -1,4 +1,4 @@
-/* ============== 提瓦特星空 · 终极强控版 ============== */
+/* ============== 提瓦特星空 · 终极子相册悬浮版 ============== */
 :root {
   --primary: #FB7299;
   --secondary: #00A1D6;
@@ -123,8 +123,7 @@ hr {
   margin: 0 auto !important;
 }
 
-/* ===== 🚨 首页相册卡片（使用父级 hover 强制劫持） ===== */
-/* 先统一基础外观 */
+/* ===== 🚨 首页相册卡片 ===== */
 .albums > a, .album-grid > a, #albums > a, a[href*="/gallery/"] {
   width: 300px !important;
   border-radius: var(--radius) !important;
@@ -142,17 +141,16 @@ hr {
               border-color 0.4s ease !important;
 }
 
-/* 鼠标悬浮时，触发所有相关子元素和自身 */
 .albums > a:hover, .album-grid > a:hover, #albums > a:hover, a[href*="/gallery/"]:hover {
-  transform: translateY(-8px) scale(1.02) !important; /* 上浮且微微放大 */
+  transform: translateY(-8px) scale(1.02) !important;
   box-shadow: var(--shadow-hover) !important;
-  border-color: var(--primary) !important; /* 粉色边框 */
+  border-color: var(--primary) !important;
 }
 
-/* 强制内部的图片在悬停时放大 */
+/* 首页封面图片 */
 .albums > a img, .album-grid > a img, #albums > a img, a[href*="/gallery/"] img {
   width: 100% !important;
-  height: 220px !important;
+  height: auto !important; /* 解决图片消失问题，恢复原生比例 */
   object-fit: cover !important;
   display: block !important;
   margin: 0 !important;
@@ -163,7 +161,7 @@ hr {
   transform: scale(1.08) !important;
 }
 
-/* ===== 卡片文字 ===== */
+/* 卡片文字 */
 .albums > a div, .album-grid > a div, #albums > a div, a[href*="/gallery/"] div {
   padding: 16px 18px !important;
   transition: transform 0.3s ease !important;
@@ -214,20 +212,22 @@ hr {
               border-color 0.4s ease !important;
 }
 
+/* 子相册内部的图片 */
 .media-grid img, .gallery img, .photos img, .media-list img, .media-item img {
   width: 100% !important;
-  height: 200px !important;
+  height: auto !important; /* 同样恢复原生比例防消失 */
+  aspect-ratio: 1 / 1; /* 强制正方形，不拉伸 */
   object-fit: cover !important;
   display: block !important;
   margin: 0 !important;
   transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
 }
 
-/* 子相册悬浮 */
+/* 💥 子相册悬浮终极版：直接劫持父级，强制触发子图片 */
 .media-grid > a:hover, .gallery > a:hover, .photos > a:hover, .media-list > a:hover, .media-item:hover {
   transform: translateY(-6px) scale(1.03) !important;
   box-shadow: 0 10px 30px rgba(0, 161, 214, 0.3) !important;
-  border-color: var(--secondary) !important; /* 蓝色边框 */
+  border-color: var(--secondary) !important;
 }
 
 .media-grid > a:hover img, .gallery > a:hover img, .photos > a:hover img, .media-list > a:hover img, .media-item:hover img {
@@ -274,11 +274,7 @@ footer::before, .footer::before {
   body::before, body::after { width: 8%; }
   .albums, .album-grid, #albums, .album-list, main > div > div { gap: 20px !important; }
   .albums > a, .album-grid > a, #albums > a, a[href*="/gallery/"] { width: 100% !important; max-width: 320px !important; }
-  .albums > a img, .album-grid > a img, #albums > a img, a[href*="/gallery/"] img { height: 180px !important; }
   .media-grid > a, .gallery > a, .photos > a, .media-list > a, .media-item {
     width: 45% !important;
-  }
-  .media-grid img, .gallery img, .photos img, .media-list img, .media-item img {
-    height: 140px !important;
   }
 }
