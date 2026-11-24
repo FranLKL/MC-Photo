@@ -1,4 +1,4 @@
-/* ============== 提瓦特星空 · 完美收尾版 ============== */
+/* ============== 提瓦特星空 · 经典完美版 ============== */
 :root {
   --primary: #FB7299;
   --secondary: #00A1D6;
@@ -17,22 +17,20 @@ html, body {
   margin: 0;
 }
 
+/* 居中框架 */
 body {
   display: flex !important;
   flex-direction: column !important;
   align-items: center !important;
   overflow-x: hidden !important;
 }
-
 main, .container, #content, body > div {
-  position: relative; z-index: 1;
-  width: 100% !important;
-  max-width: 1200px !important;
-  margin: 0 auto !important;
-  padding: 40px 20px !important;
-  box-sizing: border-box !important;
+  position: relative; z-index: 1; width: 100% !important;
+  max-width: 1200px !important; margin: 0 auto !important;
+  padding: 40px 20px !important; box-sizing: border-box !important;
 }
 
+/* 标题 */
 h1 {
   font-size: 42px !important; font-weight: 800 !important;
   background: linear-gradient(90deg, #FB7299, #00A1D6, #FB7299) !important;
@@ -45,12 +43,14 @@ h1 {
 }
 @keyframes shine { 0% { background-position: 0 center; } 100% { background-position: 200% center; } }
 
+/* 欢迎语 */
 main::before {
   content: "✨ 提瓦特的星空永远有你的位置 ✨";
   display: block !important; text-align: center !important; font-size: 18px !important;
   color: var(--text-light) !important; margin: 0 0 30px !important; letter-spacing: 2px !important;
 }
 
+/* 分隔线 */
 hr {
   border: none !important; height: 2px !important;
   background: linear-gradient(90deg, transparent, #FB7299, #00A1D6, #FB7299, transparent) !important;
@@ -59,49 +59,112 @@ hr {
 }
 @keyframes gradient-flow { 0% { background-position: -200px center; } 100% { background-position: 200px center; } }
 
-.albums, .album-grid, #albums, .album-list, main > div > div {
-  display: flex !important; flex-wrap: wrap !important; justify-content: center !important;
-  align-items: flex-start !important; gap: 30px !important;
-  padding: 20px 0 !important; width: 100% !important; max-width: 1000px !important; margin: 0 auto !important;
+/* ===== 相册网格（完美适配 classic） ===== */
+.albums, .album-grid, #albums, .album-list, .album {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important;
+  gap: 30px !important;
+  padding: 20px 0 !important;
+  width: 100% !important;
+  max-width: 1000px !important;
+  margin: 0 auto !important;
 }
 
-/* 首页卡片及图片 */
-.albums > a, .album-grid > a, #albums > a, a[href*="/gallery/"] {
-  width: 300px !important; border-radius: var(--radius) !important; overflow: hidden !important;
-  background: #fff !important; display: block !important; margin: 0 !important; padding: 0 !important;
+/* ===== 卡片样式 ===== */
+.album, .album-card, .card, a[href*="/gallery/"] {
+  border-radius: var(--radius) !important;
+  overflow: hidden !important;
+  background: #fff !important;
+  box-shadow: var(--shadow) !important;
+  border: 3px solid transparent !important;
   transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease !important;
-}
-.albums > a img, .album-grid > a img, #albums > a img, a[href*="/gallery/"] img {
-  width: 100% !important; height: 220px !important; object-fit: cover !important; display: block !important;
-  margin: 0 !important; transition: transform 0.6s ease !important;
+  display: block !important;
+  margin: 0 !important;
 }
 
-/* 子相册图片网格 */
+/* 🚨 悬浮效果 */
+.album:hover, .album-card:hover, .card:hover, a[href*="/gallery/"]:hover {
+  transform: translateY(-8px) scale(1.02) !important;
+  box-shadow: var(--shadow-hover) !important;
+  border-color: var(--primary) !important;
+}
+
+/* 封面图 */
+.album img, .album-card img, .card img, a[href*="/gallery/"] img {
+  width: 100% !important;
+  height: 220px !important;
+  object-fit: cover !important;
+  display: block !important;
+  margin: 0 !important;
+  transition: transform 0.6s ease !important;
+}
+
+.album:hover img, .album-card:hover img, .card:hover img, a[href*="/gallery/"]:hover img {
+  transform: scale(1.08) !important;
+}
+
+/* 文字信息 */
+.album-info, .card-info, .album-card .info, .album .info {
+  padding: 16px 18px !important;
+}
+.album-info h3, .card-info h3, .album-card .title, .album h3 {
+  font-size: 18px !important; font-weight: 700 !important; color: var(--text) !important; margin: 0 0 6px !important;
+}
+.album-info p, .card-info p, .album-card .count, .album-card .date, .album p {
+  font-size: 13px !important; color: var(--text-light) !important; margin: 2px 0 !important;
+}
+
+/* ===== 子相册图片网格 ===== */
 .media-grid, .gallery, .photos, .media-list, #media {
-  display: flex !important; flex-wrap: wrap !important; justify-content: center !important;
-  align-items: flex-start !important; gap: 20px !important; width: 100% !important;
-  max-width: 1100px !important; margin: 0 auto !important; padding: 20px 0 !important;
-}
-.media-grid > a, .gallery > a, .photos > a, .media-list > a, .media-item {
-  display: block !important; width: 200px !important; border-radius: 12px !important;
-  overflow: hidden !important; margin: 0 !important; padding: 0 !important;
-  transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease !important;
-}
-.media-grid img, .gallery img, .photos img, .media-list img, .media-item img {
-  width: 100% !important; height: 200px !important; object-fit: cover !important;
-  display: block !important; margin: 0 !important; transition: transform 0.6s ease !important;
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)) !important;
+  gap: 20px !important;
+  width: 100% !important;
+  max-width: 1100px !important;
+  margin: 0 auto !important;
+  padding: 20px 0 !important;
 }
 
-/* 页脚等其他细节保持不变 */
-footer, .footer { text-align: center !important; padding: 40px 20px 30px !important; color: var(--text-light) !important; font-size: 14px !important; letter-spacing: 1px !important; position: relative !important; z-index: 1 !important; width: 100% !important; }
+.media-grid > a, .gallery > a, .photos > a, .media-list > a, .media-item {
+  display: block !important;
+  border-radius: 12px !important;
+  overflow: hidden !important;
+  border: 3px solid transparent !important;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08) !important;
+  transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease !important;
+  margin: 0 !important;
+}
+
+.media-grid img, .gallery img, .photos img, .media-list img, .media-item img {
+  width: 100% !important;
+  height: 200px !important;
+  object-fit: cover !important;
+  display: block !important;
+  margin: 0 !important;
+  transition: transform 0.6s ease !important;
+}
+
+/* 🚨 子相册悬浮效果 */
+.media-grid > a:hover, .gallery > a:hover, .photos > a:hover, .media-list > a:hover, .media-item:hover {
+  transform: translateY(-6px) scale(1.03) !important;
+  box-shadow: 0 10px 30px rgba(0, 161, 214, 0.3) !important;
+  border-color: var(--secondary) !important;
+}
+
+.media-grid > a:hover img, .gallery > a:hover img, .photos > a:hover img, .media-list > a:hover img, .media-item:hover img {
+  transform: scale(1.08) !important;
+}
+
+/* 页脚 & 滚动条 */
+footer, .footer { text-align: center !important; padding: 40px 20px 30px !important; color: var(--text-light) !important; font-size: 14px !important; letter-spacing: 1px !important; width: 100% !important; }
 ::-webkit-scrollbar { width: 8px; height: 8px; }
 ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #FB7299, #00A1D6) !important; border-radius: 4px; }
 ::-webkit-scrollbar-track { background: #F7F8FA; }
+
 @media (max-width: 768px) {
   h1 { font-size: 32px !important; }
-  .albums, .album-grid, #albums, .album-list, main > div > div { gap: 20px !important; }
-  .albums > a, .album-grid > a, #albums > a, a[href*="/gallery/"] { width: 100% !important; max-width: 320px !important; }
-  .albums > a img, .album-grid > a img, #albums > a img, a[href*="/gallery/"] img { height: 180px !important; }
-  .media-grid > a, .gallery > a, .photos > a, .media-list > a, .media-item { width: 45% !important; }
-  .media-grid img, .gallery img, .photos img, .media-list img, .media-item img { height: 140px !important; }
+  .albums, .album-grid, #albums, .album-list, .album { gap: 20px !important; }
+  .album img, .album-card img, .card img, a[href*="/gallery/"] img { height: 180px !important; }
+  .media-grid, .gallery, .photos, .media-list { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)) !important; gap: 12px !important; }
+  .media-grid img, .gallery img, .photos img, .media-list img { height: 140px !important; }
 }
