@@ -1,4 +1,4 @@
-/* ============== 提瓦特星空 · 完美精准收网版 ============== */
+/* ============== 提瓦特星空 · 最终顺水推舟版 ============== */
 :root {
   --primary: #FB7299;
   --secondary: #00A1D6;
@@ -49,134 +49,87 @@ h1 {
   animation: shine 3s linear infinite !important;
   filter: drop-shadow(0 0 15px rgba(251, 114, 153, 0.15)) !important;
 }
-@keyframes shine {
-  0% { background-position: 0 center; }
-  100% { background-position: 200% center; }
-}
+@keyframes shine { 0% { background-position: 0 center; } 100% { background-position: 200% center; } }
 
 /* 欢迎语 */
 main::before {
   content: "✨ 提瓦特的星空永远有你的位置 ✨";
-  display: block !important;
-  text-align: center !important;
-  font-size: 18px !important;
-  color: var(--text-light) !important;
-  margin: 0 0 30px !important;
-  letter-spacing: 2px !important;
+  display: block !important; text-align: center !important; font-size: 18px !important;
+  color: var(--text-light) !important; margin: 0 0 30px !important; letter-spacing: 2px !important;
 }
 
 /* 渐变分隔线 */
 hr {
-  border: none !important;
-  height: 2px !important;
+  border: none !important; height: 2px !important;
   background: linear-gradient(90deg, transparent, #FB7299, #00A1D6, #FB7299, transparent) !important;
-  background-size: 200% auto !important;
-  animation: gradient-flow 4s linear infinite !important;
-  max-width: 400px !important;
-  margin: 0 auto 40px !important;
+  background-size: 200% auto !important; animation: gradient-flow 4s linear infinite !important;
+  max-width: 400px !important; margin: 0 auto 40px !important;
 }
-@keyframes gradient-flow {
-  0% { background-position: -200px center; }
-  100% { background-position: 200px center; }
-}
+@keyframes gradient-flow { 0% { background-position: -200px center; } 100% { background-position: 200px center; } }
 
-/* ===== 导航栏面包屑（彻底消除悬浮，恢复清爽） ===== */
-/* 精确锁定顶部的导航栏，并把之前误加的悬浮特效全部干掉 */
+/* ===== 导航栏面包屑（去悬浮，恢复正常） ===== */
 nav, .breadcrumb, ul.breadcrumb, main > ul {
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
-  gap: 10px !important;
-  list-style: none !important;
-  padding: 0 !important;
-  margin: 0 0 30px 0 !important;
+  display: flex !important; justify-content: center !important; align-items: center !important;
+  gap: 10px !important; list-style: none !important; padding: 0 !important; margin: 0 0 30px 0 !important;
 }
 nav a, .breadcrumb a, main > ul a {
-  background: transparent !important;
-  color: var(--text-light) !important;
-  padding: 5px 10px !important;
-  text-decoration: none !important;
-  border: none !important;
-  box-shadow: none !important;
-  transform: none !important; /* 绝对不让它悬浮！ */
+  background: transparent !important; color: var(--text-light) !important; padding: 5px 10px !important;
+  text-decoration: none !important; border: none !important; box-shadow: none !important; transform: none !important;
 }
 
-/* ===== 首页相册容器 ===== */
+/* ===== 首页相册（完全顺应原生结构，只加外发光） ===== */
 .albums, .album-grid, #albums, .album-list, main > ul + div {
-  display: flex !important;
-  flex-wrap: wrap !important;
-  justify-content: center !important;
-  align-items: flex-start !important;
-  gap: 30px !important;
-  padding: 20px 0 !important;
-  width: 100% !important;
-  max-width: 1000px !important;
-  margin: 0 auto !important;
+  display: flex !important; flex-wrap: wrap !important; justify-content: center !important;
+  align-items: flex-start !important; gap: 30px !important; padding: 20px 0 !important;
+  width: 100% !important; max-width: 1000px !important; margin: 0 auto !important;
 }
 
-/* ===== 🔥 首页卡片（精准定位，消除拼图） ===== */
-/* 只命中相册列表里的大卡片，不碰里面的小图 */
+/* 首页卡片外层：加点圆角和发光 */
 .albums > a, .album-grid > a, #albums > a, main > ul + div > a {
+  display: block !important;
   width: 300px !important;
-  border-radius: var(--radius) !important;
-  overflow: hidden !important;
+  padding: 20px !important; /* 留出空间给四宫格 */
   background: #fff !important;
+  border-radius: var(--radius) !important;
   box-shadow: var(--shadow) !important;
-  border: 3px solid transparent !important;
-  transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease !important;
-  display: block !important;
-  margin: 0 !important;
   text-decoration: none !important;
-  padding: 0 !important;
+  transition: transform 0.4s ease, box-shadow 0.4s ease !important;
+  border: 2px solid transparent !important;
 }
 
-/* 首页大图强制撑满（解决图片显示不全问题） */
-.albums > a > img, .album-grid > a > img, #albums > a > img, main > ul + div > a > img {
-  width: 100% !important;
-  height: 220px !important;
-  object-fit: cover !important;
-  display: block !important;
-  margin: 0 !important;
-  transition: transform 0.6s ease !important;
-}
-
-/* 首页悬浮效果 */
+/* 首页悬浮特效（整个卡片上浮） */
 .albums > a:hover, .album-grid > a:hover, #albums > a:hover, main > ul + div > a:hover {
-  transform: translateY(-8px) scale(1.02) !important;
+  transform: translateY(-8px) !important;
   box-shadow: var(--shadow-hover) !important;
   border-color: var(--primary) !important;
 }
-.albums > a:hover > img, .album-grid > a:hover > img, #albums > a:hover > img, main > ul + div > a:hover > img {
-  transform: scale(1.08) !important;
-}
 
-/* ===== 🔥 子相册图片网格（精准锁定，恢复圆角和悬浮） ===== */
+/* ===== 🔥 子相册（精准狙击悬浮，绝不漏网） ===== */
+/* classic 主题的图片网格 */
 .media-grid, .gallery, .photos, .media-list, #media {
-  display: flex !important;
-  flex-wrap: wrap !important;
-  justify-content: center !important;
-  align-items: flex-start !important;
-  gap: 20px !important;
-  width: 100% !important;
-  max-width: 1100px !important;
-  margin: 0 auto !important;
-  padding: 20px 0 !important;
+  display: flex !important; flex-wrap: wrap !important; justify-content: center !important;
+  align-items: flex-start !important; gap: 20px !important; width: 100% !important;
+  max-width: 1100px !important; margin: 0 auto !important; padding: 20px 0 !important;
 }
 
-/* 子相册图片的外层链接 */
-.media-grid > a, .gallery > a, .photos > a, .media-list > a, .media-item {
+/* 🔥 强制锁定图片所在的子容器或父级链接 */
+.media-grid > a, .gallery > a, .photos > a, .media-list > a, 
+.media-grid .media-item, .gallery .media-item, 
+.media-grid .thumbnail, .gallery .thumbnail {
   display: block !important;
-  width: 200px !important;
-  border-radius: 12px !important; /* 恢复圆角 */
+  border-radius: 12px !important;
   overflow: hidden !important;
   border: 3px solid transparent !important;
   box-shadow: 0 2px 10px rgba(0,0,0,0.08) !important;
   transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease !important;
   margin: 0 !important;
   padding: 0 !important;
+  width: 200px !important; /* 统一大小 */
 }
 
-.media-grid > a > img, .gallery > a > img, .photos > a > img, .media-list > a > img, .media-item > img {
+.media-grid img, .gallery img, .photos img, .media-list img, 
+.media-grid .media-item img, .gallery .media-item img,
+.media-grid .thumbnail img, .gallery .thumbnail img {
   width: 100% !important;
   height: 200px !important;
   object-fit: cover !important;
@@ -185,25 +138,20 @@ nav a, .breadcrumb a, main > ul a {
   transition: transform 0.6s ease !important;
 }
 
-/* 子相册悬浮效果 */
-.media-grid > a:hover, .gallery > a:hover, .photos > a:hover, .media-list > a:hover, .media-item:hover {
+/* 🔥 子相册悬浮（鼠标放到外层链接或缩略图上） */
+.media-grid > a:hover, .gallery > a:hover, .photos > a:hover, .media-list > a:hover, 
+.media-grid .media-item:hover, .gallery .media-item:hover,
+.media-grid .thumbnail:hover, .gallery .thumbnail:hover {
   transform: translateY(-6px) scale(1.03) !important;
   box-shadow: 0 10px 30px rgba(0, 161, 214, 0.3) !important;
   border-color: var(--secondary) !important;
 }
-.media-grid > a:hover > img, .gallery > a:hover > img, .photos > a:hover > img, .media-list > a:hover > img, .media-item:hover > img {
-  transform: scale(1.08) !important;
-}
 
-/* 文字样式 */
-.albums > a div, main > ul + div > a div {
-  padding: 16px 18px !important;
-}
-.albums > a h3, main > ul + div > a h3 {
-  font-size: 18px !important; font-weight: 700 !important; color: var(--text) !important; margin: 0 0 6px !important;
-}
-.albums > a p, main > ul + div > a p {
-  font-size: 13px !important; color: var(--text-light) !important; margin: 2px 0 !important;
+/* 悬浮时图片放大 */
+.media-grid > a:hover img, .gallery > a:hover img, .photos > a:hover img, .media-list > a:hover img,
+.media-grid .media-item:hover img, .gallery .media-item:hover img,
+.media-grid .thumbnail:hover img, .gallery .thumbnail:hover img {
+  transform: scale(1.08) !important;
 }
 
 /* 页脚 & 滚动条 */
@@ -211,12 +159,3 @@ footer, .footer { text-align: center !important; padding: 40px 20px 30px !import
 ::-webkit-scrollbar { width: 8px; height: 8px; }
 ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #FB7299, #00A1D6) !important; border-radius: 4px; }
 ::-webkit-scrollbar-track { background: #F7F8FA; }
-
-@media (max-width: 768px) {
-  h1 { font-size: 32px !important; }
-  .albums, .album-grid, #albums, .album-list, main > ul + div { gap: 20px !important; }
-  .albums > a, .album-grid > a, #albums > a, main > ul + div > a { width: 100% !important; max-width: 320px !important; }
-  .albums > a > img, .album-grid > a > img, #albums > a > img, main > ul + div > a > img { height: 180px !important; }
-  .media-grid > a, .gallery > a, .photos > a, .media-list > a, .media-item { width: 45% !important; }
-  .media-grid > a > img, .gallery > a > img, .photos > a > img, .media-list > a > img, .media-item > img { height: 140px !important; }
-}
