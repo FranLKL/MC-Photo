@@ -1,5 +1,6 @@
-/* ============== 提瓦特星空 · 终极原图替换版 ============== */
-@import url('https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&display=swap');
+/* ============== 提瓦特星空 · 站酷快乐体版 ============== */
+/* ✅ 使用稳定的CDN加载站酷快乐体，避免被墙 */
+@import url('https://cdn.jsdelivr.net/npm/fonts-cn@1.0.0/zcool-kuaile/stylesheet.css');
 
 :root {
   --primary: #FB7299;
@@ -11,9 +12,9 @@
   --shadow-hover: 0 15px 40px rgba(251, 114, 153, 0.3);
 }
 
-/* ===== 字体：加入多重备选，防止加载失败 ===== */
+/* ===== 字体优先级：站酷快乐体优先，其次系统字体 ===== */
 html, body, * {
-  font-family: 'ZCOOL KuaiLe', "Microsoft YaHei", "PingFang SC", "Comic Sans MS", sans-serif !important;
+  font-family: 'ZCOOL KuaiLe', "Microsoft YaHei", "PingFang SC", "Hiragino Sans GB", "WenQuanYi Micro Hei", sans-serif !important;
 }
 
 /* 全局背景 */
@@ -79,9 +80,7 @@ nav a, .breadcrumbs a {
   transform: none !important; font-size: 22px !important;
 }
 
-/* =================================================================
-   🚨 首页大卡片：终极原图替换！
-   ================================================================= */
+/* ============== 首页相册卡片 ============== */
 ul#galleries {
   display: flex !important; flex-wrap: wrap !important; justify-content: center !important;
   gap: 30px !important; padding: 0 !important; list-style: none !important; max-width: 1100px !important; margin: 0 auto !important;
@@ -99,7 +98,6 @@ ul#galleries > li > a {
 ul#galleries > li > a:hover {
   transform: translateY(-8px) !important; box-shadow: var(--shadow-hover) !important; border-color: var(--primary) !important;
 }
-
 ul#galleries > li > a ul.grid {
   display: block !important; border-radius: 12px !important; overflow: hidden !important; margin-top: 15px !important; 
   height: 280px !important; width: 100% !important;
@@ -110,18 +108,12 @@ ul#galleries > li > a ul.grid li {
 ul#galleries > li > a ul.grid li:first-child {
   display: block !important; width: 100% !important; height: 100% !important;
 }
-/* ✨ 首页封面原图替换：把 /thumbs/ 替换成 /large/ */
 ul#galleries > li > a ul.grid li:first-child img {
-  width: 100% !important; height: 100% !important; object-fit: cover !important; object-position: center !important; display: block !important; transition: transform 0.6s ease !important;
-  content: url(attr(src)) !important; /* 尝试原生替换 */
+  width: 100% !important; height: 100% !important; object-fit: cover !important; object-position: center center !important; display: block !important; transition: transform 0.6s ease !important;
 }
-/* 针对各种相对路径的终极路径替换 */
-ul#galleries > li > a ul.grid li:first-child img[src*="thumbs"] {
-  /* 这是针对 thumbsup 路径的魔法，让浏览器去拿原图 */
-  src: url() !important; 
+ul#galleries > li > a:hover ul.grid li:first-child img {
+  transform: scale(1.05) !important;
 }
-
-/* 文本调整 */
 ul#galleries > li > a div.meta {
   font-size: 16px !important;
   color: var(--text-light) !important;
@@ -129,9 +121,7 @@ ul#galleries > li > a div.meta {
   margin-top: 8px !important;
 }
 
-/* =================================================================
-   🚨 子相册图片专区：终极原图替换！
-   ================================================================= */
+/* ============== 相册内图片网格 ============== */
 ul#media, main > ul.grid {
   display: grid !important;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)) !important; 
@@ -143,7 +133,6 @@ ul#media, main > ul.grid {
   width: 100% !important;
   justify-content: center !important;
 }
-
 ul#media > li, main > ul.grid > li {
   list-style: none !important; margin: 0 !important; padding: 0 !important;
   border-radius: 12px !important; overflow: hidden !important;
@@ -153,23 +142,17 @@ ul#media > li, main > ul.grid > li {
   height: 260px !important; 
   width: 100% !important; 
 }
-
 ul#media > li > a, main > ul.grid > li > a {
   display: block !important; width: 100% !important; height: 100% !important;
 }
-
-/* 图片填满 */
 ul#media > li img, main > ul.grid > li img {
   width: 100% !important; 
   height: 100% !important; 
   object-fit: cover !important; 
-  object-position: center !important; 
+  object-position: center center !important; 
   display: block !important; 
   transition: transform 0.6s ease !important;
-  /* 同样的路径替换魔法 */
-  content: url(attr(src)) !important; 
 }
-
 ul#media > li:hover, main > ul.grid > li:hover {
   transform: translateY(-6px) scale(1.03) !important; 
   box-shadow: 0 10px 30px rgba(0, 161, 214, 0.4) !important;
@@ -186,6 +169,7 @@ footer, .footer { text-align: center !important; padding: 40px 20px 30px !import
 ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #FB7299, #00A1D6) !important; border-radius: 4px; }
 ::-webkit-scrollbar-track { background: #F7F8FA; }
 
+/* 响应式适配 */
 @media (max-width: 768px) {
   h1 { font-size: 32px !important; }
   ul#galleries > li { width: 100% !important; }
