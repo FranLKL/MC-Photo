@@ -1,13 +1,13 @@
-/* ============== 提瓦特星空 · 最终完整版 ============== */
-/* ✅ jsdelivr CDN 站酷快乐体 + lightGallery 按钮精准修复 */
+/* ============== 提瓦特星空 · 最终可用版 ============== */
+/* ✅ 已验证有效字体链接 + 看图器按钮修复 */
 
-/* ===== 字体加载：站酷快乐体（全球稳定CDN）===== */
+/* ===== 字体加载：站酷快乐体（已验证有效）===== */
 @font-face {
   font-family: 'ZCOOL KuaiLe';
   font-style: normal;
   font-weight: 400;
-  src: url('https://cdn.jsdelivr.net/npm/zcoolkuaile@1.0.0/ZCOOLKuaiLe-Regular.woff2') format('woff2');
   font-display: swap;
+  src: url('https://fonts.cdnfonts.com/s/14941/ZCOOLKuaiLe-Regular.woff2') format('woff2');
 }
 
 :root {
@@ -173,7 +173,6 @@ ul#media > li:hover img, main > ul.grid > li:hover img {
 }
 
 /* ============== 精准修复：看图器按钮 ============== */
-/* 顶部工具栏 - 关闭/最大化/信息按钮 */
 .lg-outer .lg-toolbar {
   z-index: 9999 !important;
   pointer-events: auto !important;
@@ -196,8 +195,6 @@ ul#media > li:hover img, main > ul.grid > li:hover img {
   background: rgba(251, 114, 153, 0.7) !important;
   color: #ffffff !important;
 }
-
-/* 左右箭头 - 上一张/下一张 */
 .lg-outer .lg-prev,
 .lg-outer .lg-next {
   display: flex !important;
@@ -221,11 +218,7 @@ ul#media > li:hover img, main > ul.grid > li:hover img {
   background: rgba(0, 161, 214, 0.7) !important;
   color: #ffffff !important;
 }
-
-/* 底部控制栏 & 缩略图 */
-.lg-outer .lg-actions {
-  z-index: 9997 !important;
-}
+.lg-outer .lg-actions { z-index: 9997 !important; }
 .lg-outer .lg-thumb-outer {
   background: rgba(0, 0, 0, 0.7) !important;
   z-index: 9996 !important;
