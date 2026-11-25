@@ -2,7 +2,15 @@
 /* ✅ 直接从 Google Fonts 加载，不用上传任何字体文件，告别404！*/
 
 /* ===== 引入站酷快乐体（在线CDN，全球稳定）===== */
-@import url('https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&display=swap');
+/* ===== 引入站酷快乐体 · 优化加载 ===== */
+@font-face {
+  font-family: 'ZCOOL KuaiLe';
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;  /* 字体加载完再显示文字，避免字体跳变 */
+  src: url('https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&display=swap');
+}
+
 
 :root {
   --primary: #FB7299;
