@@ -8,7 +8,6 @@
   "cleanup": true,
   "theme": "classic",
   "large-size": "3000",
-  "photo-format": "original",
   "css": "./custom.css",
   "footer": "一段冒险，一段故事，一段友情o(*￣▽￣*)ブ",
   "usage-stats": false,
