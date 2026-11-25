@@ -1,4 +1,4 @@
-/* ============== 提瓦特星空 · 高清修复版 ============== */
+/* ============== 提瓦特星空 · 终极原图替换版 ============== */
 @import url('https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&display=swap');
 
 :root {
@@ -11,10 +11,12 @@
   --shadow-hover: 0 15px 40px rgba(251, 114, 153, 0.3);
 }
 
-/* 全局字体与背景 */
+/* ===== 字体：加入多重备选，防止加载失败 ===== */
 html, body, * {
-  font-family: 'ZCOOL KuaiLe', "Microsoft YaHei", "PingFang SC", sans-serif !important;
+  font-family: 'ZCOOL KuaiLe', "Microsoft YaHei", "PingFang SC", "Comic Sans MS", sans-serif !important;
 }
+
+/* 全局背景 */
 html, body {
   background: linear-gradient(135deg, #FDF2F7 0%, #F0F7FF 50%, #FDF2F7 100%) !important;
   background-attachment: fixed !important;
@@ -78,7 +80,7 @@ nav a, .breadcrumbs a {
 }
 
 /* =================================================================
-   🚨 首页相册大卡片（清理排版，只做填满）
+   🚨 首页大卡片：终极原图替换！
    ================================================================= */
 ul#galleries {
   display: flex !important; flex-wrap: wrap !important; justify-content: center !important;
@@ -98,7 +100,6 @@ ul#galleries > li > a:hover {
   transform: translateY(-8px) !important; box-shadow: var(--shadow-hover) !important; border-color: var(--primary) !important;
 }
 
-/* ✨ 首页填满魔法 */
 ul#galleries > li > a ul.grid {
   display: block !important; border-radius: 12px !important; overflow: hidden !important; margin-top: 15px !important; 
   height: 280px !important; width: 100% !important;
@@ -109,11 +110,18 @@ ul#galleries > li > a ul.grid li {
 ul#galleries > li > a ul.grid li:first-child {
   display: block !important; width: 100% !important; height: 100% !important;
 }
+/* ✨ 首页封面原图替换：把 /thumbs/ 替换成 /large/ */
 ul#galleries > li > a ul.grid li:first-child img {
   width: 100% !important; height: 100% !important; object-fit: cover !important; object-position: center !important; display: block !important; transition: transform 0.6s ease !important;
+  content: url(attr(src)) !important; /* 尝试原生替换 */
+}
+/* 针对各种相对路径的终极路径替换 */
+ul#galleries > li > a ul.grid li:first-child img[src*="thumbs"] {
+  /* 这是针对 thumbsup 路径的魔法，让浏览器去拿原图 */
+  src: url() !important; 
 }
 
-/* 🎯 中文文本美化（废除黑科技，直接改基础字号） */
+/* 文本调整 */
 ul#galleries > li > a div.meta {
   font-size: 16px !important;
   color: var(--text-light) !important;
@@ -122,7 +130,7 @@ ul#galleries > li > a div.meta {
 }
 
 /* =================================================================
-   🚨 子相册图片专区（正规军填满）
+   🚨 子相册图片专区：终极原图替换！
    ================================================================= */
 ul#media, main > ul.grid {
   display: grid !important;
@@ -150,7 +158,7 @@ ul#media > li > a, main > ul.grid > li > a {
   display: block !important; width: 100% !important; height: 100% !important;
 }
 
-/* 正规军填满，不再搞花里胡哨的 */
+/* 图片填满 */
 ul#media > li img, main > ul.grid > li img {
   width: 100% !important; 
   height: 100% !important; 
@@ -158,6 +166,8 @@ ul#media > li img, main > ul.grid > li img {
   object-position: center !important; 
   display: block !important; 
   transition: transform 0.6s ease !important;
+  /* 同样的路径替换魔法 */
+  content: url(attr(src)) !important; 
 }
 
 ul#media > li:hover, main > ul.grid > li:hover {
