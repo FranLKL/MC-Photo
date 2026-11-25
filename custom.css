@@ -1,6 +1,14 @@
-/* ============== 提瓦特星空 · 站酷快乐体版 ============== */
-/* ✅ 使用稳定的CDN加载站酷快乐体，避免被墙 */
-@import url('https://cdn.jsdelivr.net/npm/fonts-cn@1.0.0/zcool-kuaile/stylesheet.css');
+/* ============== 提瓦特星空 · 站酷快乐体最终完整版 ============== */
+/* ✅ 稳定字体加载 + 看图器按钮修复 + 高清缩略图适配 */
+
+/* ===== 字体加载：站酷快乐体 ===== */
+@font-face {
+  font-family: 'ZCOOL KuaiLe';
+  font-style: normal;
+  font-weight: 400;
+  src: url('https://fonts.gstatic.com/s/zcoolkuaile/v19/qFdD352ji99Hd0iZ9d5h6xOe7w.woff2') format('woff2');
+  font-display: swap;
+}
 
 :root {
   --primary: #FB7299;
@@ -12,8 +20,8 @@
   --shadow-hover: 0 15px 40px rgba(251, 114, 153, 0.3);
 }
 
-/* ===== 字体优先级：站酷快乐体优先，其次系统字体 ===== */
-html, body, * {
+/* ===== 全局字体 ===== */
+html, body, h1, h2, h3, h4, h5, h6, p, a, div, span, li, .meta, .breadcrumbs {
   font-family: 'ZCOOL KuaiLe', "Microsoft YaHei", "PingFang SC", "Hiragino Sans GB", "WenQuanYi Micro Hei", sans-serif !important;
 }
 
@@ -161,6 +169,39 @@ ul#media > li:hover, main > ul.grid > li:hover {
 }
 ul#media > li:hover img, main > ul.grid > li:hover img {
   transform: scale(1.08) !important;
+}
+
+/* ============== 修复看图器按钮 ============== */
+.lg-outer .lg-icon {
+  color: #ffffff !important;
+  opacity: 0.85 !important;
+  transition: opacity 0.2s ease !important;
+}
+.lg-outer .lg-icon:hover {
+  opacity: 1 !important;
+  color: #FB7299 !important;
+}
+.lg-outer .lg-close,
+.lg-outer .lg-prev,
+.lg-outer .lg-next {
+  background: rgba(0, 0, 0, 0.4) !important;
+  border-radius: 50% !important;
+  width: 44px !important;
+  height: 44px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+.lg-outer .lg-close:hover,
+.lg-outer .lg-prev:hover,
+.lg-outer .lg-next:hover {
+  background: rgba(251, 114, 153, 0.6) !important;
+}
+.lg-outer .lg-toolbar {
+  background: linear-gradient(to bottom, rgba(0,0,0,0.6), transparent) !important;
+}
+.lg-outer .lg-actions {
+  background: linear-gradient(to top, rgba(0,0,0,0.6), transparent) !important;
 }
 
 /* 页脚 & 滚动条 */
