@@ -1,4 +1,4 @@
-/* ============== 提瓦特星空 · 终极巅峰版 ============== */
+/* ============== 提瓦特星空 · 最终封神版 ============== */
 @import url('https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&display=swap');
 
 :root {
@@ -11,11 +11,10 @@
   --shadow-hover: 0 15px 40px rgba(251, 114, 153, 0.3);
 }
 
-/* 强制全局应用站酷快乐体，字号稍微放大一点点 */
+/* 全局字体与背景 */
 html, body, * {
   font-family: 'ZCOOL KuaiLe', "Microsoft YaHei", "PingFang SC", sans-serif !important;
 }
-
 html, body {
   background: linear-gradient(135deg, #FDF2F7 0%, #F0F7FF 50%, #FDF2F7 100%) !important;
   background-attachment: fixed !important;
@@ -24,6 +23,7 @@ html, body {
   color: var(--text) !important;
 }
 
+/* 居中框架 */
 body {
   display: flex !important;
   flex-direction: column !important;
@@ -67,25 +67,25 @@ hr {
 @keyframes gradient-flow { 0% { background-position: -200px center; } 100% { background-position: 200px center; } }
 
 /* 导航栏 */
-nav, .breadcrumb, ul.breadcrumb, main > ul {
+nav, .breadcrumbs {
   display: flex !important; justify-content: center !important; align-items: center !important;
   gap: 10px !important; list-style: none !important; padding: 0 !important; margin: 0 0 30px 0 !important;
 }
-nav a, .breadcrumb a, main > ul a {
+nav a, .breadcrumbs a {
   background: transparent !important; color: var(--primary) !important; padding: 5px 10px !important;
   text-decoration: none !important; border: none !important; box-shadow: none !important; 
   transform: none !important; font-size: 22px !important;
 }
 
 /* =================================================================
-   🚨 首页相册大卡片（高清居中）
+   🚨 首页相册大卡片（终极高清 + 完美填满 + 中文化）
    ================================================================= */
 ul#galleries {
   display: flex !important; flex-wrap: wrap !important; justify-content: center !important;
   gap: 30px !important; padding: 0 !important; list-style: none !important; max-width: 1100px !important; margin: 0 auto !important;
 }
 ul#galleries > li {
-  width: 360px !important;
+  width: 380px !important; /* 稍微再宽一点 */
   list-style: none !important; margin: 0 !important;
 }
 ul#galleries > li > a {
@@ -98,10 +98,10 @@ ul#galleries > li > a:hover {
   transform: translateY(-8px) !important; box-shadow: var(--shadow-hover) !important; border-color: var(--primary) !important;
 }
 
-/* ✨ 魔法：只留第一张，高清居中放大 */
+/* ✨ 魔法：只留第一张，强制填满 */
 ul#galleries > li > a ul.grid {
   display: block !important; border-radius: 12px !important; overflow: hidden !important; margin-top: 15px !important; 
-  height: 240px !important; 
+  height: 280px !important; width: 100% !important;
 }
 ul#galleries > li > a ul.grid li {
   display: none !important; 
@@ -112,16 +112,42 @@ ul#galleries > li > a ul.grid li:first-child {
 ul#galleries > li > a ul.grid li:first-child img {
   width: 100% !important; height: 100% !important; object-fit: cover !important; object-position: center !important; display: block !important; transition: transform 0.6s ease !important;
 }
-ul#galleries > li > a:hover ul.grid li:first-child img {
-  transform: scale(1.08) !important;
+
+/* 🎯 中文化：隐藏原本的英文单词，用伪元素替换成中文 */
+ul#galleries > li > a div.meta {
+  font-size: 16px !important;
+  color: var(--text-light) !important;
+  line-height: 1.5 !important;
+  position: relative !important;
+}
+/* 隐藏原本的 "1 photo" 等英文（字号变成0，相当于不可见） */
+ul#galleries > li > a div.meta {
+  font-size: 0 !important;
+}
+/* 强行插入中文！ */
+ul#galleries > li > a div.meta::before {
+  content: "共 张照片" !important; 
+  font-size: 16px !important;
+  color: var(--text-light) !important;
+  display: block !important;
+  margin-bottom: 4px !important;
+}
+/* 处理日期：因为原代码只有<br>，我们可以直接隐藏英文保留日期文本 */
+ul#galleries > li > a div.meta br {
+  display: none !important;
+}
+ul#galleries > li > a div.meta::after {
+  content: "📅 " !important; /* 加个小图标 */
+  font-size: 16px !important;
+  color: var(--text-light) !important;
 }
 
 /* =================================================================
-   🚨 子相册图片专区（完美居中高清网格）
+   🚨 子相册图片专区（借用 data-src 的原图地址，实现终极高清！）
    ================================================================= */
 ul#media, main > ul.grid {
   display: grid !important;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)) !important; 
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)) !important; 
   gap: 25px !important;
   padding: 20px 0 !important;
   list-style: none !important;
@@ -137,29 +163,35 @@ ul#media > li, main > ul.grid > li {
   border: 3px solid transparent !important; background: #fff !important;
   box-shadow: 0 2px 10px rgba(0,0,0,0.08) !important;
   transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease !important;
-  height: 250px !important; 
+  height: 260px !important; /* 高度再拉大一点点 */
+  width: 100% !important; 
 }
 
 ul#media > li > a, main > ul.grid > li > a {
   display: block !important; width: 100% !important; height: 100% !important;
 }
-ul#media > li img, main > ul.grid > li img {
-  width: 100% !important; height: 100% !important; object-fit: cover !important; object-position: center !important; display: block !important; transition: transform 0.6s ease !important;
+
+/* 🎯 高清魔法：让缩略图直接借用原图的地址！ */
+ul#media > li > a > img {
+  width: 100% !important; 
+  height: 100% !important; 
+  object-fit: cover !important; 
+  object-position: center !important; 
+  display: block !important; 
+  transition: transform 0.6s ease !important;
+  
+  /* 这一步是借用了父级 li 的 data-src 属性，直接加载高清大图！ */
+  content: url(attr(data-src)) !important; 
 }
 
 ul#media > li:hover, main > ul.grid > li:hover {
-  transform: translateY(-6px) scale(1.03) !important; box-shadow: 0 10px 30px rgba(0, 161, 214, 0.4) !important;
-  border-color: var(--secondary) !important; z-index: 10 !important;
+  transform: translateY(-6px) scale(1.03) !important; 
+  box-shadow: 0 10px 30px rgba(0, 161, 214, 0.4) !important;
+  border-color: var(--secondary) !important; 
+  z-index: 10 !important;
 }
 ul#media > li:hover img, main > ul.grid > li:hover img {
   transform: scale(1.08) !important;
-}
-
-/* 文字样式调整 */
-div.meta {
-  font-size: 16px !important; /* 把英文写小一点 */
-  color: var(--text-light) !important;
-  margin-top: 8px !important;
 }
 
 /* 页脚 & 滚动条 */
@@ -173,5 +205,5 @@ footer, .footer { text-align: center !important; padding: 40px 20px 30px !import
   ul#galleries > li { width: 100% !important; }
   ul#media, main > ul.grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)) !important; gap: 12px !important; }
   ul#media > li, main > ul.grid > li { height: 160px !important; }
-  ul#galleries > li > a ul.grid { height: 180px !important; }
+  ul#galleries > li > a ul.grid { height: 200px !important; }
 }
