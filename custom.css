@@ -1,14 +1,8 @@
-/* ============== 提瓦特星空 · 本地字体终极版 ============== */
-/* ✅ 字体路径已修复：/ 指向网站根目录，构建后也能正确加载 */
+/* ============== 提瓦特星空 · 在线字体稳定版 ============== */
+/* ✅ 直接从 Google Fonts 加载，不用上传任何字体文件，告别404！*/
 
-/* ===== 引用仓库内的本地字体 ===== */
-@font-face {
-  font-family: 'ZCOOL KuaiLe';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url('./gallery/ZCOOLKuaiLe-Regular.ttf') format('truetype');
-}
+/* ===== 引入站酷快乐体（在线CDN，全球稳定）===== */
+@import url('https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&display=swap');
 
 :root {
   --primary: #FB7299;
@@ -172,7 +166,7 @@ ul#media > li:hover img, main > ul.grid > li:hover img {
   transform: scale(1.08) !important;
 }
 
-/* ============== 精准修复：看图器按钮 ============== */
+/* ============== 看图器按钮修复 ============== */
 .lg-outer .lg-toolbar {
   z-index: 9999 !important;
   pointer-events: auto !important;
