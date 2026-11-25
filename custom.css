@@ -7,7 +7,7 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url('/MC-Photo/ZCOOLKuaiLe-Regular.ttf') format('truetype');
+  src: url('./gallery/ZCOOLKuaiLe-Regular.ttf') format('truetype');
 }
 
 :root {
