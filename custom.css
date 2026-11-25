@@ -1,13 +1,13 @@
-/* ============== 提瓦特星空 · 最终可用版 ============== */
-/* ✅ 已验证有效字体链接 + 看图器按钮修复 */
+/* ============== 提瓦特星空 · 本地字体终极版 ============== */
+/* ✅ 字体文件在仓库内，不依赖任何外部链接，全球稳定加载 */
 
-/* ===== 字体加载：站酷快乐体（已验证有效）===== */
+/* ===== 引用仓库内的本地字体 ===== */
 @font-face {
   font-family: 'ZCOOL KuaiLe';
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url('https://fonts.cdnfonts.com/s/14941/ZCOOLKuaiLe-Regular.woff2') format('woff2');
+  src: url('./ZCOOLKuaiLe-Regular.ttf') format('truetype');
 }
 
 :root {
