@@ -7,8 +7,9 @@
   "download-photos": "copy",
   "cleanup": true,
   "theme": "classic",
-  "large-size": "1500",
+  "large-size": "3000",
   "css": "./custom.css",
   "footer": "一段冒险，一段故事，一段友情o(*￣▽￣*)ブ",
-  "usage-stats": false
+  "usage-stats": false,
+  "locale": "zh-CN"
 }
