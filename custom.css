@@ -9,7 +9,7 @@
     font-style: normal;
 }
 
-/* ============== 提瓦特星空 · 真·红蓝流动版 ============== */
+/* ============== 提瓦特星空 · 肉眼可见光晕版 ============== */
 :root {
   --primary: #FB7299;
   --secondary: #00A1D6;
@@ -25,43 +25,47 @@ html, body, * {
 }
 
 /* =================================================================
-   🎨 背景：胡桃红 × 芙芙蓝 动态流动
+   🎨 背景：肉眼可见的游动光晕
    ================================================================= */
-html, body {
-  /* 加长渐变色带，让颜色过渡更自然 */
-  background: linear-gradient(135deg, #FFE4E8 0%, #FFF0F2 20%, #FDF2F7 40%, #E8F4FF 60%, #D6ECFF 80%, #FFE4E8 100%) !important;
-  background-size: 300% 300% !important;
-  /* 🚨 去掉了 background-attachment: fixed，让动画顺利跑起来 */
-  min-height: 100vh !important;
-  margin: 0;
-  color: var(--text) !important;
+body {
+  /* 清除之前的背景，留给伪元素画 */
+  background: #FDF2F7 !important;
   
-  animation: auroraBg 20s ease infinite !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  overflow-x: hidden !important;
+  position: relative !important;
+  padding-top: 380px !important; 
+  z-index: 10 !important; 
 }
 
-@keyframes auroraBg {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+/* 核心：用 body 的 before 绘制发光游走光晕 */
+body::before {
+  content: '' !important;
+  position: fixed !important;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  z-index: -2 !important;
+  pointer-events: none !important;
+  
+  /* 三层光晕：左红、右蓝、中间白 */
+  background-image: 
+    radial-gradient(circle at 15% 30%, rgba(255, 180, 190, 0.5) 0%, transparent 40%),
+    radial-gradient(circle at 85% 70%, rgba(160, 220, 255, 0.5) 0%, transparent 40%),
+    radial-gradient(circle at 50% 50%, rgba(253, 242, 247, 0.8) 0%, transparent 60%);
+  
+  /* 20秒的游走动画 */
+  animation: floatGlow 15s ease-in-out infinite alternate !important;
+}
+
+@keyframes floatGlow {
+  0% { background-position: 0% 0%, 100% 100%, 50% 50%; }
+  100% { background-position: 100% 100%, 0% 0%, 50% 50%; }
 }
 
 /* =================================================================
    🚨 提瓦特影院大门：固定双图轮播
    ================================================================= */
-body::before {
-  content: '' !important;
-  position: fixed !important; 
-  top: 0 !important; left: 0 !important;
-  width: 100vw !important; height: 380px !important;
-  z-index: -1 !important; 
-  pointer-events: none !important;
-  background-image: url('https://cdn.jsdelivr.net/gh/FranLKL/MC-Photo@master/banner1.jpg') !important;
-  background-size: cover !important;
-  background-position: center center !important;
-  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%) !important;
-  mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%) !important;
-}
-
 body::after {
   content: '' !important;
   position: fixed !important;
@@ -84,18 +88,8 @@ body::after {
 }
 
 /* =================================================================
-   🔥🔥🔥 核心隔离：物理防打架
+   🔥🔥🔥 核心隔离：主内容留白
    ================================================================= */
-body {
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  overflow-x: hidden !important;
-  position: relative !important;
-  padding-top: 380px !important; 
-  z-index: 10 !important; 
-}
-
 main, .container, #content, body > div:not(#videos) {
   position: relative !important;
   z-index: 20 !important; 
@@ -105,6 +99,21 @@ main, .container, #content, body > div:not(#videos) {
   padding: 40px 20px !important;
   box-sizing: border-box !important;
   background: transparent !important; 
+}
+
+/* 恢复第一张图（因为伪元素名额有限，用 main 的 before 来放 banner1） */
+main::before {
+  content: '' !important;
+  position: absolute !important;
+  top: -380px !important; left: 0 !important;
+  width: 100vw !important; height: 380px !important;
+  z-index: -1 !important;
+  pointer-events: none !important;
+  background-image: url('https://cdn.jsdelivr.net/gh/FranLKL/MC-Photo@master/banner1.jpg') !important;
+  background-size: cover !important;
+  background-position: center center !important;
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%) !important;
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%) !important;
 }
 
 /* 标题渐变 */
@@ -121,7 +130,7 @@ h1 {
 @keyframes shine { 0% { background-position: 0 center; } 100% { background-position: 200% center; } }
 
 /* 欢迎语 & 分隔线 */
-main::before {
+main::after {
   content: "✨ 提瓦特的星空永远有你的位置 ✨";
   display: block !important; text-align: center !important; font-size: 18px !important;
   color: var(--text-light) !important; margin: 0 0 30px !important; letter-spacing: 2px !important;
@@ -240,7 +249,8 @@ footer, .footer { text-align: center !important; padding: 40px 20px 30px !import
 /* 手机端适配 */
 @media (max-width: 768px) {
   body { padding-top: 220px !important; }
-  body::before, body::after { height: 220px !important; }
+  body::after { height: 220px !important; }
+  main::before { top: -220px !important; height: 220px !important; }
   h1 { font-size: 32px !important; }
   ul#galleries > li { width: 100% !important; }
   ul#media, main > ul.grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)) !important; gap: 12px !important; }
