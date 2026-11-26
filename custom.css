@@ -15,7 +15,7 @@ html, body, h1, h2, h3, h4, h5, h6, p, a, div, span, li, .meta, .breadcrumbs, fo
 }
 
 
-/* ============== 提瓦特星空 · 千层饼终极稳定版 ============== */
+/* ============== 提瓦特星空 · 绝对安全背景版 ============== */
 :root {
   --primary: #FB7299;
   --secondary: #00A1D6;
@@ -31,19 +31,13 @@ html, body, * {
 }
 
 /* =================================================================
-   🌌 极光云海 + 银河碎钻（挂在 html 上，绝对不挡任何东西）
+   🌌 彻底清空原生背景，留出画布
    ================================================================= */
-html {
-  background: linear-gradient(120deg, #FDF2F7 0%, #E8F4FF 35%, #FFE5EF 70%, #F0E6FF 100%) !important;
-  background-size: 200% 200% !important;
-  background-attachment: fixed !important;
-  animation: auroraFlow 20s ease infinite !important;
-}
-
-@keyframes auroraFlow {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+html, body {
+  background: #FDF2F7 !important; /* 只有最基础底色 */
+  min-height: 100vh !important;
+  margin: 0;
+  color: var(--text) !important;
 }
 
 body {
@@ -53,21 +47,48 @@ body {
   overflow-x: hidden !important;
   padding-top: 380px !important;
   position: relative !important;
-  background-color: transparent !important; 
-  margin: 0;
-  color: var(--text) !important;
+  z-index: 0 !important;
 }
 
 /* =================================================================
-   🚨 提瓦特影院大门：双图千层饼轮播
+   ✨ 魔法背景：用 #videos 这个空盒子画极光和碎钻
    ================================================================= */
-/* 第一张图：垫在最下面 */
+#videos {
+  position: fixed !important;
+  top: 0 !important; left: 0 !important; width: 100vw !important; height: 100vh !important;
+  z-index: -3 !important; /* 垫在最最最底层 */
+  pointer-events: none !important;
+  
+  /* 极光云海渐变 */
+  background: linear-gradient(120deg, #FDF2F7 0%, #E8F4FF 35%, #FFE5EF 70%, #F0E6FF 100%) !important;
+  background-size: 200% 200% !important;
+  animation: auroraFlow 20s ease infinite !important;
+  
+  /* 在同一个元素上叠加星空点阵 */
+  background-image: 
+    radial-gradient(circle at 15% 25%, rgba(255, 255, 255, 0.8) 1.5px, transparent 2px),
+    radial-gradient(circle at 85% 35%, rgba(0, 161, 214, 0.4) 1px, transparent 1.5px),
+    radial-gradient(circle at 45% 75%, rgba(251, 114, 153, 0.4) 1.5px, transparent 2px),
+    radial-gradient(circle at 95% 85%, rgba(255, 255, 255, 0.6) 1px, transparent 1.5px),
+    linear-gradient(120deg, #FDF2F7 0%, #E8F4FF 35%, #FFE5EF 70%, #F0E6FF 100%) !important;
+  background-size: 300px 300px, 400px 400px, 500px 500px, 350px 350px, 200% 200% !important;
+}
+
+@keyframes auroraFlow {
+  0% { background-position: 0px 0px, 0px 0px, 0px 0px, 0px 0px, 0% 50%; }
+  50% { background-position: 50px 50px, -50px 20px, 20px -50px, -20px -20px, 100% 50%; }
+  100% { background-position: 0px 0px, 0px 0px, 0px 0px, 0px 0px, 0% 50%; }
+}
+
+/* =================================================================
+   🚨 提瓦特影院大门：双图千层饼轮播（绝对不碰）
+   ================================================================= */
 body::before {
   content: '' !important;
   position: absolute !important;
   top: 0 !important; left: 0 !important;
   width: 100vw !important; height: 380px !important;
-  z-index: 1 !important; /* 层级为1 */
+  z-index: 1 !important; 
   pointer-events: none !important;
   background-image: url('https://cdn.jsdelivr.net/gh/FranLKL/MC-Photo@master/banner1.jpg') !important;
   background-size: cover !important;
@@ -76,20 +97,18 @@ body::before {
   mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%) !important;
 }
 
-/* 第二张图：盖在第一张上面，负责呼吸交替 */
 body::after {
   content: '' !important;
   position: absolute !important;
   top: 0 !important; left: 0 !important;
   width: 100vw !important; height: 380px !important;
-  z-index: 2 !important; /* 层级为2，刚好盖住图1 */
+  z-index: 2 !important; 
   pointer-events: none !important;
   background-image: url('https://cdn.jsdelivr.net/gh/FranLKL/MC-Photo@master/banner2.jpg') !important;
   background-size: cover !important;
   background-position: center center !important;
   -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%) !important;
   mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%) !important;
-  
   animation: bannerFade 10s infinite ease-in-out !important;
 }
 
@@ -99,8 +118,8 @@ body::after {
   100% { opacity: 0; }
 }
 
-/* 主内容居中（修复之前的灰底问题，确保在主图上面） */
-main, .container, #content, body > div {
+/* 主内容必须透明且在最高层级 */
+main, .container, #content, body > div:not(#videos) {
   position: relative !important;
   z-index: 3 !important; 
   width: 100% !important;
@@ -108,7 +127,7 @@ main, .container, #content, body > div {
   margin: 0 auto !important;
   padding: 40px 20px !important;
   box-sizing: border-box !important;
-  background: transparent !important;
+  background: transparent !important; /* 关键：绝不能有底色 */
 }
 
 /* 标题渐变 */
