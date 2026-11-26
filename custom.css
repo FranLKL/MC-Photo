@@ -9,7 +9,7 @@
     font-style: normal;
 }
 
-/* ============== 提瓦特星空 · 终极完美无憾版 ============== */
+/* ============== 提瓦特星空 · 终极沉浸感版 ============== */
 :root {
   --primary: #FB7299;
   --secondary: #00A1D6;
@@ -25,27 +25,37 @@ html, body, * {
 }
 
 /* =================================================================
-   🎨 背景：游动光晕（修复边缘留白）
+   🎨 修复边缘缝隙 + 动态极光底
    ================================================================= */
 html {
   background: #FDF2F7 !important;
-  /* 强制占满整个视口，不留死角 */
-  width: 100vw !important; 
+  /* 溢出隐藏，把讨厌的横向滚动条切掉 */
   overflow-x: hidden !important;
+  width: 100vw !important;
 }
 
+body {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  overflow-x: hidden !important;
+  position: relative !important;
+  background: transparent !important;
+  margin: 0;
+  /* 现在页面顶部不需要留出 380px 的 padding 了，因为图片是固定在下层的，内容会直接盖上去 */
+  padding-top: 0 !important; 
+}
+
+/* 动态极光背景层（铺在最底层） */
 html::before {
   content: '' !important;
   position: fixed !important;
-  top: 0; left: 0; 
-  width: 100vw !important; height: 100vh !important;
+  top: 0; left: 0; width: 100vw; height: 100vh !important;
   z-index: -3 !important; 
   pointer-events: none !important;
+  /* 魔法：向四周扩大一点点，消灭留白缝隙 */
+  transform: scale(1.05);
   
-  /* 🚨 魔法修复：用 calc 让背景向四周延伸，彻底堵死缝隙 */
-  transform: translate(-1px, -1px) scale(1.01); 
-  
-  /* 左红、右蓝的极光光晕 */
   background-image: 
     radial-gradient(circle at 15% 30%, rgba(255, 180, 190, 0.4) 0%, transparent 40%),
     radial-gradient(circle at 85% 70%, rgba(160, 220, 255, 0.4) 0%, transparent 40%),
@@ -53,33 +63,20 @@ html::before {
   
   animation: floatGlow 15s ease-in-out infinite alternate !important;
 }
-
 @keyframes floatGlow {
   0% { background-position: 0% 0%, 100% 100%, 0% 0%; }
   100% { background-position: 100% 100%, 0% 0%, 100% 100%; }
 }
 
 /* =================================================================
-   🚨 提瓦特影院大门：双图轮播
+   🚨 提瓦特影院大门：固定双图轮播层
    ================================================================= */
-body {
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  overflow-x: hidden !important;
-  position: relative !important;
-  padding-top: 380px !important; 
-  z-index: 10 !important; 
-  background: transparent !important;
-}
-
-/* 第一张图 */
 body::before {
   content: '' !important;
-  position: absolute !important;
+  position: fixed !important; /* 固定在屏幕上！ */
   top: 0 !important; left: 0 !important;
   width: 100vw !important; height: 380px !important;
-  z-index: 1 !important; 
+  z-index: -1 !important; /* 在极光之上，但在内容之下 */
   pointer-events: none !important;
   background-image: url('https://cdn.jsdelivr.net/gh/FranLKL/MC-Photo@master/banner1.jpg') !important;
   background-size: cover !important;
@@ -88,13 +85,12 @@ body::before {
   mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%) !important;
 }
 
-/* 第二张图 */
 body::after {
   content: '' !important;
-  position: absolute !important;
+  position: fixed !important;
   top: 0 !important; left: 0 !important;
   width: 100vw !important; height: 380px !important;
-  z-index: 2 !important; 
+  z-index: -1 !important; 
   pointer-events: none !important;
   background-image: url('https://cdn.jsdelivr.net/gh/FranLKL/MC-Photo@master/banner2.jpg') !important;
   background-size: cover !important;
@@ -111,7 +107,7 @@ body::after {
 }
 
 /* =================================================================
-   🔥🔥🔥 主内容隔离
+   🔥🔥🔥 主内容沉浸式覆盖：重新用 padding 撑开，滑入画面
    ================================================================= */
 main, .container, #content, body > div:not(#videos) {
   position: relative !important;
@@ -119,7 +115,8 @@ main, .container, #content, body > div:not(#videos) {
   width: 100% !important;
   max-width: 1200px !important;
   margin: 0 auto !important;
-  padding: 40px 20px !important;
+  /* 重点：首屏给足空间，往下滑动时内容会盖在固定横幅上 */
+  padding: 380px 20px 40px 20px !important; 
   box-sizing: border-box !important;
   background: transparent !important; 
 }
@@ -163,7 +160,7 @@ nav a, .breadcrumbs a {
 }
 
 /* =================================================================
-   🍦 首页大卡片：冰淇淋毛玻璃 + 悬浮渐变变色（微调更Q弹）
+   🍦 首页大卡片：冰淇淋毛玻璃
    ================================================================= */
 ul#galleries {
   display: flex !important; flex-wrap: wrap !important; justify-content: center !important;
@@ -204,7 +201,7 @@ ul#galleries > li > a ul.grid li:first-child img {
 }
 
 /* =================================================================
-   🍦 子相册图片：冰淇淋毛玻璃 + 悬浮变色
+   🍦 子相册图片：冰淇淋毛玻璃
    ================================================================= */
 ul#media, main > ul.grid {
   display: grid !important;
@@ -256,7 +253,9 @@ footer, .footer { text-align: center !important; padding: 40px 20px 30px !import
 
 /* 手机端适配 */
 @media (max-width: 768px) {
-  body { padding-top: 220px !important; }
+  main, .container, #content, body > div:not(#videos) {
+    padding-top: 220px !important; 
+  }
   body::before, body::after { height: 220px !important; }
   h1 { font-size: 32px !important; }
   ul#galleries > li { width: 100% !important; }
