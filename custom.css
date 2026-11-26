@@ -9,7 +9,7 @@
     font-style: normal;
 }
 
-/* ============== 提瓦特星空 · 极简安全版 ============== */
+/* ============== 提瓦特星空 · 绝对不重叠版 ============== */
 :root {
   --primary: #FB7299;
   --secondary: #00A1D6;
@@ -25,29 +25,37 @@ html, body, * {
 }
 
 /* =================================================================
-   🎨 背景：极简极光渐变（绝对安全，不抢戏）
+   🎨 背景：极简极光渐变（这次我加上了动画）
    ================================================================= */
 html, body {
   background: linear-gradient(135deg, #FDF2F7 0%, #E8F4FF 50%, #FFE5EF 100%) !important;
+  background-size: 200% 200% !important;
   background-attachment: fixed !important;
   min-height: 100vh !important;
   margin: 0;
   color: var(--text) !important;
+  animation: auroraFlow 15s ease infinite !important; /* 加上流动动画 */
 }
 
-/* 解决空白：把整体往下推的距离调小 */
+@keyframes auroraFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* 基础 body 设置，清除所有会导致重叠的 padding */
 body {
   display: flex !important;
   flex-direction: column !important;
   align-items: center !important;
   overflow-x: hidden !important;
-  padding-top: 260px !important; /* 🚨 这里已经改成了 260px，不会有大白边了 */
   position: relative !important;
   z-index: 0 !important;
+  padding: 0 !important; /* 彻底清除 padding */
 }
 
 /* =================================================================
-   🚨 提瓦特影院大门：双图轮播（绝对不碰）
+   🚨 提瓦特影院大门：双图轮播（不碰）
    ================================================================= */
 body::before {
   content: '' !important;
@@ -84,13 +92,13 @@ body::after {
   100% { opacity: 0; }
 }
 
-/* 主内容必须透明且在最高层级 */
+/* 🔥🔥🔥 核心修复：用超高 margin 把主内容强行按下去 */
 main, .container, #content, body > div {
   position: relative !important;
   z-index: 3 !important; 
   width: 100% !important;
   max-width: 1200px !important;
-  margin: 0 auto !important;
+  margin: 380px auto 0 auto !important; /* 强行上边距 380px 避开横幅 */
   padding: 40px 20px !important;
   box-sizing: border-box !important;
   background: transparent !important; 
@@ -103,7 +111,7 @@ h1 {
   background-size: 200% auto !important;
   -webkit-background-clip: text !important; background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
-  margin: 30px 0 10px !important; text-align: center !important;
+  margin: 0 0 10px !important; text-align: center !important; /* 去掉了顶部 margin */
   animation: shine 3s linear infinite !important;
   filter: drop-shadow(0 0 15px rgba(251, 114, 153, 0.15)) !important;
 }
@@ -229,6 +237,7 @@ footer, .footer { text-align: center !important; padding: 40px 20px 30px !import
 /* 手机端适配 */
 @media (max-width: 768px) {
   body { padding-top: 220px !important; }
+  main, .container, #content, body > div { margin-top: 220px !important; }
   body::before, body::after { height: 220px !important; }
   h1 { font-size: 32px !important; }
   ul#galleries > li { width: 100% !important; }
