@@ -9,13 +9,7 @@
     font-style: normal;
 }
 
-/* 紧接着，强制全局应用字体 */
-html, body, h1, h2, h3, h4, h5, h6, p, a, div, span, li, .meta, .breadcrumbs, footer {
-  font-family: 'ZCOOL KuaiLe', "Microsoft YaHei", "PingFang SC", sans-serif !important;
-}
-
-
-/* ============== 提瓦特星空 · 绝对安全背景版 ============== */
+/* ============== 提瓦特星空 · 极简安全版 ============== */
 :root {
   --primary: #FB7299;
   --secondary: #00A1D6;
@@ -31,57 +25,29 @@ html, body, * {
 }
 
 /* =================================================================
-   🌌 彻底清空原生背景，留出画布
+   🎨 背景：极简极光渐变（绝对安全，不抢戏）
    ================================================================= */
 html, body {
-  background: #FDF2F7 !important; /* 只有最基础底色 */
+  background: linear-gradient(135deg, #FDF2F7 0%, #E8F4FF 50%, #FFE5EF 100%) !important;
+  background-attachment: fixed !important;
   min-height: 100vh !important;
   margin: 0;
   color: var(--text) !important;
 }
 
+/* 解决空白：把整体往下推的距离调小 */
 body {
   display: flex !important;
   flex-direction: column !important;
   align-items: center !important;
   overflow-x: hidden !important;
-  padding-top: 380px !important;
+  padding-top: 260px !important; /* 🚨 这里已经改成了 260px，不会有大白边了 */
   position: relative !important;
   z-index: 0 !important;
 }
 
 /* =================================================================
-   ✨ 魔法背景：用 #videos 这个空盒子画极光和碎钻
-   ================================================================= */
-#videos {
-  position: fixed !important;
-  top: 0 !important; left: 0 !important; width: 100vw !important; height: 100vh !important;
-  z-index: -3 !important; /* 垫在最最最底层 */
-  pointer-events: none !important;
-  
-  /* 极光云海渐变 */
-  background: linear-gradient(120deg, #FDF2F7 0%, #E8F4FF 35%, #FFE5EF 70%, #F0E6FF 100%) !important;
-  background-size: 200% 200% !important;
-  animation: auroraFlow 20s ease infinite !important;
-  
-  /* 在同一个元素上叠加星空点阵 */
-  background-image: 
-    radial-gradient(circle at 15% 25%, rgba(255, 255, 255, 0.8) 1.5px, transparent 2px),
-    radial-gradient(circle at 85% 35%, rgba(0, 161, 214, 0.4) 1px, transparent 1.5px),
-    radial-gradient(circle at 45% 75%, rgba(251, 114, 153, 0.4) 1.5px, transparent 2px),
-    radial-gradient(circle at 95% 85%, rgba(255, 255, 255, 0.6) 1px, transparent 1.5px),
-    linear-gradient(120deg, #FDF2F7 0%, #E8F4FF 35%, #FFE5EF 70%, #F0E6FF 100%) !important;
-  background-size: 300px 300px, 400px 400px, 500px 500px, 350px 350px, 200% 200% !important;
-}
-
-@keyframes auroraFlow {
-  0% { background-position: 0px 0px, 0px 0px, 0px 0px, 0px 0px, 0% 50%; }
-  50% { background-position: 50px 50px, -50px 20px, 20px -50px, -20px -20px, 100% 50%; }
-  100% { background-position: 0px 0px, 0px 0px, 0px 0px, 0px 0px, 0% 50%; }
-}
-
-/* =================================================================
-   🚨 提瓦特影院大门：双图千层饼轮播（绝对不碰）
+   🚨 提瓦特影院大门：双图轮播（绝对不碰）
    ================================================================= */
 body::before {
   content: '' !important;
@@ -119,7 +85,7 @@ body::after {
 }
 
 /* 主内容必须透明且在最高层级 */
-main, .container, #content, body > div:not(#videos) {
+main, .container, #content, body > div {
   position: relative !important;
   z-index: 3 !important; 
   width: 100% !important;
@@ -127,7 +93,7 @@ main, .container, #content, body > div:not(#videos) {
   margin: 0 auto !important;
   padding: 40px 20px !important;
   box-sizing: border-box !important;
-  background: transparent !important; /* 关键：绝不能有底色 */
+  background: transparent !important; 
 }
 
 /* 标题渐变 */
