@@ -1,7 +1,10 @@
 /* ============== 提瓦特星空 · 在线字体稳定版 ============== */
+/* ============== 提瓦特星空 · 最终稳定字体版 ============== */
+/* 先引入 Google Fonts 的 CSS，增加 fallback */
+@import url('https://fonts.googleapis.com/css2?family=ZCOOL+KuaiLe&display=swap');
 @import url('https://fonts.loli.net/css2?family=ZCOOL+KuaiLe&display=swap');
 
-/* ===== 强制全局应用 ===== */
+/* 强制全局应用 */
 html, body, h1, h2, h3, h4, h5, h6, p, a, div, span, li, .meta, .breadcrumbs, footer {
   font-family: 'ZCOOL KuaiLe', "Microsoft YaHei", "PingFang SC", sans-serif !important;
 }
