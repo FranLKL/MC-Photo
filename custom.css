@@ -9,7 +9,7 @@
     font-style: normal;
 }
 
-/* ============== 提瓦特星空 · 红蓝极光动态版 ============== */
+/* ============== 提瓦特星空 · 真·红蓝流动版 ============== */
 :root {
   --primary: #FB7299;
   --secondary: #00A1D6;
@@ -25,19 +25,18 @@ html, body, * {
 }
 
 /* =================================================================
-   🎨 背景：动态红蓝极光（最稳定平移动画）
+   🎨 背景：胡桃红 × 芙芙蓝 动态流动
    ================================================================= */
 html, body {
-  /* 我们给背景色做一个 300% 的超大画布 */
-  background: linear-gradient(135deg, #FFF0F2 0%, #FFE4E8 25%, #FDF2F7 50%, #E8F4FF 75%, #D6ECFF 100%) !important;
+  /* 加长渐变色带，让颜色过渡更自然 */
+  background: linear-gradient(135deg, #FFE4E8 0%, #FFF0F2 20%, #FDF2F7 40%, #E8F4FF 60%, #D6ECFF 80%, #FFE4E8 100%) !important;
   background-size: 300% 300% !important;
-  background-attachment: fixed !important;
+  /* 🚨 去掉了 background-attachment: fixed，让动画顺利跑起来 */
   min-height: 100vh !important;
   margin: 0;
   color: var(--text) !important;
   
-  /* 启动动画！像云彩一样缓慢平移 */
-  animation: auroraBg 15s ease infinite !important;
+  animation: auroraBg 20s ease infinite !important;
 }
 
 @keyframes auroraBg {
@@ -47,7 +46,7 @@ html, body {
 }
 
 /* =================================================================
-   🚨 提瓦特影院大门：固定双图轮播（绝对不碰）
+   🚨 提瓦特影院大门：固定双图轮播
    ================================================================= */
 body::before {
   content: '' !important;
@@ -85,7 +84,7 @@ body::after {
 }
 
 /* =================================================================
-   🔥🔥🔥 核心隔离：给主内容留出绝对空间
+   🔥🔥🔥 核心隔离：物理防打架
    ================================================================= */
 body {
   display: flex !important;
