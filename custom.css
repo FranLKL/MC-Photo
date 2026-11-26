@@ -9,7 +9,7 @@
     font-style: normal;
 }
 
-/* ============== 提瓦特星空 · 绝对不抢道·神仙版 ============== */
+/* ============== 提瓦特星空 · 终极完美无憾版 ============== */
 :root {
   --primary: #FB7299;
   --secondary: #00A1D6;
@@ -25,18 +25,25 @@ html, body, * {
 }
 
 /* =================================================================
-   🎨 背景：游动光晕（挂载在 html 标签上，绝对安全）
+   🎨 背景：游动光晕（修复边缘留白）
    ================================================================= */
 html {
   background: #FDF2F7 !important;
+  /* 强制占满整个视口，不留死角 */
+  width: 100vw !important; 
+  overflow-x: hidden !important;
 }
 
 html::before {
   content: '' !important;
   position: fixed !important;
-  top: 0; left: 0; width: 100vw; height: 100vh;
-  z-index: -3 !important; /* 最底层 */
+  top: 0; left: 0; 
+  width: 100vw !important; height: 100vh !important;
+  z-index: -3 !important; 
   pointer-events: none !important;
+  
+  /* 🚨 魔法修复：用 calc 让背景向四周延伸，彻底堵死缝隙 */
+  transform: translate(-1px, -1px) scale(1.01); 
   
   /* 左红、右蓝的极光光晕 */
   background-image: 
@@ -53,7 +60,7 @@ html::before {
 }
 
 /* =================================================================
-   🚨 提瓦特影院大门：双图轮播（全挂在 body 上）
+   🚨 提瓦特影院大门：双图轮播
    ================================================================= */
 body {
   display: flex !important;
@@ -104,11 +111,11 @@ body::after {
 }
 
 /* =================================================================
-   🔥🔥🔥 主内容隔离：层级拉满
+   🔥🔥🔥 主内容隔离
    ================================================================= */
 main, .container, #content, body > div:not(#videos) {
   position: relative !important;
-  z-index: 20 !important; /* 层级盖过所有背景 */
+  z-index: 20 !important; 
   width: 100% !important;
   max-width: 1200px !important;
   margin: 0 auto !important;
@@ -156,7 +163,7 @@ nav a, .breadcrumbs a {
 }
 
 /* =================================================================
-   🍦 首页大卡片：冰淇淋毛玻璃 + 悬浮渐变变色
+   🍦 首页大卡片：冰淇淋毛玻璃 + 悬浮渐变变色（微调更Q弹）
    ================================================================= */
 ul#galleries {
   display: flex !important; flex-wrap: wrap !important; justify-content: center !important;
