@@ -15,7 +15,7 @@ html, body, h1, h2, h3, h4, h5, h6, p, a, div, span, li, .meta, .breadcrumbs, fo
 }
 
 
-/* ============== 提瓦特星空 · 绝对强控光影版 ============== */
+/* ============== 提瓦特星空 · 千层饼终极稳定版 ============== */
 :root {
   --primary: #FB7299;
   --secondary: #00A1D6;
@@ -31,15 +31,12 @@ html, body, * {
 }
 
 /* =================================================================
-   🌌 极光云海底色（确保背景透明，不遮挡底层特效）
+   🌌 极光云海 + 银河碎钻（挂在 html 上，绝对不挡任何东西）
    ================================================================= */
-html, body {
+html {
   background: linear-gradient(120deg, #FDF2F7 0%, #E8F4FF 35%, #FFE5EF 70%, #F0E6FF 100%) !important;
   background-size: 200% 200% !important;
   background-attachment: fixed !important;
-  min-height: 100vh !important;
-  margin: 0;
-  color: var(--text) !important;
   animation: auroraFlow 20s ease infinite !important;
 }
 
@@ -56,48 +53,21 @@ body {
   overflow-x: hidden !important;
   padding-top: 380px !important;
   position: relative !important;
-  /* 确保 body 没有背景色遮挡 */
   background-color: transparent !important; 
-  z-index: 0 !important;
+  margin: 0;
+  color: var(--text) !important;
 }
 
 /* =================================================================
-   ✨ 银河碎钻（通过超高层级强行显示）
+   🚨 提瓦特影院大门：双图千层饼轮播
    ================================================================= */
+/* 第一张图：垫在最下面 */
 body::before {
-  content: '' !important;
-  position: fixed !important; 
-  top: 0; left: 0; width: 100vw; height: 100vh;
-  pointer-events: none !important; 
-  z-index: 999 !important; /* 强行拔高 */
-  
-  /* 重新调整了透明度，细碎星光 */
-  background-image: 
-    radial-gradient(circle at 15% 25%, rgba(255, 255, 255, 0.8) 1.5px, transparent 2px),
-    radial-gradient(circle at 85% 35%, rgba(0, 161, 214, 0.4) 1px, transparent 1.5px),
-    radial-gradient(circle at 45% 75%, rgba(251, 114, 153, 0.4) 1.5px, transparent 2px),
-    radial-gradient(circle at 95% 85%, rgba(255, 255, 255, 0.6) 1px, transparent 1.5px),
-    radial-gradient(circle at 25% 95%, rgba(255, 255, 255, 0.5) 1px, transparent 1.5px);
-  background-size: 300px 300px, 400px 400px, 500px 500px, 350px 350px, 450px 450px;
-  
-  animation: starryTwinkle 5s infinite alternate ease-in-out !important;
-}
-
-@keyframes starryTwinkle {
-  0% { opacity: 0.3; filter: blur(0px); }
-  100% { opacity: 1; filter: blur(1px); }
-}
-
-/* =================================================================
-   🚨 提瓦特影院大门：终极双图重叠轮播
-   ================================================================= */
-/* 第一张图（底图） */
-body::after {
   content: '' !important;
   position: absolute !important;
   top: 0 !important; left: 0 !important;
   width: 100vw !important; height: 380px !important;
-  z-index: 1 !important; 
+  z-index: 1 !important; /* 层级为1 */
   pointer-events: none !important;
   background-image: url('https://cdn.jsdelivr.net/gh/FranLKL/MC-Photo@master/banner1.jpg') !important;
   background-size: cover !important;
@@ -106,13 +76,13 @@ body::after {
   mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%) !important;
 }
 
-/* 第二张图（顶层遮罩，强制轮播） */
-main::after {
+/* 第二张图：盖在第一张上面，负责呼吸交替 */
+body::after {
   content: '' !important;
   position: absolute !important;
-  top: -380px !important; left: 0 !important;
+  top: 0 !important; left: 0 !important;
   width: 100vw !important; height: 380px !important;
-  z-index: 5 !important; /* 绝对高于第一张图 */
+  z-index: 2 !important; /* 层级为2，刚好盖住图1 */
   pointer-events: none !important;
   background-image: url('https://cdn.jsdelivr.net/gh/FranLKL/MC-Photo@master/banner2.jpg') !important;
   background-size: cover !important;
@@ -120,25 +90,25 @@ main::after {
   -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%) !important;
   mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%) !important;
   
-  /* 强行呼吸交替动画 */
   animation: bannerFade 10s infinite ease-in-out !important;
 }
 
 @keyframes bannerFade {
-  0%, 35% { opacity: 0; }
-  45%, 85% { opacity: 1; }
+  0%, 40% { opacity: 0; }
+  50%, 90% { opacity: 1; }
   100% { opacity: 0; }
 }
 
-/* 主内容居中，并且层级不能太高，否则会挡住我们的星星 */
+/* 主内容居中（修复之前的灰底问题，确保在主图上面） */
 main, .container, #content, body > div {
   position: relative !important;
-  z-index: 2 !important; 
+  z-index: 3 !important; 
   width: 100% !important;
   max-width: 1200px !important;
   margin: 0 auto !important;
   padding: 40px 20px !important;
   box-sizing: border-box !important;
+  background: transparent !important;
 }
 
 /* 标题渐变 */
@@ -274,8 +244,7 @@ footer, .footer { text-align: center !important; padding: 40px 20px 30px !import
 /* 手机端适配 */
 @media (max-width: 768px) {
   body { padding-top: 220px !important; }
-  body::after, main::after { height: 220px !important; }
-  main::after { top: -220px !important; }
+  body::before, body::after { height: 220px !important; }
   h1 { font-size: 32px !important; }
   ul#galleries > li { width: 100% !important; }
   ul#media, main > ul.grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)) !important; gap: 12px !important; }
