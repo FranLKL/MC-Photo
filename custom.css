@@ -15,7 +15,7 @@ html, body, h1, h2, h3, h4, h5, h6, p, a, div, span, li, .meta, .breadcrumbs, fo
 }
 
 
-/* ============== 提瓦特星空 · 极光云海银河版 ============== */
+/* ============== 提瓦特星空 · 绝对强控光影版 ============== */
 :root {
   --primary: #FB7299;
   --secondary: #00A1D6;
@@ -26,16 +26,14 @@ html, body, h1, h2, h3, h4, h5, h6, p, a, div, span, li, .meta, .breadcrumbs, fo
   --shadow-hover: 0 15px 40px rgba(251, 114, 153, 0.35);
 }
 
-/* 全局字体应用 */
 html, body, * {
   font-family: 'ZCOOL KuaiLe', "Microsoft YaHei", "PingFang SC", sans-serif !important;
 }
 
 /* =================================================================
-   🌌 背景：极光云海 + 银河碎钻
+   🌌 极光云海底色（确保背景透明，不遮挡底层特效）
    ================================================================= */
 html, body {
-  /* 第一层：极光云海底色，比之前更大更柔和的渐变 */
   background: linear-gradient(120deg, #FDF2F7 0%, #E8F4FF 35%, #FFE5EF 70%, #F0E6FF 100%) !important;
   background-size: 200% 200% !important;
   background-attachment: fixed !important;
@@ -51,7 +49,6 @@ html, body {
   100% { background-position: 0% 50%; }
 }
 
-/* 核心：给 body 留出顶部空间 */
 body {
   display: flex !important;
   flex-direction: column !important;
@@ -59,50 +56,48 @@ body {
   overflow-x: hidden !important;
   padding-top: 380px !important;
   position: relative !important;
+  /* 确保 body 没有背景色遮挡 */
+  background-color: transparent !important; 
   z-index: 0 !important;
 }
 
 /* =================================================================
-   ✨ 银河碎钻（铺在最底层，通过动画实现呼吸闪烁）
+   ✨ 银河碎钻（通过超高层级强行显示）
    ================================================================= */
 body::before {
   content: '' !important;
-  position: fixed !important; /* 固定在屏幕上 */
-  top: 0; left: 0; right: 0; bottom: 0;
-  width: 100vw; height: 100vh;
+  position: fixed !important; 
+  top: 0; left: 0; width: 100vw; height: 100vh;
   pointer-events: none !important; 
-  z-index: -3 !important; /* 极光的最底层 */
+  z-index: 999 !important; /* 强行拔高 */
   
-  /* 极其稀疏的星空点阵 */
+  /* 重新调整了透明度，细碎星光 */
   background-image: 
-    radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.8) 1.5px, transparent 2px),
-    radial-gradient(circle at 80% 40%, rgba(255, 255, 255, 0.6) 1px, transparent 1.5px),
-    radial-gradient(circle at 40% 70%, rgba(251, 114, 153, 0.4) 1.5px, transparent 2px),
-    radial-gradient(circle at 90% 80%, rgba(0, 161, 214, 0.4) 1px, transparent 1.5px),
-    radial-gradient(circle at 20% 90%, rgba(255, 255, 255, 0.5) 1px, transparent 1.5px);
-  
-  /* 点阵间距极大，绝对不会密集 */
+    radial-gradient(circle at 15% 25%, rgba(255, 255, 255, 0.8) 1.5px, transparent 2px),
+    radial-gradient(circle at 85% 35%, rgba(0, 161, 214, 0.4) 1px, transparent 1.5px),
+    radial-gradient(circle at 45% 75%, rgba(251, 114, 153, 0.4) 1.5px, transparent 2px),
+    radial-gradient(circle at 95% 85%, rgba(255, 255, 255, 0.6) 1px, transparent 1.5px),
+    radial-gradient(circle at 25% 95%, rgba(255, 255, 255, 0.5) 1px, transparent 1.5px);
   background-size: 300px 300px, 400px 400px, 500px 500px, 350px 350px, 450px 450px;
   
-  /* 闪烁动画 */
   animation: starryTwinkle 5s infinite alternate ease-in-out !important;
 }
 
 @keyframes starryTwinkle {
-  0% { opacity: 0.3; }
-  100% { opacity: 0.9; }
+  0% { opacity: 0.3; filter: blur(0px); }
+  100% { opacity: 1; filter: blur(1px); }
 }
 
 /* =================================================================
-   🚨 提瓦特影院大门：双图动态轮播
+   🚨 提瓦特影院大门：终极双图重叠轮播
    ================================================================= */
-/* 第一张图 */
+/* 第一张图（底图） */
 body::after {
   content: '' !important;
   position: absolute !important;
   top: 0 !important; left: 0 !important;
   width: 100vw !important; height: 380px !important;
-  z-index: 1 !important; /* 在星星和极光之上 */
+  z-index: 1 !important; 
   pointer-events: none !important;
   background-image: url('https://cdn.jsdelivr.net/gh/FranLKL/MC-Photo@master/banner1.jpg') !important;
   background-size: cover !important;
@@ -111,13 +106,13 @@ body::after {
   mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%) !important;
 }
 
-/* 第二张图（覆盖在第一张上，做淡入淡出） */
+/* 第二张图（顶层遮罩，强制轮播） */
 main::after {
   content: '' !important;
   position: absolute !important;
   top: -380px !important; left: 0 !important;
   width: 100vw !important; height: 380px !important;
-  z-index: 2 !important; /* 在横幅第一层之上 */
+  z-index: 5 !important; /* 绝对高于第一张图 */
   pointer-events: none !important;
   background-image: url('https://cdn.jsdelivr.net/gh/FranLKL/MC-Photo@master/banner2.jpg') !important;
   background-size: cover !important;
@@ -125,19 +120,20 @@ main::after {
   -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%) !important;
   mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%) !important;
   
+  /* 强行呼吸交替动画 */
   animation: bannerFade 10s infinite ease-in-out !important;
 }
 
 @keyframes bannerFade {
-  0%, 40% { opacity: 0; }
-  50%, 90% { opacity: 1; }
+  0%, 35% { opacity: 0; }
+  45%, 85% { opacity: 1; }
   100% { opacity: 0; }
 }
 
-/* 确保主内容在横幅之上 */
+/* 主内容居中，并且层级不能太高，否则会挡住我们的星星 */
 main, .container, #content, body > div {
   position: relative !important;
-  z-index: 3 !important; /* 内容层级最高 */
+  z-index: 2 !important; 
   width: 100% !important;
   max-width: 1200px !important;
   margin: 0 auto !important;
