@@ -15,7 +15,7 @@ html, body, h1, h2, h3, h4, h5, h6, p, a, div, span, li, .meta, .breadcrumbs, fo
 }
 
 
-/* ============== 提瓦特星空 · 极光流沙修颜版 ============== */
+/* ============== 提瓦特星空 · 梦幻果冻光球版 ============== */
 :root {
   --primary: #FB7299;
   --secondary: #00A1D6;
@@ -32,9 +32,10 @@ html, body, * {
 }
 
 /* =================================================================
-   🌌 背景：极光渐变底色 + 柔和斜向流光
+   🌌 背景：柔和的光晕底色
    ================================================================= */
 html, body {
+  /* 原本的极光背景作为底色 */
   background: linear-gradient(-45deg, #FDF2F7, #E8F4FF, #FFE5EF, #E0F2FE) !important;
   background-size: 400% 400% !important;
   background-attachment: fixed !important;
@@ -62,7 +63,7 @@ body {
 }
 
 /* =================================================================
-   ✨ 柔和的斜向光带（完全避免大X）
+   ✨ 漂浮的果冻光球特效（彻底告别线条和点点）
    ================================================================= */
 body::before {
   content: '' !important;
@@ -72,46 +73,61 @@ body::before {
   pointer-events: none !important; 
   z-index: -2 !important; 
   
-  /* 用极细的线段，大间距，只保留单向流动 */
-  background-image: linear-gradient(115deg, transparent 48%, rgba(251, 114, 153, 0.08) 50%, rgba(0, 161, 214, 0.08) 52%, transparent 55%);
-  background-size: 600px 600px;
+  /* 用超大半径的径向渐变画出模糊的光球 */
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(251, 114, 153, 0.15) 0%, transparent 40%),
+    radial-gradient(circle at 90% 80%, rgba(0, 161, 214, 0.15) 0%, transparent 40%),
+    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.2) 0%, transparent 50%);
   
-  /* 单向缓慢流动 */
-  animation: flowLight 10s linear infinite !important;
+  /* 让光球缓慢游动 */
+  animation: floatOrbs 20s infinite alternate ease-in-out !important;
 }
 
-@keyframes flowLight {
-  0% { background-position: 0px 0px; }
-  100% { background-position: -600px 600px; }
+@keyframes floatOrbs {
+  0% { background-position: 0% 0%, 100% 100%, 50% 50%; }
+  50% { background-position: 100% 50%, 0% 0%, 50% 100%; }
+  100% { background-position: 0% 100%, 100% 0%, 50% 50%; }
 }
 
 /* =================================================================
-   🚨 提瓦特影院大门：单张绝美大图 + 呼吸放大
+   🚨 提瓦特影院大门：双图动态轮播（彻底解决显示问题）
    ================================================================= */
+/* 第一张图：作为最底层的固定背景 */
 body::after {
   content: '' !important;
   position: absolute !important;
   top: 0 !important; left: 0 !important;
   width: 100vw !important; height: 380px !important;
-  z-index: -1 !important; /* 放在背景上面 */
+  z-index: -1 !important; /* 在光球之上，主内容之下 */
   pointer-events: none !important;
-  
-  /* 这里只用第一张图，保证绝对稳定 */
   background-image: url('https://cdn.jsdelivr.net/gh/FranLKL/MC-Photo@master/banner1.jpg') !important;
   background-size: cover !important;
   background-position: center center !important;
-  
-  /* 底部渐变遮罩融合 */
   -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%) !important;
   mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%) !important;
-  
-  /* 缓慢呼吸特效 */
-  animation: bannerBreath 15s infinite alternate ease-in-out !important;
 }
 
-@keyframes bannerBreath {
-  0% { transform: scale(1); }
-  100% { transform: scale(1.05); }
+/* 第二张图：悬浮在第一张上方，通过伪元素来淡入淡出 */
+main::after {
+  content: '' !important;
+  position: absolute !important;
+  top: -380px !important; left: 0 !important;
+  width: 100vw !important; height: 380px !important;
+  z-index: -1 !important; /* 在横幅上层 */
+  pointer-events: none !important;
+  background-image: url('https://cdn.jsdelivr.net/gh/FranLKL/MC-Photo@master/banner2.jpg') !important;
+  background-size: cover !important;
+  background-position: center center !important;
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%) !important;
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%) !important;
+  /* 动画 */
+  animation: bannerFade 10s infinite ease-in-out !important;
+}
+
+@keyframes bannerFade {
+  0%, 40% { opacity: 0; }
+  50%, 90% { opacity: 1; }
+  100% { opacity: 0; }
 }
 
 /* 确保主内容在横幅之上 */
@@ -164,7 +180,7 @@ nav a, .breadcrumbs a {
 }
 
 /* =================================================================
-   🍦 首页大卡片：冰淇淋毛玻璃 + 悬浮渐变变色 (更加 Q 弹！)
+   🍦 首页大卡片：冰淇淋毛玻璃 + 悬浮渐变变色
    ================================================================= */
 ul#galleries {
   display: flex !important; flex-wrap: wrap !important; justify-content: center !important;
@@ -183,12 +199,12 @@ ul#galleries > li > a {
   border-radius: var(--radius) !important; 
   border: 1px solid rgba(255, 255, 255, 0.8) !important;
   box-shadow: 0 8px 32px rgba(31, 38, 135, 0.07) !important;
-  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) !important; /* 弹簧手感 */
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) !important; 
   text-decoration: none !important; height: 100% !important; box-sizing: border-box !important; position: relative !important;
 }
 
 ul#galleries > li > a:hover {
-  transform: translateY(-8px) scale(1.02) !important; /* 微微放大 */
+  transform: translateY(-8px) scale(1.02) !important; 
   background: linear-gradient(135deg, rgba(253, 242, 247, 0.9), rgba(232, 244, 255, 0.9)) !important;
   box-shadow: 0 15px 40px rgba(251, 114, 153, 0.3) !important;
   border-color: var(--primary) !important;
@@ -205,7 +221,7 @@ ul#galleries > li > a ul.grid li:first-child img {
 }
 
 /* =================================================================
-   🍦 子相册图片：冰淇淋毛玻璃 + 悬浮变色 (同样更 Q 弹)
+   🍦 子相册图片：冰淇淋毛玻璃 + 悬浮变色
    ================================================================= */
 ul#media, main > ul.grid {
   display: grid !important;
@@ -259,6 +275,7 @@ footer, .footer { text-align: center !important; padding: 40px 20px 30px !import
 @media (max-width: 768px) {
   body { padding-top: 220px !important; }
   body::after { height: 220px !important; }
+  main::after { top: -220px !important; height: 220px !important; }
   h1 { font-size: 32px !important; }
   ul#galleries > li { width: 100% !important; }
   ul#media, main > ul.grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)) !important; gap: 12px !important; }
