@@ -9,7 +9,7 @@
     font-style: normal;
 }
 
-/* ============== 提瓦特星空 · 绝对不打架版 ============== */
+/* ============== 提瓦特星空 · 终极隔离版 ============== */
 :root {
   --primary: #FB7299;
   --secondary: #00A1D6;
@@ -25,7 +25,7 @@ html, body, * {
 }
 
 /* =================================================================
-   🎨 背景：肉眼可见的极光渐变（带缓慢流动）
+   🎨 背景：极光渐变
    ================================================================= */
 html, body {
   background: linear-gradient(135deg, #FDF2F7 0%, #E8F4FF 50%, #FFE5EF 100%) !important;
@@ -43,24 +43,15 @@ html, body {
   100% { background-position: 0% 50%; }
 }
 
-body {
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  overflow-x: hidden !important;
-  position: relative !important;
-  z-index: 0 !important;
-}
-
 /* =================================================================
-   🚨 提瓦特影院大门：双图轮播（代码不动）
+   🚨 提瓦特影院大门：固定在顶部的终极双图轮播
    ================================================================= */
 body::before {
   content: '' !important;
-  position: absolute !important;
+  position: fixed !important; /* 改为固定定位，死死钉在屏幕顶端 */
   top: 0 !important; left: 0 !important;
   width: 100vw !important; height: 380px !important;
-  z-index: -1 !important; /* 改用负数层级，绝对在后面 */
+  z-index: -1 !important; /* 放在所有元素的最底层 */
   pointer-events: none !important;
   background-image: url('https://cdn.jsdelivr.net/gh/FranLKL/MC-Photo@master/banner1.jpg') !important;
   background-size: cover !important;
@@ -71,10 +62,10 @@ body::before {
 
 body::after {
   content: '' !important;
-  position: absolute !important;
+  position: fixed !important;
   top: 0 !important; left: 0 !important;
   width: 100vw !important; height: 380px !important;
-  z-index: 0 !important; 
+  z-index: -1 !important; 
   pointer-events: none !important;
   background-image: url('https://cdn.jsdelivr.net/gh/FranLKL/MC-Photo@master/banner2.jpg') !important;
   background-size: cover !important;
@@ -91,15 +82,26 @@ body::after {
 }
 
 /* =================================================================
-   🔥🔥🔥 核心修复：利用 padding 给主内容留出绝对不打架的顶部空间
+   🔥🔥🔥 核心隔离：给主内容包一层透明护盾
    ================================================================= */
+body {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  overflow-x: hidden !important;
+  position: relative !important;
+  /* 不再用 padding，而是用 padding-top 强行留出空白，让文字绝对隔离 */
+  padding-top: 380px !important; 
+  z-index: 10 !important; /* 层级拔高 */
+}
+
 main, .container, #content, body > div:not(#videos) {
   position: relative !important;
-  z-index: 2 !important; 
+  z-index: 20 !important; 
   width: 100% !important;
   max-width: 1200px !important;
   margin: 0 auto !important;
-  padding: 400px 20px 40px 20px !important; /* 🚨 顶部 padding 改成 400px，强制把标题和卡片顶下来 */
+  padding: 40px 20px !important;
   box-sizing: border-box !important;
   background: transparent !important; 
 }
@@ -236,9 +238,7 @@ footer, .footer { text-align: center !important; padding: 40px 20px 30px !import
 
 /* 手机端适配 */
 @media (max-width: 768px) {
-  main, .container, #content, body > div:not(#videos) {
-    padding-top: 240px !important; /* 手机端顶部留白减小 */
-  }
+  body { padding-top: 220px !important; }
   body::before, body::after { height: 220px !important; }
   h1 { font-size: 32px !important; }
   ul#galleries > li { width: 100% !important; }
