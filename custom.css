@@ -15,7 +15,7 @@ html, body, h1, h2, h3, h4, h5, h6, p, a, div, span, li, .meta, .breadcrumbs, fo
 }
 
 
-/* ============== 提瓦特星空 · 赛博极光粒子版 ============== */
+/* ============== 提瓦特星空 · 极光流星雨版 ============== */
 :root {
   --primary: #FB7299;
   --secondary: #00A1D6;
@@ -32,7 +32,7 @@ html, body, * {
 }
 
 /* =================================================================
-   🌌 背景：极光流动 + 伪元素粒子星空连线
+   🌌 背景：极光流动底色
    ================================================================= */
 html, body {
   background: linear-gradient(-45deg, #FDF2F7, #E8F4FF, #FFE5EF, #E0F2FE) !important;
@@ -50,7 +50,7 @@ html, body {
   100% { background-position: 0% 50%; }
 }
 
-/* 核心：给 body 留出顶部空间，并开启相对定位 */
+/* 核心：给 body 留出顶部空间 */
 body {
   display: flex !important;
   flex-direction: column !important;
@@ -62,43 +62,34 @@ body {
 }
 
 /* =================================================================
-   ✨ 二次元粒子连接效果（使用 body 的伪元素平铺在背景上）
+   💫 赛博流星雨流线特效
    ================================================================= */
 body::before {
   content: '' !important;
   position: absolute !important;
   top: 0; left: 0; right: 0; bottom: 0;
   width: 100%; height: 100%;
-  pointer-events: none !important; /* 不挡鼠标 */
-  z-index: -2 !important; /* 放到最底层 */
+  pointer-events: none !important; 
+  z-index: -2 !important; 
   
-  /* 核心魔法：用多层径向渐变模拟散落的点和线 */
-  background-image: 
-    /* 左上角粉色光晕连接线 */
-    radial-gradient(circle at 20% 30%, rgba(251, 114, 153, 0.15) 0%, transparent 40%),
-    /* 右下角蓝色光晕连接线 */
-    radial-gradient(circle at 80% 70%, rgba(0, 161, 214, 0.15) 0%, transparent 40%),
-    /* 中间散落的发光小点 */
-    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.8) 1px, transparent 1.5px),
-    radial-gradient(circle at 15% 75%, rgba(251, 114, 153, 0.6) 1.5px, transparent 2px),
-    radial-gradient(circle at 85% 25%, rgba(0, 161, 214, 0.6) 1.5px, transparent 2px),
-    radial-gradient(circle at 30% 80%, rgba(251, 114, 153, 0.4) 1px, transparent 1.5px),
-    radial-gradient(circle at 70% 20%, rgba(0, 161, 214, 0.4) 1px, transparent 1.5px);
+  /* 使用线性渐变画出极细的斜线 */
+  background: 
+    linear-gradient(135deg, transparent 40%, rgba(251, 114, 153, 0.1) 48%, rgba(251, 114, 153, 0.3) 50%, rgba(251, 114, 153, 0.1) 52%, transparent 60%),
+    linear-gradient(45deg, transparent 40%, rgba(0, 161, 214, 0.1) 48%, rgba(0, 161, 214, 0.3) 50%, rgba(0, 161, 214, 0.1) 52%, transparent 60%);
+  background-size: 300px 300px, 400px 400px;
   
-  /* 设置背景网格尺寸，让点阵铺满全屏 */
-  background-size: 100% 100%, 100% 100%, 100px 100px, 150px 150px, 120px 120px, 80px 80px, 200px 200px;
-  
-  /* 呼吸闪烁动画 */
-  animation: pulseGlow 6s infinite alternate ease-in-out !important;
+  /* 让流星雨不断向下移动 */
+  animation: meteorRain 10s linear infinite !important;
 }
 
-@keyframes pulseGlow {
-  0% { opacity: 0.3; filter: blur(1px); }
-  50% { opacity: 0.6; filter: blur(0px); }
-  100% { opacity: 0.4; filter: blur(1px); }
+@keyframes meteorRain {
+  0% { background-position: 0px 0px, 0px 0px; }
+  100% { background-position: 300px 300px, -400px 400px; }
 }
 
-/* 横幅轮播层 (保留你的绝美双图) */
+/* =================================================================
+   🚨 提瓦特影院大门：双图动态轮播（保持不变）
+   ================================================================= */
 body::after {
   content: '' !important;
   position: absolute !important;
@@ -114,7 +105,6 @@ body::after {
   animation: bannerFade 10s infinite ease-in-out !important;
 }
 
-/* 横幅第一张图由 main 的 before 伪元素来负责（为了不占用 body 的名额） */
 main::after {
   content: '' !important;
   position: absolute !important;
@@ -279,7 +269,6 @@ footer, .footer { text-align: center !important; padding: 40px 20px 30px !import
 /* 手机端适配 */
 @media (max-width: 768px) {
   body { padding-top: 220px !important; }
-  body::before { height: 100% !important; }
   body::after { height: 220px !important; }
   main::after { top: -220px !important; height: 220px !important; }
   h1 { font-size: 32px !important; }
