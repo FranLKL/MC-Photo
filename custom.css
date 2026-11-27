@@ -9,7 +9,7 @@
     font-style: normal;
 }
 
-/* ============== 提瓦特星空 · 绝对下移·超大标题版 ============== */
+/* ============== 提瓦特星空 · 暴力撑开完美版 ============== */
 :root {
   --primary: #FB7299;
   --secondary: #00A1D6;
@@ -25,7 +25,7 @@ html, body, * {
 }
 
 /* =================================================================
-   🎨 背景：极光渐变（修复边缘缝隙）
+   🎨 背景：极光渐变
    ================================================================= */
 html {
   background: #FDF2F7 !important;
@@ -40,10 +40,11 @@ body {
   overflow-x: hidden !important;
   position: relative !important;
   background: transparent !important;
-  margin: 0;
-  padding-top: 0 !important; 
+  margin: 0 !important;
+  padding: 0 !important; 
 }
 
+/* 极光背景层 */
 html::before {
   content: '' !important;
   position: fixed !important;
@@ -91,6 +92,7 @@ body::after {
   background-image: url('https://cdn.jsdelivr.net/gh/FranLKL/MC-Photo@master/banner2.jpg') !important;
   background-size: cover !important;
   background-position: center center !important;
+  -webkit-background-clip: padding-box !important;
   -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%) !important;
   mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%) !important;
   animation: bannerFade 10s infinite ease-in-out !important;
@@ -103,29 +105,41 @@ body::after {
 }
 
 /* =================================================================
-   🔥🔥🔥 主内容隔离：用 margin-top 强行下推
+   🔥🔥🔥 核心隔离：强行撑开！
    ================================================================= */
 main, .container, #content, body > div:not(#videos) {
   position: relative !important;
   z-index: 20 !important; 
   width: 100% !important;
   max-width: 1200px !important;
-  /* 🚨 核心：用 margin 强行把主内容踢到横幅下方 */
-  margin: 420px auto 0 auto !important; 
+  margin: 0 auto !important;
   padding: 20px !important;
   box-sizing: border-box !important;
   background: transparent !important; 
+  /* 确保是纵向排列，防止内容打架 */
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
 }
 
-/* 🔥 恢复超大字体，加粗下移 */
+/* ✨ 核心魔法：在 main 的最顶部凭空塞一个透明高度，强行把标题撑下去！ */
+main::before {
+  content: '' !important;
+  display: block !important;
+  height: 380px !important; /* 这里塞入 380px 的透明高度 */
+  width: 100% !important;
+  visibility: hidden !important; 
+}
+
+/* 🔥 超大字体，绝对不挡横幅 */
 h1 {
-  font-size: 52px !important; /* 超大！ */
+  font-size: 52px !important; 
   font-weight: 800 !important;
   background: linear-gradient(90deg, #FB7299, #00A1D6, #FB7299) !important;
   background-size: 200% auto !important;
-  -webkit-background-clip: text !important; background-clip: text !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
-  /* 标题自带 20px 上边距，确保与横幅有呼吸感 */
   margin: 20px 0 20px !important; 
   text-align: center !important; 
   animation: shine 3s linear infinite !important;
@@ -133,17 +147,18 @@ h1 {
 }
 @keyframes shine { 0% { background-position: 0 center; } 100% { background-position: 200% center; } }
 
-/* 欢迎语 & 分隔线 */
-main::before {
-  content: "✨ 提瓦特的星空永远有你的位置 ✨";
+/* 欢迎语（因为我们占用了 main::before，所以这里把欢迎语写在一个独立块里） */
+.welcome-text {
   display: block !important; text-align: center !important; font-size: 18px !important;
   color: var(--text-light) !important; margin: 0 0 30px !important; letter-spacing: 2px !important;
 }
+
 hr {
   border: none !important; height: 2px !important;
   background: linear-gradient(90deg, transparent, #FB7299, #00A1D6, #FB7299, transparent) !important;
   background-size: 200% auto !important; animation: gradient-flow 4s linear infinite !important;
   max-width: 400px !important; margin: 0 auto 40px !important;
+  width: 100% !important;
 }
 @keyframes gradient-flow { 0% { background-position: -200px center; } 100% { background-position: 200px center; } }
 
@@ -159,7 +174,7 @@ nav a, .breadcrumbs a {
 }
 
 /* =================================================================
-   🍦 首页大卡片：冰淇淋毛玻璃 + 悬浮渐变变色
+   🍦 首页大卡片
    ================================================================= */
 ul#galleries {
   display: flex !important; flex-wrap: wrap !important; justify-content: center !important;
@@ -200,7 +215,7 @@ ul#galleries > li > a ul.grid li:first-child img {
 }
 
 /* =================================================================
-   🍦 子相册图片：冰淇淋毛玻璃 + 悬浮变色
+   🍦 子相册图片
    ================================================================= */
 ul#media, main > ul.grid {
   display: grid !important;
@@ -252,9 +267,7 @@ footer, .footer { text-align: center !important; padding: 40px 20px 30px !import
 
 /* 手机端适配 */
 @media (max-width: 768px) {
-  main, .container, #content, body > div:not(#videos) {
-    margin-top: 240px !important; 
-  }
+  main::before { height: 220px !important; }
   body::before, body::after { height: 220px !important; }
   h1 { font-size: 36px !important; }
   ul#galleries > li { width: 100% !important; }
