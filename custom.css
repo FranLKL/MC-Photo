@@ -9,7 +9,7 @@
     font-style: normal;
 }
 
-/* ============== 提瓦特星空 · 终极物理外挂版 ============== */
+/* ============== 提瓦特星空 · 终极物理封印版 ============== */
 :root {
   --primary: #FB7299;
   --secondary: #00A1D6;
@@ -92,7 +92,7 @@ body::after {
 }
 
 /* =================================================================
-   🔥🔥🔥 终极物理外挂：强行给 body 加护城河
+   🔥🔥🔥 终极物理封印：用 flex 配合极大的 padding 强行下推
    ================================================================= */
 body {
   display: flex !important;
@@ -105,24 +105,25 @@ body {
   padding: 0 !important; 
 }
 
-/* 让内容自然往下排，但通过给最外层包裹加高度限制 */
 main, .container, #content, body > div:not(#videos) {
   position: relative !important;
   z-index: 20 !important; 
   width: 100% !important;
   max-width: 1200px !important;
   margin: 0 auto !important;
-  padding: 20px !important;
   box-sizing: border-box !important;
   background: transparent !important; 
   
-  /* 🚨 关键：把整个主内容的顶部，用 relative 相对定位往下挪 */
-  top: 380px !important; 
-  /* 给底部留出空间，防止被顶飞 */
-  margin-bottom: 380px !important; 
+  /* 💥 终极封印：顶部留白加大到 400px，并用 flex 强制它生效 */
+  padding: 400px 20px 40px 20px !important; 
+  
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
 }
 
-/* 🔥 恢复超大字体，加粗下移 */
+/* 🔥 超大字体，绝对不挡横幅 */
 h1 {
   font-size: 52px !important; 
   font-weight: 800 !important;
@@ -135,14 +136,23 @@ h1 {
   text-align: center !important; 
   animation: shine 3s linear infinite !important;
   filter: drop-shadow(0 0 15px rgba(251, 114, 153, 0.15)) !important;
+  width: 100% !important;
 }
 @keyframes shine { 0% { background-position: 0 center; } 100% { background-position: 200% center; } }
 
-/* 欢迎语（恢复成普通样式） */
+/* 欢迎语（注意这里我没用 main::before，而是用了一个普通段落占位，防止冲突） */
+main > p:first-of-type, main > div:first-of-type {
+  display: none !important;
+}
 main::before {
   content: "✨ 提瓦特的星空永远有你的位置 ✨";
-  display: block !important; text-align: center !important; font-size: 18px !important;
-  color: var(--text-light) !important; margin: 0 0 30px !important; letter-spacing: 2px !important;
+  display: block !important; 
+  text-align: center !important; 
+  font-size: 18px !important;
+  color: var(--text-light) !important; 
+  margin: 0 0 30px !important; 
+  letter-spacing: 2px !important;
+  width: 100% !important;
 }
 
 hr {
@@ -158,6 +168,7 @@ hr {
 nav, .breadcrumbs {
   display: flex !important; justify-content: center !important; align-items: center !important;
   gap: 10px !important; list-style: none !important; padding: 0 !important; margin: 0 0 30px 0 !important;
+  width: 100% !important;
 }
 nav a, .breadcrumbs a {
   background: transparent !important; color: var(--primary) !important; padding: 5px 10px !important;
@@ -260,8 +271,7 @@ footer, .footer { text-align: center !important; padding: 40px 20px 30px !import
 /* 手机端适配 */
 @media (max-width: 768px) {
   main, .container, #content, body > div:not(#videos) {
-    top: 240px !important;
-    margin-bottom: 240px !important;
+    padding-top: 220px !important; 
   }
   body::before, body::after { height: 220px !important; }
   h1 { font-size: 36px !important; }
