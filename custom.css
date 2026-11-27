@@ -10,6 +10,7 @@
 }
 
 /* ============== 提瓦特星空 · 终极物理封印版 ============== */
+/* ============== 提瓦特星空 · 物理隔离带版 ============== */
 :root {
   --primary: #FB7299;
   --secondary: #00A1D6;
@@ -92,7 +93,7 @@ body::after {
 }
 
 /* =================================================================
-   🔥🔥🔥 终极物理封印：用 flex 配合极大的 padding 强行下推
+   🔥🔥🔥 物理隔离带：在 body 顶部强行塞一个占位符
    ================================================================= */
 body {
   display: flex !important;
@@ -105,25 +106,24 @@ body {
   padding: 0 !important; 
 }
 
+/* 🛑 这个伪元素就是一个透明的城墙，它自己会占据 380px 的高度 */
+body > div:first-of-type {
+  margin-top: 380px !important; 
+}
+
+/* 同时确保主内容容器也有足够的顶部留白 */
 main, .container, #content, body > div:not(#videos) {
   position: relative !important;
   z-index: 20 !important; 
   width: 100% !important;
   max-width: 1200px !important;
   margin: 0 auto !important;
+  padding: 40px 20px !important; /* 恢复正常 padding */
   box-sizing: border-box !important;
   background: transparent !important; 
-  
-  /* 💥 终极封印：顶部留白加大到 400px，并用 flex 强制它生效 */
-  padding: 400px 20px 40px 20px !important; 
-  
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  justify-content: flex-start !important;
 }
 
-/* 🔥 超大字体，绝对不挡横幅 */
+/* 🔥 恢复超大字体，加粗下移 */
 h1 {
   font-size: 52px !important; 
   font-weight: 800 !important;
@@ -140,19 +140,11 @@ h1 {
 }
 @keyframes shine { 0% { background-position: 0 center; } 100% { background-position: 200% center; } }
 
-/* 欢迎语（注意这里我没用 main::before，而是用了一个普通段落占位，防止冲突） */
-main > p:first-of-type, main > div:first-of-type {
-  display: none !important;
-}
+/* 欢迎语 */
 main::before {
   content: "✨ 提瓦特的星空永远有你的位置 ✨";
-  display: block !important; 
-  text-align: center !important; 
-  font-size: 18px !important;
-  color: var(--text-light) !important; 
-  margin: 0 0 30px !important; 
-  letter-spacing: 2px !important;
-  width: 100% !important;
+  display: block !important; text-align: center !important; font-size: 18px !important;
+  color: var(--text-light) !important; margin: 0 0 30px !important; letter-spacing: 2px !important;
 }
 
 hr {
@@ -270,8 +262,8 @@ footer, .footer { text-align: center !important; padding: 40px 20px 30px !import
 
 /* 手机端适配 */
 @media (max-width: 768px) {
-  main, .container, #content, body > div:not(#videos) {
-    padding-top: 220px !important; 
+  body > div:first-of-type {
+    margin-top: 220px !important; 
   }
   body::before, body::after { height: 220px !important; }
   h1 { font-size: 36px !important; }
