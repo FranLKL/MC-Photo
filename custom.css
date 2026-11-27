@@ -9,7 +9,7 @@
     font-style: normal;
 }
 
-/* ============== 提瓦特星空 · 滑动覆盖·大字版 ============== */
+/* ============== 提瓦特星空 · 绝对下移·超大标题版 ============== */
 :root {
   --primary: #FB7299;
   --secondary: #00A1D6;
@@ -103,30 +103,30 @@ body::after {
 }
 
 /* =================================================================
-   🔥🔥🔥 主内容隔离：滑动覆盖的核心
+   🔥🔥🔥 主内容隔离：用 margin-top 强行下推
    ================================================================= */
 main, .container, #content, body > div:not(#videos) {
   position: relative !important;
   z-index: 20 !important; 
   width: 100% !important;
   max-width: 1200px !important;
-  margin: 0 auto !important;
-  /* 把头部留白加大到 450px，给大标题留出足够的安全区 */
-  padding: 450px 20px 40px 20px !important; 
+  /* 🚨 核心：用 margin 强行把主内容踢到横幅下方 */
+  margin: 420px auto 0 auto !important; 
+  padding: 20px !important;
   box-sizing: border-box !important;
   background: transparent !important; 
 }
 
-/* 🔥 核心改动：恢复超大字体，下移并增加呼吸感 */
+/* 🔥 恢复超大字体，加粗下移 */
 h1 {
-  font-size: 48px !important; 
+  font-size: 52px !important; /* 超大！ */
   font-weight: 800 !important;
   background: linear-gradient(90deg, #FB7299, #00A1D6, #FB7299) !important;
   background-size: 200% auto !important;
   -webkit-background-clip: text !important; background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
-  /* 留出上下边距，下移避开横幅 */
-  margin: 30px 0 20px !important; 
+  /* 标题自带 20px 上边距，确保与横幅有呼吸感 */
+  margin: 20px 0 20px !important; 
   text-align: center !important; 
   animation: shine 3s linear infinite !important;
   filter: drop-shadow(0 0 15px rgba(251, 114, 153, 0.15)) !important;
@@ -253,10 +253,10 @@ footer, .footer { text-align: center !important; padding: 40px 20px 30px !import
 /* 手机端适配 */
 @media (max-width: 768px) {
   main, .container, #content, body > div:not(#videos) {
-    padding-top: 260px !important; 
+    margin-top: 240px !important; 
   }
   body::before, body::after { height: 220px !important; }
-  h1 { font-size: 36px !important; margin-top: 20px !important; }
+  h1 { font-size: 36px !important; }
   ul#galleries > li { width: 100% !important; }
   ul#media, main > ul.grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)) !important; gap: 12px !important; }
   ul#media > li, main > ul.grid > li { height: 160px !important; }
