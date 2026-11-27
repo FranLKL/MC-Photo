@@ -9,7 +9,7 @@
     font-style: normal;
 }
 
-/* ============== 提瓦特星空 · 终极沉浸感版 ============== */
+/* ============== 提瓦特星空 · 滑动覆盖·大字版 ============== */
 :root {
   --primary: #FB7299;
   --secondary: #00A1D6;
@@ -25,11 +25,10 @@ html, body, * {
 }
 
 /* =================================================================
-   🎨 修复边缘缝隙 + 动态极光底
+   🎨 背景：极光渐变（修复边缘缝隙）
    ================================================================= */
 html {
   background: #FDF2F7 !important;
-  /* 溢出隐藏，把讨厌的横向滚动条切掉 */
   overflow-x: hidden !important;
   width: 100vw !important;
 }
@@ -42,18 +41,15 @@ body {
   position: relative !important;
   background: transparent !important;
   margin: 0;
-  /* 现在页面顶部不需要留出 380px 的 padding 了，因为图片是固定在下层的，内容会直接盖上去 */
   padding-top: 0 !important; 
 }
 
-/* 动态极光背景层（铺在最底层） */
 html::before {
   content: '' !important;
   position: fixed !important;
   top: 0; left: 0; width: 100vw; height: 100vh !important;
   z-index: -3 !important; 
   pointer-events: none !important;
-  /* 魔法：向四周扩大一点点，消灭留白缝隙 */
   transform: scale(1.05);
   
   background-image: 
@@ -69,14 +65,14 @@ html::before {
 }
 
 /* =================================================================
-   🚨 提瓦特影院大门：固定双图轮播层
+   🚨 提瓦特影院大门：固定双图轮播
    ================================================================= */
 body::before {
   content: '' !important;
-  position: fixed !important; /* 固定在屏幕上！ */
+  position: fixed !important; 
   top: 0 !important; left: 0 !important;
   width: 100vw !important; height: 380px !important;
-  z-index: -1 !important; /* 在极光之上，但在内容之下 */
+  z-index: -1 !important; 
   pointer-events: none !important;
   background-image: url('https://cdn.jsdelivr.net/gh/FranLKL/MC-Photo@master/banner1.jpg') !important;
   background-size: cover !important;
@@ -107,7 +103,7 @@ body::after {
 }
 
 /* =================================================================
-   🔥🔥🔥 主内容沉浸式覆盖：重新用 padding 撑开，滑入画面
+   🔥🔥🔥 主内容隔离：滑动覆盖的核心
    ================================================================= */
 main, .container, #content, body > div:not(#videos) {
   position: relative !important;
@@ -115,20 +111,23 @@ main, .container, #content, body > div:not(#videos) {
   width: 100% !important;
   max-width: 1200px !important;
   margin: 0 auto !important;
-  /* 重点：首屏给足空间，往下滑动时内容会盖在固定横幅上 */
-  padding: 380px 20px 40px 20px !important; 
+  /* 把头部留白加大到 450px，给大标题留出足够的安全区 */
+  padding: 450px 20px 40px 20px !important; 
   box-sizing: border-box !important;
   background: transparent !important; 
 }
 
-/* 标题渐变 */
+/* 🔥 核心改动：恢复超大字体，下移并增加呼吸感 */
 h1 {
-  font-size: 42px !important; font-weight: 800 !important;
+  font-size: 48px !important; 
+  font-weight: 800 !important;
   background: linear-gradient(90deg, #FB7299, #00A1D6, #FB7299) !important;
   background-size: 200% auto !important;
   -webkit-background-clip: text !important; background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
-  margin: 0 0 10px !important; text-align: center !important; 
+  /* 留出上下边距，下移避开横幅 */
+  margin: 30px 0 20px !important; 
+  text-align: center !important; 
   animation: shine 3s linear infinite !important;
   filter: drop-shadow(0 0 15px rgba(251, 114, 153, 0.15)) !important;
 }
@@ -160,7 +159,7 @@ nav a, .breadcrumbs a {
 }
 
 /* =================================================================
-   🍦 首页大卡片：冰淇淋毛玻璃
+   🍦 首页大卡片：冰淇淋毛玻璃 + 悬浮渐变变色
    ================================================================= */
 ul#galleries {
   display: flex !important; flex-wrap: wrap !important; justify-content: center !important;
@@ -201,7 +200,7 @@ ul#galleries > li > a ul.grid li:first-child img {
 }
 
 /* =================================================================
-   🍦 子相册图片：冰淇淋毛玻璃
+   🍦 子相册图片：冰淇淋毛玻璃 + 悬浮变色
    ================================================================= */
 ul#media, main > ul.grid {
   display: grid !important;
@@ -254,10 +253,10 @@ footer, .footer { text-align: center !important; padding: 40px 20px 30px !import
 /* 手机端适配 */
 @media (max-width: 768px) {
   main, .container, #content, body > div:not(#videos) {
-    padding-top: 220px !important; 
+    padding-top: 260px !important; 
   }
   body::before, body::after { height: 220px !important; }
-  h1 { font-size: 32px !important; }
+  h1 { font-size: 36px !important; margin-top: 20px !important; }
   ul#galleries > li { width: 100% !important; }
   ul#media, main > ul.grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)) !important; gap: 12px !important; }
   ul#media > li, main > ul.grid > li { height: 160px !important; }
